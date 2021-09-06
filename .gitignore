@@ -24,6 +24,7 @@ coverage
 /server/AnimeAB.Core/bin
 /server/AnimeAB.Core/obj
 /server/AnimeAB.Core/Properties
+/server/AnimeAB.Core/wwwroot/css/main.css
 /server/AnimeAB.Reponsitories/obj
 /server/AnimeAB.Reponsitories/Properties
 /server/AnimeAB.Reponsitories/bin
