@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31424.327
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoAnimeAB", "AutoAnimeAB\AutoAnimeAB.csproj", "{11298AE5-51B6-43E6-A239-DB1D8CF4517E}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "AnimeABSetup", "AnimeABSetup\AnimeABSetup.vdproj", "{C98D1954-E2A4-404D-B390-1B50F0CDB900}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{11298AE5-51B6-43E6-A239-DB1D8CF4517E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11298AE5-51B6-43E6-A239-DB1D8CF4517E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11298AE5-51B6-43E6-A239-DB1D8CF4517E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11298AE5-51B6-43E6-A239-DB1D8CF4517E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C98D1954-E2A4-404D-B390-1B50F0CDB900}.Debug|Any CPU.ActiveCfg = Release
+		{C98D1954-E2A4-404D-B390-1B50F0CDB900}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E3106A9C-8994-4E90-B03E-5ACCF8B0001B}
+	EndGlobalSection
+EndGlobal

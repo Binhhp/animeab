@@ -1,0 +1,183 @@
+
+/* ----Information movie------ */
+#anis-detail .anis-infor{
+    padding: 0 15px;
+    height: min-content;
+}
+
+@media screen and (max-width: 991px){
+    #anis-detail .anis-infor{
+        margin-top: 30px;
+        padding: 0 3px;
+    }
+    #anis-detail .anis-infor .text-uppercase .catlist{
+        font-size: 12px;
+    }
+}
+#anis-detail .anis-infor .text-uppercase {
+    font-size: 15px;
+}
+
+@media screen and (max-width: 1025px) {
+    #anis-detail .anis-infor .text-uppercase{
+        padding: 0 30%;
+    }
+}
+#anis-detail .anis-infor .text-uppercase .catlist {
+    display: block;
+    line-height: 1.5em;
+    color: #cae962 !important;
+    width: 100%;
+}
+#anis-detail .anis-img{
+    width: 75%;
+}
+#anis-detail .ml__5{
+    margin-left: 50px;
+}
+@media screen and (max-width: 1025px){
+    #anis-detail .anis-infor .anis-img{
+        width: 100% !important;
+    }
+    #anis-detail .anis-infor .anis-img img{
+        width: 40%;
+        margin: 0 30%;
+        text-align: center;
+        justify-content: center;
+    }
+}
+@media screen and (max-width: 766px){
+
+    #anis-detail .anis-infor .anis-title{
+        font-size: 16px;
+        line-height: 1.2;
+    }
+    #anis-detail .ml__5{
+        margin: 0;
+    }
+    #anis-detail .anis-infor .anis-descript{
+        font-size: 12px;
+    }
+    #anis-detail .anis-infor .anis-descript:first-of-type:first-letter {
+        font-size: 18px; 
+        line-height: 30px; 
+    }
+}
+#anis-detail .anis-action{
+    margin-left: 3rem;
+}
+@media screen and (max-width: 991px){
+    #anis-detail .anis-action{
+        margin: 0;
+    }
+}
+#anis-detail .anis-img img{
+    width: 100%;
+}
+#anis-detail .anis-title{
+    font-size: 2rem;
+    line-height: 1.2;
+    color: #FFFFFF;
+    font-weight: 500;
+}
+
+#anis-detail .anis-title-sub{
+    margin-top: 5px;
+    font-size: 15px;
+}
+@media screen and (max-width: 766px){
+    #anis-detail .anis-title-sub{
+        font-size: 11px;
+    }
+}
+#anis-detail .anis-view{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#anis-detail .anis-view .dot{
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+    margin: 7px;
+}
+#anis-detail .anis-descript{
+    font-size: 14px;
+    text-align: justify;
+    line-height: 1.5em;
+    font-weight: 400;
+}
+
+#anis-detail .anis-descript.hidden-content{
+    height: 143px;
+    overflow: hidden;
+}
+
+#anis-detail .more span{
+    cursor: pointer;
+}
+#anis-detail .more span:hover{
+    color: #cae962;
+}
+
+#anis-detail .anis-descript:first-of-type:first-letter {
+     font-weight: 700; 
+     font-style: normal; 
+     float: left; 
+     font-size: 21px; 
+     line-height: 37px; 
+     padding: 12px; 
+     background: #90b612; 
+     color: #fff; 
+     margin-right: 12px; 
+}
+.anis-trainer, .anis-love{
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 30px;
+}
+.anis-love .anis-boxes{
+    background: #6c757d!important;
+    color: #FFFFFF !important;
+}
+#anis-detail .anis-boxes{
+    position: relative;
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+    padding: 12px;
+    color: #FFFFFF;
+    font-size: 9px;
+}
+#anis-detail .anis-boxes-action{
+    line-height: 1rem;
+    font-size: 14px;
+    font-family: Montserrat,Arial;
+    height: max-content;
+    margin-top: 13px;
+}
+/* Loading skeneton */
+@media screen and (max-width: 766px){
+    .anis-img .react-loading-skeleton{
+        min-height: 200px;
+    }
+}
+
+.anis-img .react-loading-skeleton{
+    min-height: 400px;
+}
+
+.anis-title .react-loading-skeleton{
+    min-height: 30px;
+}
+.anis-title-sub .react-loading-skeleton, .anis-view-loading .react-loading-skeleton{
+    min-height: 20px;
+    width: 75%;
+}
+.catlist .react-loading-skeleton{
+    width: 20%;
+    min-height: 15px;
+    background: #444446;
+}

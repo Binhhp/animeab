@@ -1,0 +1,29 @@
+.next-arrow, .pre-arrow{
+    background-color: #cae962;
+    color: #2f3137;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px 0 rgb(0 0 0 / 10%);
+    text-align: center;
+    padding: 0;
+    border: 1px solid transparent;
+    font-weight: 500;
+    font-size: 18px;
+    z-index: 10;
+}
+.next-arrow{
+    position: absolute;
+    top: 14px;
+    right: -16px;
+}
+.pre-arrow{
+    position: absolute;
+    top: 14px;
+    left: -16px;
+}
+@media screen and (max-width: 766px){
+    .pre-arrow, .next-arrow{
+        display: none;
+    }
+}

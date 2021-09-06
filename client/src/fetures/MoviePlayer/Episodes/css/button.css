@@ -1,0 +1,47 @@
+.episode .btn-arrow-next{
+    position: absolute;
+    height: max-content;
+    top: -50px;
+    right: 0;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    outline: 0;
+    box-shadow: none;
+    color: #cae962;
+    font-size: 18px;
+    width: 25px;
+    border-radius: 5px;
+}
+.episode .btn-arrow-prev{
+    position: absolute;
+    height: max-content;
+    top: -50px;
+    right: 25px;
+    font-size: 14px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    outline: 0;
+    box-shadow: none;
+    color: #cae962;
+    font-size: 18px;
+    width: 25px;
+}
+@media screen and (max-width: 766px){
+    .episode .btn-arrow-prev, .episode .btn-arrow-next{
+        font-size: 14px;
+        width: 20px;
+        top: -41px;
+    }
+    .episode .btn-arrow-prev{
+        right: 20px;
+    }
+}
+@media screen and (max-width: 991px) and (min-width: 768px){
+    .episode .btn-arrow-prev, .episode .btn-arrow-next{
+        font-size: 14px;
+        width: 25px;
+        top: -37px;
+    }
+}

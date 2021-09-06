@@ -1,0 +1,85 @@
+.filter-block{
+    margin: 15px auto 40px;
+    color: #FFFFFF;
+    padding: 30px;
+    border-radius: 10px 10px 0 0;
+    background: #33353c;
+    background: -moz-linear-gradient(0deg,rgba(51,53,60,0) 0,#33353c 50%,#33353c 100%);
+    background: -webkit-linear-gradient(0deg,rgba(51,53,60,0) 0,#33353c 50%,#33353c 100%);
+    background: linear-gradient(0deg,rgba(51,53,60,0) 0,#33353c 50%,#33353c 100%)
+}
+
+@media screen and (max-width: 766px){
+    .filter-block{
+        margin: 0 -15px;
+        padding: 15px;
+    }
+}
+.filter-block .filter-item{
+    width: 100%;
+    height: max-content;
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.filter-block .filter-header{
+    font-weight: 500;
+    display: block;
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+.filter-block .filter-item .filter-content{
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+.f-genre-item{
+    min-width: 50px;
+    border-radius: 6px;
+    font-size: 12px;
+    line-height: 1em;
+    padding: 8px 10px;
+    margin: 3px 6px 3px 0;
+    color: #ddd;
+    border: 1px solid #4a4c55;
+    cursor: pointer;
+}
+
+.f-genre-item:hover{
+    color: #cae962;
+    background-color: #33353c;
+}
+.f-genre-item.active{
+    border-color: #cae962;
+    background: #3d3e39;
+    color: #cae962;
+}
+
+.filter-block .btn-filter{
+    width: 100%;
+}
+.filter-block .btn-filter button{
+    padding: 6px 8px;
+    background: #cae962!important;
+    color: #111!important;
+    border-color: #cae962!important;
+    box-shadow: none!important;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.result-animes{
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+.content .result-total{
+    color: #FFFFFF;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 10px 0 10px;
+    font-size: 14px;
+}

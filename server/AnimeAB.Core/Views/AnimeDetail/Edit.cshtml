@@ -1,0 +1,65 @@
+﻿<div class="modal fade" id="modal-edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <form class="py-3 needs-validation" id="form-edit" onsubmit="return false">
+                <div class="col-12 my-3 d-flex">
+                    <div class="col-6">
+                        <label class="text-left">Key</label>
+                        <fieldset disabled><input class="form-control edit" name="key" type="text" data-keyboard="Key" placeholder="Key" /></fieldset>
+                    </div>
+                    <div class="col-6">
+                        <label class="text-left">Tiêu đề</label>
+                        <input class="form-control edit" name="title" data-keyboard="Title" type="text" placeholder="Tiêu đề" />
+                    </div>
+                </div>
+                <div class="col-12 mb-3">
+                    <div class="col-12">
+                        <div class="d-flex">
+                            <label class="text-left mr-2">
+                                Link video anime
+                            </label>
+                            <div class="animated-checkbox">
+                                <label style="color: green">
+                                    <input  name="iframe" type="checkbox" class="custom-checkbox edit" data-keyboard="Iframe">
+                                    <span class="label-text">sử dụng link iframe</span>
+                                </label>
+                            </div>
+                        </div>
+                        <input type="text" placeholder="Link anime" name="link" data-keyboard="Link" class="form-control edit" />
+                    </div>
+                </div>
+                <div class="col-12 d-flex mb-3">
+                    <div class="col-10">
+                        <div class="nav nav-tabs mb-2" style="border: 0px">
+                            <a href="#url-edit" style="color: green" data-toggle="tab">Thay đổi Url</a>
+                            &nbsp;&nbsp;
+                            <span>hoặc</span>
+                            &nbsp;&nbsp;
+                            <a data-toggle="tab" style="color: green" href="#file-edit">Upload ảnh</a>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane" id="file-edit">
+                                <input type="file" name="file" class="form-control edit" data-keyboard="FileUpload" />
+                            </div>
+                            <div class="tab-pane active" id="url-edit">
+                                <input type="text" name="url" class="form-control edit" data-keyboard="Image" placeholder="Thêm url ảnh" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <label class="text-left">Tập số</label>
+                        <input placeholder="Tập số" type="number" min="1" max="1000" class="form-control edit" name="episode" data-keyboard="Episode" />
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <a href="#" class="btn btn-secondary exit" name="exit" data-dismiss="modal">
+                        <i class="fa fa-fw fa-lg fa-times-circle"></i>Thoát
+                    </a>
+                    &nbsp;&nbsp;
+                    <button type="submit" class="btn btn-primary" id="btn-edit"><i class="fa fa-edit"></i>&nbsp;Cập nhật</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

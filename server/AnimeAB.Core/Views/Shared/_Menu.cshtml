@@ -1,0 +1,56 @@
+﻿@using System.Security.Claims
+@{ 
+    var roles = ((ClaimsIdentity)User.Identity).Claims.Where(c => c.Type == ClaimTypes.Role).Select(c => c.Value).First();
+}
+<aside class="app-sidebar">
+    <div class="app-sidebar__user">
+        <img class="app-sidebar__user-avatar" src="@User.FindFirst(x => x.Type == "Avatar").Value" width="40" alt="User Image">
+        <div>
+            <p class="app-sidebar__user-name">
+                <small>@User.FindFirst(ClaimTypes.Email).Value</small>
+            </p>
+            <small class="app-sidebar__user-designation">@roles</small>
+        </div>
+    </div>
+
+    <ul class="app-menu">
+        <li>
+            <a class="app-menu__item active index" href="@Url.Action("Index", "Home", null, Context.Request.Scheme)">
+                <i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Trang chủ</span>
+            </a>
+        </li>
+        <li>
+            <a class="app-menu__item anime" href="@Url.Action("Index", "Anime", null, Context.Request.Scheme)">
+                <i class="app-menu__icon fa fa-film"></i>
+                <span class="app-menu__label">Anime</span>
+            </a>
+        </li>
+        <li>
+            <a class="app-menu__item anime-series" href="@Url.Action("Index", "AnimeSeries", null, Context.Request.Scheme)">
+                <i class=" app-menu__icon fa fa-slideshare"></i><span class="app-menu__label">Series anime</span>
+            </a>
+        </li>
+        <li>
+            <a class="app-menu__item collection" href="@Url.Action("Index", "Collection", null, Context.Request.Scheme)">
+                <i class="app-menu__icon fa fa-clipboard"></i>
+                <span class="app-menu__label">Bộ sưu tập</span>
+            </a>
+        </li>
+        <li>
+            <a class="app-menu__item categories" href="@Url.Action("Index", "Collection", null, Context.Request.Scheme)">
+                <i class="app-menu__icon fa fa-bookmark"></i>
+                <span class="app-menu__label">Thể loại</span>
+            </a>
+        </li>
+        <li>
+            <a class="app-menu__item user" href="@Url.Action("ListAccount", "Account", null, Context.Request.Scheme)">
+                <i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Thành viên</span>
+            </a>
+        </li>
+        <li>
+            <a class="app-menu__item cache" href="@Url.Action("Index", "Cache", null, Context.Request.Scheme)">
+                <i class="app-menu__icon fa fa-database"></i><span class="app-menu__label">Cache</span>
+            </a>
+        </li>
+    </ul>
+</aside>

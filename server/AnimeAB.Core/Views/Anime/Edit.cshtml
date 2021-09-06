@@ -1,0 +1,109 @@
+﻿<div class="modal fade" id="modal-edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <form class="py-3 needs-validation" id="form-edit" onsubmit="return false">
+                <div class="col-12 my-3 d-flex">
+                    <div class="col-6">
+                        <label class="text-left">Key</label>
+                        <fieldset disabled><input class="form-control edit" name="key" type="text" data-keyboard="Key" placeholder="Key" /></fieldset>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="text-left">Số tập</label>
+                                <input type="text" name="episode" placeholder="Số tập" data-keyboard="Episode" class="form-control edit" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="text-left">Thời lượng anime (phút)</label>
+                                <input type="text" name="duration" placeholder="Thời lượng anime" class="form-control edit" data-keyboard="MovieDuration" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mb-3 d-flex">
+                    <div class="col-md-6">
+                        <label class="text-left">Tiêu đề</label>
+                        <input type="text" placeholder="Tiêu đề"
+                               name="title" class="form-control edit" data-keyboard="Title" />
+                    </div>
+                    <div class="col-6">
+                        <label class="text-left">Tiêu đề bổ sung</label>
+                        <input class="form-control edit" name="titlevie" data-keyboard="TitleVie" type="text" placeholder="Tiêu đề" />
+                    </div>
+                </div>
+                <div class="col-12 flex-wrap mb-3 d-flex">
+                    <div class="col-6">
+                        <label class="text-left">Bộ sưu tập</label>
+                        <select name="collectionid" data-keyboard="CollectionId" class="form-control edit">
+                            @foreach (var item in (IEnumerable<AnimeAB.Reponsitories.Entities.Collections>)ViewData["Collections"])
+                            {
+                                <option value="@item.Key">@item.Title</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <label class="text-left">Thể loại</label>
+                        <select name="categorykey" data-keyboard="CategoryKey" class="form-control edit">
+                            @foreach (var item in (IEnumerable<AnimeAB.Reponsitories.Entities.Categories>)ViewData["Categories"])
+                            {
+                                <option value="@item.Key">@item.Title</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 mb-3 d-flex">
+                    <div class="col-6">
+                        <div class="nav nav-tabs mb-2" style="border: 0px">
+                            <a href="#url" style="color: green" data-toggle="tab">Sửa Url</a>
+                            &nbsp;&nbsp;
+                            <span>hoặc</span>
+                            &nbsp;&nbsp;
+                            <a data-toggle="tab" style="color: green" href="#file">Upload ảnh</a>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane" id="file">
+                                <input type="file" name="file" class="form-control edit" data-keyboard="FileUpload" />
+                            </div>
+                            <div class="tab-pane active" id="url">
+                                <input type="text" name="url" class="form-control edit" data-keyboard="Image" placeholder="Thêm url ảnh" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="text-left">Trainer</label>
+                                <input type="text" placeholder="Trainer" name="trainer" data-keyboard="Trainer" class="form-control edit" />
+                            </div>
+                            <div class="col-6">
+                                <label class="text-left">Kiểu</label>
+                                <select class="form-control edit" name="type" data-keyboard="Type">
+                                    <option value="TV" selected>TV</option>
+                                    <option value="OVA">OVA</option>
+                                    <option value="Movie">Movie</option>
+                                    <option value="Special">Special</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mb-3">
+                    <div class="col-12">
+                        <label class="text-left">Mô tả</label>
+                        <textarea type="text" name="description" style="height: 200px"
+                                  placeholder="Mô tả" class="form-control edit" data-keyboard="Description"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-12 text-right">
+                    <a href="#" class="btn btn-secondary exit" name="exit" data-dismiss="modal">
+                        <i class="fa fa-fw fa-lg fa-times-circle"></i>Thoát
+                    </a>
+                    &nbsp;&nbsp;
+                    <button type="submit" class="btn btn-primary" id="btn-edit"><i class="fa fa-plus"></i>&nbsp;Cập nhật</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

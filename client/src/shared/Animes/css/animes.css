@@ -1,0 +1,271 @@
+.animes{
+    display: block;
+    margin-bottom: 30px;
+}
+.animes .anis-list{
+    position: relative;
+    overflow: hidden;
+}
+.animes .anis-list .film_list-wrap{
+    margin: 0 -7px;
+    position: relative;
+}
+.d-fl.fl-wrap{
+    display: flex;
+    flex-wrap: wrap;
+}
+@media screen and (max-width: 766px){
+    .animes{
+        margin-bottom: 20px;
+    }
+    .animes .anis-list{
+        margin: 0 -15px;
+    }
+    .animes .anis-list .film_list-wrap{
+        margin: 0 -3px;
+    }
+}
+
+.animes .flw-item {
+    width: calc(16.66% - 14px);
+    margin: 0 7px 14px;
+    background: #2a2c31;
+    border-radius: 0;
+    position: relative;
+    transition: all .2s ease 0s;
+    -webkit-transition: all .2s ease 0s;
+}
+
+.flw-item.flw-item-big {
+    width:calc(25% - 14px)
+}
+.flw-item.flw-item-big .film-detail {
+    min-height: 138px
+}
+.flw-item.flw-item-big .film-detail .description {
+    display: block;
+    font-size: 11px;
+    line-height: 1.3em;
+    margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 42px;
+}
+
+@media screen and (max-width: 1025px){
+    .flw-item.flw-item-big .film-detail .description {
+        display: none;
+    }
+}
+.animes .flw-item .film-poster {
+    border-radius: 0;
+    padding-bottom: 130%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background-color: rgba(255,255,255,.1);
+}
+.animes .flw-item .clear-fix{
+    position: absolute;
+    z-index: 11;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    background-color: #2a2c3194;
+    padding: 60% 0;
+}
+.animes .flw-item .clear-fix img{
+    width: 80%;
+    margin: auto;
+    color: #cae962 !important;
+    font-size: 16px;
+}
+
+.animes .tick.ltr {
+    left: 10px;
+}
+.animes .tick {
+    position: absolute;
+    bottom: 0;
+    z-index: 10;
+}
+.animes .tick-item {
+    font-size: 12px;
+    font-family: arial;
+    font-weight: 600;
+    display: inline-block;
+    line-height: 1.2em;
+    padding: 2px 4px;
+    border-radius: 5px;
+    background: #fff;
+    color: #111;
+}
+.animes .tick.ltr .tick-item {
+    margin-right: 2px;
+}
+.animes .tick.rtl {
+    right: 10px;
+}
+.animes .tick.rtl .tick-item {
+    margin-left: 2px;
+}
+.animes .tick-item.tick-eps {
+    background: #7bfcfc!important;
+    color: #111!important;
+}
+.animes .film-poster .film-poster-img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.animes .flw-item .film-poster .film-poster-ahref {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    display: inline-block;
+}
+.animes .flw-item .film-poster .film-poster-ahref:after {
+    content: "";
+    position: absolute;
+    top: auto;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    opacity: 0;
+    z-index: 1;
+    background: #2a2c31;
+    background: linear-gradient(0deg,#2a2c31 0,rgba(42,44,49,.7) 100%);
+}
+.animes .flw-item .film-poster:after {
+    content: "";
+    position: absolute;
+    top: 20%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    background: #2a2c31;
+    background: -moz-linear-gradient(0deg,#2a2c31 0,rgba(42,44,49,0) 76%);
+    background: -webkit-linear-gradient(
+0deg
+,#2a2c31 0,rgba(42,44,49,0) 76%);
+    background: linear-gradient(
+0deg
+,#2a2c31 0,rgba(42,44,49,0) 76%);
+}
+
+.animes .flw-item .film-poster .film-poster-ahref i {
+    font-size: 30px;
+    z-index: 2;
+    opacity: 0;
+    color: #fff
+}
+
+.animes .flw-item .film-poster:hover .film-poster-ahref:after {
+    height: 100%;
+    opacity: 1
+}
+
+.animes .flw-item .film-poster:hover .film-poster-ahref:before {
+    opacity: 1
+}
+
+.animes .film-poster-ahref i,.film-poster-ahref:before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: #cae962
+}
+.animes .flw-item .film-poster:hover .film-poster-ahref i {
+    opacity: 1
+}
+
+.animes .film_list .film_list-wrap .flw-item .film-poster {
+    border-radius: 0;
+    padding-bottom: 130%
+}
+
+.animes .flw-item .film-detail {
+    color: #aaa;
+    font-size: 12px;
+    padding: 10px;
+    border-radius: 0 0 10px 10px;
+    min-height: 84px;
+}
+.animes .flw-item .film-detail .film-name {
+    font-size: 14px;
+    line-height: 1.3em;
+    margin: 0;
+    font-weight: 500;
+    margin-bottom: 8px;
+    height: 37px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.animes .flw-item .film-detail .fd-infor {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.animes .fdi-item {
+    white-space: nowrap;
+}
+.animes .dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.3);
+    display: inline-block;
+    margin: 3px 6px;
+}
+.animes .fdi-item {
+    white-space: nowrap;
+}
+
+@media screen and (max-width: 1025px){
+    .animes .flw-item {
+        width: calc(25% - 14px)!important
+    }
+}
+@media screen and (max-width: 766px){
+    .animes .flw-item {
+        width: calc(50% - 6px)!important;
+        margin: 0 3px 6px
+    }
+}
+
+.animes .more-anime{
+    position: absolute;
+    top: 10px;
+    right: 0;
+    color: #aaa !important;
+    font-size: 13px;
+}
+
+@media screen and (min-width: 1025px){
+    .flw-item .react-loading-skeleton{
+        min-height: 305px;
+    }
+}
+@media screen and (min-width: 1540px){
+    .flw-item .react-loading-skeleton{
+        min-height: 345px !important;
+    }
+}

@@ -1,0 +1,238 @@
+
+.form-login .anime-login{
+    position: absolute;
+    top: 15px;
+    right: 0;
+    background-color: #9fc71e;
+    padding: 8px 15px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #111 !important;
+    border-radius: 50%;
+    cursor: pointer;
+    animation: fadein 2.5s;
+    -moz-animation: fadein 2.5s;
+    -webkit-animation: fadein 2.5s;
+    -o-animation: fadein 2.5s;
+}
+
+@media screen and (max-width: 991px){
+    .form-login .anime-login{
+        display: block;
+        font-size: 17px;
+        padding: 0;
+        color: #cae962 !important;
+        top: 11px;
+        right: 40px;
+        background-color: #2a2c31;
+    }
+}
+.anime-login.hidden{
+    display: none;
+}
+
+.modal-login .modal-dialog{
+    max-width: 650px;
+}
+.modal-login .modal-content{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 20px;
+    background: #2a2c31;
+    color: #FFFFFF !important;
+}
+.modal-login .error{
+    color: #cae962;
+    font-size: 13px;
+    padding-top: 7px;
+}
+/* https://i.imgur.com/w0Eni0n.png */
+.bg-modal{
+    padding-left: 200px;
+    width: 100%;
+    background-image: url(/src/assets/img/login.png);
+    background-size: 240px;
+    background-repeat: no-repeat;
+    background-position: 5% 0%;
+}
+@media screen and (max-width: 991px){
+    .modal-login .modal-content{
+        min-width: 450px;
+    }
+    .bg-modal{
+        background-size: 200px;
+        padding-left: 180px;
+    }
+    .modal-login .modal-header{
+        font-size: 19px !important;
+    }
+    .modal-login .modal-body{
+        padding: 0 30px !important;
+    }
+    .modal-login .form-group{
+        margin-bottom: 10px !important;
+        font-size: 14px !important;
+    }
+    .modal-login .form-check{
+        margin-bottom: 25px !important;
+        font-size: 13px !important;
+    }
+    .modal-login .modal-footer{
+        font-size: 15px !important;
+    }
+}
+@media screen and (max-width: 766px){
+    .modal-login .modal-dialog{
+        padding-top: 35%;
+        display: flex !important;
+        flex-direction: column;
+    }
+    .close-btn{
+        top: 0 !important;
+        right: 0 !important;
+    }
+    .modal-login .modal-content{
+        min-width: auto;
+        width: auto;
+        background:rgb(121, 121, 121, 0);
+        padding: 15px;
+        border: none;
+    }
+    .bg-modal{
+        border-radius: 20px;
+        padding-left: 0px !important;
+        background-image: none;
+        background: #2a2c31;
+    }
+    .modal-login .modal-header{
+        font-size: 17px !important;
+        padding-bottom: 5px !important;
+    }
+    .modal-login .modal-body{
+        width: auto;
+    }
+    .modal-login .form-group, 
+    .modal-login .form-group .form-control, 
+    .modal-login .form-group .form-control::placeholder,
+    .modal-login .label-login{
+        font-size: 11px !important;
+    }
+    .modal-login .form-check{
+        font-size: 11px !important;
+    }
+    .modal-login .modal-footer{
+        font-size: 12px !important;
+    }
+}
+@media screen and (max-width: 280px){
+    .modal-login .modal-header{
+        font-size: 14px !important;
+    }
+    .modal-login .form-group, 
+    .modal-login .form-group .form-control, 
+    .modal-login .form-group .form-control::placeholder,
+    .modal-login .label-login{
+        font-size: 9px !important;
+    }
+    .modal-login .form-check{
+        font-size: 8px !important;
+    }
+    .modal-login .modal-footer{
+        font-size: 8px !important;
+    }
+}
+.modal-login .modal-header{
+    text-align: center;
+    justify-content: center;
+    font-size: 22px;
+    color: #cae962;
+    font-weight: 600;
+    border-bottom: none;
+    padding-bottom: 0px;
+}
+.modal-login .modal-body{
+    padding: 20px 60px 30px;
+    font-family: Montserrat,Arial;
+}
+.label-login{
+    font-size: 12px;
+    text-transform: uppercase;
+    opacity: .5;
+    font-weight: 400;
+    letter-spacing: 1px;
+    font-weight: 500;
+    line-height: 1;
+    color: #ccc;
+    margin-bottom: 10px;
+}
+.modal-login .form-group{
+    margin-bottom: 20px;
+}
+.modal-login .form-group .form-control{
+    font-size: 15px;
+    border-radius: 3px;
+    border: none!important;
+}
+.modal-login .form-group .form-control::placeholder{
+    color: rgb(121, 121, 121);
+    font-size: 14px;
+}
+
+.modal-login .form-check{
+    text-align: right;
+    font-size: 15px;
+    color: #cae962;
+    margin-bottom: 40px;
+}
+.modal-login .form-check span{
+    cursor: pointer;
+}
+.modal-login .login-btn{
+    background-color: #cae962;
+    color: #111;
+    text-align: center;
+    justify-content: center;
+    padding: 6px 0;
+    font-size: 16px;
+    font-weight: 450;
+    width: 100%;
+    padding: 8px 0;
+    border: none;
+    border-radius: 4px;
+}
+.modal-login .modal-footer{
+    border: none;
+    text-align: center;
+    justify-content: center;
+    padding: 0 60px 30px;
+}
+.modal-login .modal-footer .link-register{
+    color: #cae962;
+}
+.close-btn{
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    background-color: #FFFFFF;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    display: inline-block;
+    border-radius: 50%;
+    color: #111;
+    text-shadow: none;
+    z-index: 3;
+    font-size: 14px;
+    cursor: pointer;
+}
+.modal-login .back-to-login{
+    color: #cae962;
+}
+
+.modal-login .forgor-pw-success{
+    font-size: 17px;
+    word-break: keep-all;
+    line-height: 30px;
+    text-align: justify;
+}

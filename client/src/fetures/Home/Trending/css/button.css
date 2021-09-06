@@ -1,0 +1,34 @@
+.film-trending .btn-arrow-next{
+    bottom: 52%;
+}
+.film-trending .btn-arrow-prev{
+    bottom: 0;
+}
+.film-trending .btn-arrow-prev, .film-trending .btn-arrow-next{
+    position: absolute;
+    height: 48%;
+    right: -40px;
+    background: #2a2b31;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    outline: 0;
+    box-shadow: none;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 500;
+    width: 40px;
+    border: 1px solid transparent;
+    box-shadow: 0 0 10px 0 rgb(0 0 0 / 10%);
+    font-weight: 600;
+}
+.film-trending .btn-arrow-next:hover, .film-trending .btn-arrow-prev:hover{
+    background: #cae962;
+    color: #2a2b31;
+}
+
+@media screen and (max-width: 766px) {
+    .film-trending .btn-arrow-prev,.film-trending .btn-arrow-next{
+        display: none;
+    }
+}

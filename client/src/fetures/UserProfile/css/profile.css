@@ -1,0 +1,109 @@
+
+.perform input{
+    font-size: 13px;
+    color: #111;
+}
+.prelabel{
+    font-size: 11px;
+    text-transform: uppercase;
+    opacity: .5;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: #ccc;
+}
+.note-email{
+    font-size: 11px;
+    color: #ccc;
+    opacity: .5;
+    margin-top: 10px;
+}
+
+@media screen and (min-width: 1200px)
+{
+    .block-profile-content.profile:before {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 160px;
+        height: 100%;
+        background: #404246;
+        background: linear-gradient(180deg,#404246 0,rgba(64,66,70,0) 100%);
+    }
+}
+.pr-avt{
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+@media screen and (max-width: 991px){
+    .pr-img{
+        width: 100%;
+        text-align: center;
+    }
+    .pr-avt{
+        position: relative;
+        width: 80px;
+        height: 80px;
+        margin: auto;
+        top: 0;
+        left: 0;
+    }
+}
+.pr-avt img{
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+}
+.pr-avt .edit-avt{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    background-color: #FFFFFF;
+    text-align: center;
+    border-radius: 50%;
+    z-index: 3;
+}
+.upload{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    cursor: pointer;
+    z-index: 4;
+    border-radius: 50% 50% 0% 50%;
+    padding: 0;
+}
+
+.enable-edit{
+    position: relative;
+    color: #404246ce;
+    background: #e9ecef;
+    border-radius: 0 6px 6px 0;
+    padding: 5px;
+    border: 0px;
+    cursor: pointer;
+    padding-right: 10px !important;
+    height: 100%;
+}
+
+.pr-loader{
+    position: relative;
+    left: 0;
+    right: 0;
+    padding-top: 10px;
+}
+.pr-loader #form-loader{
+    bottom: -30px;
+}

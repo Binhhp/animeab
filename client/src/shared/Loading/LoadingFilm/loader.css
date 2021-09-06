@@ -1,0 +1,33 @@
+.anis-transtion-loader{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000;
+    color: #FFFFFF;
+    z-index: 10000000000000;
+}
+.anis-loader{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 10000000001000;
+    transform: translate(-50%, -50%);
+}
+.anis-loader-content{
+    position: relative;
+    display: inline-block;
+    width: 75px;
+    height: 90px;
+}
+.anis-loader-content p{
+    text-align: center;
+    margin-top: 5px;
+}
+@media screen and (max-width: 991px){
+    .anis-loader-content{
+        width: 55px;
+        height: 70px;
+    }
+}

@@ -1,0 +1,32 @@
+
+.collection{
+    margin-bottom: 30px;
+}
+.collection-list{
+    margin: 0 -5px;
+}
+.collection .collection-list .collect-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+}
+.collection-item{
+    margin: 0 5px;
+    width: calc(25% - 10px);
+}
+
+@media screen and (max-width: 766px){
+    .collection{
+        margin-bottom: 20px;
+    }
+    .collection-list{
+        margin: 0 -15px;
+    }
+    .collection-item{
+        width: calc(50% - 2px) !important;
+        margin: 0 2px 0 0!important;
+    }
+}
+
+.collection-list .react-loading-skeleton{
+    min-height: 130px;
+}

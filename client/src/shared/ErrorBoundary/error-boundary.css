@@ -1,0 +1,260 @@
+#hanlderway {
+    width: 100%;
+    height: 350px;
+    position: relative;
+}
+.mg-hanlder{
+    margin: 0 -1%;
+}
+
+@media screen and (min-width: 1590px){
+    .mg-hanlder{
+        margin: 0 -3%;
+    }
+}
+
+@media screen and (max-width: 991px){
+    .mg-hanlder{
+        margin: 0;
+    }
+}
+
+.error-halnder-wrapper{
+    width: 100%;
+    padding-top: 70px;
+    background: url(//s.imgur.com/images/404/hallbg.png) #871908;
+    outline: #2C2F34 solid 1px;
+    position: relative;
+    z-index: 10;
+}
+
+@media screen and (max-width: 766px){
+    .error-halnder-wrapper{
+        margin: 0;
+        padding-top: 20px !important;
+    }
+}
+#hanlderway,.hanlder-container,.painting {
+    position: relative
+}
+
+#hanlderway,.hanlder-container,.eye,.pupil {
+    overflow: hidden
+}
+#hanlderway .hanlder-container {
+    width: max-content;
+    margin: 10px auto 0;
+    height: max-content
+}
+.painting {
+    float: left;
+    margin-right: 8px;
+    margin-left: 10px
+}
+
+.eye-container {
+    position: absolute;
+    top: 50%
+}
+
+.eye,.pupil {
+    height: 12px;
+    width: 12px;
+    background-color: #FFF;
+    display: inline-block;
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    position: relative;
+    -webkit-box-shadow: 0 0 1px 0 rgba(0,0,0,.5);
+    box-shadow: 0 0 1px 0 rgba(0,0,0,.5)
+}
+
+.pupil {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 8px;
+    height: 8px;
+    background-color: #000
+}
+
+.pupil:after {
+    content: "";
+    width: 2px;
+    height: 1px;
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    display: block;
+    top: 2px;
+    right: -4px;
+    position: relative;
+    background-color: #fff;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    opacity: .6
+}
+
+t1 {
+    top: 70px
+}
+#cat1{
+    position: relative;
+    top: 68px;
+}
+#cat1 .eye-container {
+    top: 34%;
+    left: 32%
+}
+
+#cat1 .eye {
+    margin-right: 7px
+}
+
+#cat1 .eye.right {
+    top: 1px
+}
+@media screen and (max-width: 766px){
+    #cat1, #cat2, #cat3, #cat4{
+        display: none;
+    }
+    #hanlderway{
+        height: max-content;
+    }
+    #giraffe{
+        left: 0;
+    }
+    #giraffe img{
+        width: 200px;
+    }
+    .monocle{
+        width: 20px !important;
+    }
+    #giraffe .eye.right{
+        right: 13px;
+        top: -5px !important;
+    }
+}
+#cat2 {
+    top: 49px;
+    position: relative;
+}
+
+#cat2 .eye-container {
+    top: 28%;
+    left: 41.75%
+}
+
+#giraffe {
+    top: 4px;
+    margin-left: 10px;
+    position: relative;
+}
+
+.monocle {
+    position: absolute;
+    top: 47%;
+    left: 37%
+}
+
+#giraffe .eye-container {
+    top: 48.5%;
+    left: 37%
+}
+
+#giraffe .eye {
+    margin-right: 46px
+}
+
+#giraffe .eye.right {
+    top: 4px
+}
+
+#cat3 {
+    top: 53px;
+    position: relative;
+}
+
+#cat3 .eye-container {
+    top: 38%;
+    left: 39.5%
+}
+
+#cat3 .eye {
+    margin-right: 11px
+}
+
+#cat4 {
+    top: 71px;
+    margin-right: 0;
+    margin-left: 1px;
+    position: relative;
+}
+
+#cat4 .eye-container {
+    top: 35%;
+    left: 43%
+}
+
+#cat4 .eye.right {
+    top: -1px
+}
+
+#cat4 .eye {
+    margin-right: 8px
+}
+.error-hanlder-content{
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    color: #FFF;
+    z-index: 10;
+    height: 100%;
+    padding: 70px 0;
+}
+
+.error-hanlder-content .error-hanlder-medium{
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 1.2em;
+    margin-bottom: 10px;
+}
+
+.error-hanlder-content .error-hanlder-small{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.3em;
+    margin-bottom: 30px;
+}
+.error-hanlder-content .error-hanlder-button .btn-radius{
+    border-radius: 30px;
+}
+.error-hanlder-content .error-hanlder-button .btn{
+    background: #cae962!important;
+    color: #111!important;
+    border-color: #cae962!important;
+    box-shadow: none!important;
+    font-weight: 400;
+    font-size: 16px;
+}
+.error-hanlder-content .error-hanlder-button .btn:hover{
+    background: #b0d82e !important;
+}
+
+@media screen and (max-width: 766px){
+    .error-hanlder-content{
+        margin: auto;
+        height: 100%;
+    }
+    .error-hanlder-content .error-hanlder-medium{
+        font-size: 20px;
+    }
+    .error-hanlder-content .error-hanlder-small{
+        font-size: 12px;
+    }
+    .error-hanlder-content .error-hanlder-button .btn{
+        font-size: 13px;
+    }
+}

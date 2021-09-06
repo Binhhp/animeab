@@ -1,0 +1,42 @@
+.series-anime{
+    width: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    z-index: 10;
+    position: relative;
+    background: rgba(255,255,255,.1);
+}
+
+.series-anime .table-series{
+   width: 100%;
+}
+
+.table-thead{
+    color: #cae962 !important;
+    text-align: left;
+    font-size: 17px;
+    font-weight: 450;
+}
+.table-border-left{
+    border-right: 1px solid #47484d;
+}
+.series-anime .table-series td{
+    padding: 15px 20px;
+}
+
+@media screen and (max-width: 766px){
+    .series-anime{
+        margin: 30px -15px 0;
+    }
+    .table-series .table-thead{
+        font-size: 13px !important;
+    }
+    .series-anime .table-series td{
+        font-size: 11px;
+        padding: 10px;
+    }
+}
+.series-anime .series-active{
+    border-left: 2px solid #cae962;
+    background-color: rgba(255,255,255,.2);
+}

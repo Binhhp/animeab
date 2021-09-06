@@ -1,0 +1,6 @@
+.react-loading-skeleton{
+    min-height: 250px;
+}
+.flw-item-big .react-loading-skeleton{
+    min-height: 350px;
+}

@@ -1,0 +1,85 @@
+.modal-avt .modal-content{
+    padding: 30px;
+    background-color: #2a2c31;
+    color: #FFFFFF;
+    border-radius: 15px;
+}
+.modal-avt .modal-dialog{
+    max-width: 600px;
+    position: relative;
+}
+.avt-title{
+    text-align: center;
+    margin-bottom: 15px;
+}
+.avt-title h2{
+    font-size: 20px;
+}
+.avt-list{
+    width: 100%;
+    max-height: 350px;
+}
+.avt-list .simplebar-content{
+    display: flex;
+    flex-wrap: wrap;
+}
+.avt-item{
+    margin: 15px 10px;
+    width: calc(20% - 20px);
+    cursor: pointer;
+    opacity: .3;
+    transform: scale(.85);
+    transition: transform 0.2s;
+}
+.avt-item .checked{
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+    color: #111;
+    background: #cae962;
+    z-index: 2;
+    box-shadow: 0 0 5px rgb(0 0 0 / 40%);
+    text-align: center;
+    line-height: 30px;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 4;
+    opacity: 0;
+}
+.avt-item.avt-selected .checked {
+    opacity: 1;
+}
+
+.avt-item:hover, .avt-item.avt-selected{
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.avt-item img{
+    width: 100%;
+    border-radius: 50%;
+}
+.pr-close{
+    width: 30px;
+    height: 30px;
+    border: 0;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+    color: #2a2c31;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
+.choose-avt{
+    margin-top: 20px;
+    text-align: center;
+    color: #111;
+    background-color: #cae962;
+    border-radius: 6px;
+    border: 0px;
+    padding: 6px 0;
+    font-size: 16px;
+    font-weight: 500;
+}

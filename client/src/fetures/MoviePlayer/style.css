@@ -1,0 +1,95 @@
+
+#anis-detail.anis-detail{
+    padding: 0 60px 40px 60px !important;
+    width: 100%;
+}
+
+#anis-detail .anis{
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 100px;
+    color: #FFFFFF;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(51, 51, 51, 0);
+}
+@media screen and (max-width: 991px){
+    #anis-detail.anis-detail{
+        padding: 0 !important;
+    }
+    #anis-detail .anis{
+        padding-top: 20px;
+    }
+}
+@media screen and (max-width: 1025px){
+    #anis-detail.anis-detail{
+        padding: 0 0 40px 0 !important;
+    }
+}
+#anis-detail .anis-cover-wrap{
+    width: auto;
+    top: 0;
+    left: -3%;
+    bottom: 0;
+    right: -3%;
+    position: absolute;
+    overflow: hidden;
+}
+#anis-detail .anis-cover-wrap .anis-cover{
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    background-size: cover;
+    background-position: center center;
+    filter: blur(20px);
+    opacity: .35
+}
+@media screen and (max-width: 1590px){
+    #anis-detail .anis-cover-wrap{
+        left: -1%;
+        right: -1%;
+    }
+}
+
+@media screen and (max-width: 1025px){
+    #anis-detail .anis-cover-wrap{
+        left: 0;
+        right: 0;
+    }
+    .main-anis{
+        display: block !important;
+    }
+}
+
+.main-anis{
+    width: 100%;
+    padding: 30px 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.anis-video .episode-title-wrapper{
+    font-size: 15px;
+    line-height: 1.2;
+    color: #FFFFFF;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding: 0 10px;
+    display: none;
+}
+
+.anis-video .episode-title-wrapper .episode-views-wrapper{
+    font-size: 12px;
+    margin-top: 5px;
+}
+@media screen and (max-width: 991px){
+    .anis-video .episode-title-wrapper{
+        display: block;
+    }
+}
+
+.anis-video .player-movie .loading-container.faplbu svg{
+    width: 100px;
+}

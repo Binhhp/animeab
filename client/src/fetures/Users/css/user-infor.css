@@ -1,0 +1,134 @@
+
+.user-lged{
+    border-radius: 50%;
+    position: absolute;
+    top: 15px;
+    right: 0;
+    width: 40px;
+    height: 40px;
+}
+.user-lged .user-avt{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}
+.user-lged .user-avt img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+.user-lged .lds-ring{
+    left: 0;
+    margin-top: 0;
+    width: 40px;
+    height: 40px;
+}
+.user-lged .lds-ring div{
+    width: 40px;
+    height: 40px;
+    margin: 0;
+}
+#form-loader{
+    min-height: max-content;
+    height: 30px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+@media screen and (max-width: 1025px){
+    .user-lged{
+        top: 10px;
+    }
+}
+@media screen and (max-width: 991px){
+    .user-lged .loading-infinite{
+        margin-top: -3px;
+    }
+    .user-lged .lds-ring{
+        height: 25px;
+        width: 25px;
+    }
+    .user-lged .lds-ring div{
+        width: 20px;
+        height: 20px;
+    }
+    .user-lged{
+        top: 12px;
+        right: 34px;
+        height: 25px;
+        width: 25px;
+        background-size: 25px;
+    }
+}
+.user-menu{
+    position: absolute;
+    top: 47px;
+    right: 0px;
+    width: 300px;
+    box-shadow: 0 5px 5px rgb(0 0 0 / 5%);
+    background: #3f4148;
+    color: #fff;
+    border-radius: 15px;
+    padding: 15px 20px;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 991px){
+    .user-menu{
+        top: 35px;
+    }
+    .user-avt{
+        margin-top: -7px !important;
+    }
+}
+.user-menu .user-profile{
+    margin-bottom: 25px;
+}
+.user-menu .user-profile p{
+    margin: 0;
+}
+.user-menu .user-profile .name{
+    margin: 0;
+    padding: 0;
+    font-weight: 500;    
+    font-size: 14px;
+    color: #cae962 !important;
+}
+.user-menu .user-profile .email{
+    font-size: 13px;
+}
+.user-menu .grid-menu .item{
+    padding: 0 0 15px 0;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255,255,255, .066);
+}
+.user-menu .grid-menu .item a{
+    font-size: 12px;
+    width: 100%;
+    margin-bottom: 8px;
+    text-align: left;
+    padding: 10px 15px;
+    border-radius: 20px;
+    display: inline-block;
+    border: 1px solid #4f515b;
+    background-color: #4f515b;
+    cursor: pointer;
+}
+.user-menu .grid-menu .item a:hover{
+    border: 1px solid #5f616d!important;
+    background-color: #5f616d!important;
+    color: #cae962 !important;
+}
+.user-menu .grid-menu .item a i{
+    margin-right: 10px;
+}
+.user-menu .log-out{
+    text-align: right;
+    width: 100%;
+    font-size: 13px;
+}
+.user-menu .log-out span{
+    cursor: pointer;
+}

@@ -1,0 +1,224 @@
+
+/* ----Episode movie------ */
+
+.episode{
+    margin-top: 50px;
+    width: 100%;
+    position: relative;
+}
+@media screen and (max-width: 991px){
+    .episode{
+        margin-top: 30px;
+    }
+}
+.episode .episode__title{
+    margin-bottom: 10px;
+}
+
+.episode .episode__title .title{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.episode .title .list-episodes{
+    height: 30px;
+    width: max-content;
+    margin: 5px 20px;
+    padding: 5px 10px;
+    font-size: 12px;
+    position: relative;
+    border: 1px solid #cae962;
+    border-radius: 4px;
+    color: #fff;
+}
+.slide-min{
+    display: none;
+}
+
+@media screen and (max-width: 1025px){
+    .slide-min{
+        display: block;
+    }
+    .min-episodes.hidden{
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 280px){
+    .episode .title .list-episodes{
+        display: none;
+    }
+}
+.episode .min-episodes .episode-item{
+    padding: 0 2.5px;
+    max-width: 228px;
+}
+
+@media screen and (max-width: 415px){
+    .episode .min-episodes .episode-item{
+        max-width: 50%;
+    }
+}
+.episode .episode-item{
+    padding: 0 1%;
+}
+.episode .episode-item h6{
+    margin: 0;
+}
+
+.episode .episode-item .active-anis{
+    border-radius: 4px;
+    border: 2px solid #cae962;
+    padding: 1px;
+}
+
+@media screen and (max-width: 991px){
+    .episode .episode-grid{
+        margin: 0 -15px;
+    }
+
+    .episode .episode-item h6{
+        font-size: 12px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 2;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        height: 26px;
+    }
+    .episode .episode-item small{
+        font-size: 11px;
+    }
+    .episode .episode__list{
+        padding: 4px 10px;
+        font-size: 11px;
+    }
+    .episode .episode-item .img-fluid{
+        min-height: 100px;
+    }
+}
+.episode__title .toggle-episodes{
+    width: max-content;
+    position: absolute;
+    right: 60px;
+    top: 13px;
+}
+
+@media screen and (max-width: 766px){
+    .episode__title .toggle-episodes{
+        right: 30px;
+        top: 8px;
+    }
+}
+.episode__title .toggle-episodes .toggle-list{
+    margin-right: 10px;
+}
+.episode__title .toggle-episodes .toggle-list .action{
+    padding: 0;
+}
+.episode__title .toggle-episodes .toggle-list .action.active{
+    color: #cae962 !important;
+}
+
+#list{
+    width: 100%;
+    max-height: 300px;
+    background: #202125;
+}
+.episode-list .wrapper-list{
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+}
+.back-gray{
+    background: #2A2C31;
+}
+.episode-list .wrapper-list .item{
+    width: 50%;
+    padding: 10px;
+    height: auto;
+    font-size: 20px;
+    color: #c6c6c7 !important;
+    display: flex !important;
+    flex-wrap: wrap;
+    position: relative;
+}
+.episode-list .wrapper-list .item.active, .episode-list .wrapper-list .item:hover{
+    background-color: #4A4B51 !important;
+    color: #fff !important;
+}
+.item.active{
+    border-left: 4px solid #cae962;
+}
+.item .episode-number{
+    font-weight: 450;
+    margin-right: 10px;
+}
+.item.active .episode-number{
+    color: #cae962 !important;
+}
+.item-content{
+    width: 100%;
+    height: max-content;
+    position: relative;
+}
+.episode-icon-play{
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 10px;
+    color: #cae962 !important;
+    width: auto;
+    height: auto;
+}
+.item.active .episode-icon-play{
+    display: block;
+}
+.item .episode-title, .item .episode-number{
+    font-size: 16px;
+}
+@media screen and (max-width: 766px){
+    .episode-list .wrapper-list .item{
+        width: 100%;
+        padding: 6px 10px;
+    }
+    .item .episode-title, .item .episode-number{
+        font-size: 13px;
+    }
+    .episode-icon-play{
+        font-size: 15px;
+        padding-top: 5px;
+    }
+}
+
+.loading-skeneton{
+    width: 20%;
+    float: left;
+}
+.loading-skeneton .react-loading-skeleton{
+    min-height: 125px;
+}
+@media screen and (max-width: 1025px){
+    .css-on60yw-SkeletonTheme{
+        overflow: hidden;
+        outline: none;
+        width: 100%;
+        max-height: 169px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .loading-skeneton{
+        width: 25%;
+    }
+}
+@media screen and (max-width: 600px){
+    .loading-skeneton{
+        width: 33%;
+    }
+}
+@media screen and (max-width: 480px){
+    .loading-skeneton{
+        width: 50%;
+    }
+}

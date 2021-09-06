@@ -1,0 +1,198 @@
+﻿@{
+    ViewBag.Title = "AnimeAB - Anime Series";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="app-title">
+    <div>
+        <h1><i class="fa fa-th-list"></i> Series - @ViewData["Series"]</h1>
+        <p>Chi tiết series anime</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item">Series - @ViewData["Series"]</li>
+    </ul>
+</div>
+<div class="container">
+    <div class="card">
+        <div class="card-header text-right">
+            <a href="@Url.Action("Index", "AnimeSeries", Context.Request.Scheme)" class="btn btn-info btn-sm"><i class="fa fa-arrow-circle-left"></i></a>
+            <a href="#" id="modal__btn-add" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-add"><i class="fa fa-plus"></i>Thêm anime cho series</a>
+        </div>
+        <div class="card-body">
+            <table id="myTable" class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th width="25%">Anime</th>
+                        <th width="25%">Session (phần anime)</th>
+                        <th width="25%">Năm phát hành</th>
+                        <th width="25%">Xử lý</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@{await Html.RenderPartialAsync("CreateAnimes.cshtml");}
+@section scripts{
+    <script type="text/javascript">
+        $(".index").removeClass("active");
+        $(".anime-series").addClass("active");
+
+        async function JTables() {
+
+            await $("#myTable").DataTable({
+               ...optionsDatabase,
+                ajax: {
+                    url: "@Url.Action("GetAnimeSeries", "AnimeSeries", new { series = ViewData["Series"] }, Context.Request.Scheme)",
+                    method: "GET"
+                },
+                columns: [
+                    {
+                        data: "key", name: "key", 'className': 'text-center', orderable: false
+                    },
+                    {
+                        data: "session", name: "session", 'className': 'text-center', orderable: false
+                    },
+                    {
+                        data: "yearProduce", name: "yearProduce", 'className': 'text-center', orderable: false
+                    },
+                    {
+                        data: null,
+                        className: "text-center",
+                        render: function (data, type, row) {
+                            var button = `<a href="#" onClick="Delete(this)" data-key="` + data.key + `" class="btn btn-danger btn-sm" title="Xóa series anime"><i class="fa fa-trash"></i>Xóa</a>&nbsp;`;
+
+                            return button;
+                        },
+                    }
+                ],
+                "columnDefs": [{
+                    "searchable": false,
+                    "visible": false,
+                    "checkboxes": {
+                        'selectRow': true
+                    }
+                }],
+                "select": {
+                    'style': 'multi'
+                },
+            });
+        };
+
+        JTables();
+
+        //Reload tables
+        async function reloadTables() {
+            await $("#myTable").DataTable().ajax.reload();
+        };
+
+        $("#anime").select2({
+            dropdownParent: "#modal-add"
+        });
+
+        //Add
+        var validator = $("#form-add").validate({
+            rules: {
+                ...rules
+            },
+            messages: {
+                ...messages
+            },
+            ...options,
+            submitHandler: function (form) {
+
+                var data = $("#form-add").find(".form-control");
+                var formData = new FormData();
+
+                var text = $("#anime option:selected").text();
+                formData.append("AnimeTitle", text);
+
+                data.map(item => {
+                    var valueItem = $(data[item]).val();
+                    const key = $(data[item]).attr("data-key");
+
+                    formData.append(key, valueItem);
+                });
+
+                $.ajax({
+                    type: "POST",
+                    url: "/anime/series/@ViewData["Series"]",
+                    data: formData,
+                    processData: false,
+                    dataType: false,
+                    contentType: false,
+                    beforeSend: function () {
+                        $("#btn-add").html("Loading...");
+                        $("#btn-add").addClass("disabled");
+                   },
+                    success: function () {
+                        toastr["success"]("Tạo series thành công");
+                        $("#btn-add").html('<i class="fa fa-plus"></i>&nbsp;Tạo series');
+                        $("#btn-add").removeClass("disabled");
+                        var data = $("#form-add").find("input[class='form-control']");
+                        data.map(item => {
+                            $(data[item]).val("")
+                        });
+                        reloadTables();
+                    },
+                    error: function (errors) {
+                        if (errors.responseText !== "") {
+                            toastr["error"](errors.responseText);
+                        }
+                        else {
+                            toastr["error"]("Interval Server Error");
+                        }
+                        $("#btn-add").html('<i class="fa fa-plus"></i>&nbsp;Tạo series');
+                        $("#btn-add").removeClass("disabled");
+                    }
+                })
+            }
+        });
+
+        $("#modal__btn-add").click(function () {
+            $("#form-add").find(".form-control").val("");
+            $("#form-add").find(".form-control").removeClass("is-invalid");
+            validator.resetForm();
+        });
+
+
+        function Delete(event) {
+            swal({
+                title: "Bạn có muốn xóa anime này?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Có, xóa nó!",
+                cancelButtonText: "Không, không cần đâu!",
+                closeOnConfirm: false,
+                closeOnCancel: true
+            }, (isConfirm) => {
+                if (isConfirm) {
+                    halderDelete();
+                }
+            });
+
+            const halderDelete = async () => {
+                var key = $(event).attr('data-key');
+
+                $.ajax({
+                    type: 'DELETE',
+                    url: '/anime/series/@ViewData["Series"]/' + key,
+                    contentType: false,
+                    processData: false,
+                    success: function () {
+                        toastr["success"]("Xóa thành công");
+                        swal.close();
+                        reloadTables();
+                    },
+                    error: function (errors) {
+                        swal("Oh no!", "Error " + errors.status + " " + errors.responseText, "error");
+                    }
+                })
+            }
+        }
+
+    </script>
+}

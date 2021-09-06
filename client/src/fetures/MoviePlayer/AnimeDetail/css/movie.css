@@ -1,0 +1,64 @@
+
+/* -----View Movie------ */
+#anis-detail .px-15{
+    padding: 0 15px;
+}
+#anis-detail .player-movie{
+    width: 100%;
+    border: 1px solid black;
+    background-color: black;
+    height: 100%;
+    position: relative;
+}
+
+
+/*----------------------- DETAIL MOVIE IFRAME ------------------------------ */
+
+#anis-detail .anis-video .anis-iframe{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: black;
+}
+
+#jw-player{
+    background: black;
+}
+@media screen and (max-width: 766px){
+    #anis-detail .player-movie .loading-ani, .loading-container, #loading{
+        width: 40px !important;
+    }
+}
+.player-loading{
+    position: absolute;
+    top: 37%;
+    left: 47.5%;    
+}
+.player-loading .ld-title{
+    position: absolute;
+    top: calc(40% + 90px);
+    left: -20px;
+    width: max-content;
+}
+.player-loading .lds-ring{
+    width: auto;
+    height: auto;
+}
+.player-loading .lds-ring div{
+    width: 60px;
+    height: 60px;
+}
+@media screen and (max-width: 766px){
+    .player-loading{
+        top: 27%;
+        left: 45%;
+    }
+    .player-loading .lds-ring div{
+        width: 44px;
+        height: 44px;
+    }
+    .player-loading .ld-title{
+        top: calc(40% + 70px);
+        font-size: 12px;
+    }
+}
