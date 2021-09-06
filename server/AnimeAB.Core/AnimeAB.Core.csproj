@@ -32,8 +32,4 @@
     <Content Remove="wwwroot\image\logo.png" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\client\" />
-  </ItemGroup>
-
 </Project>
