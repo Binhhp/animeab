@@ -20,26 +20,12 @@ export default function SliderMovie(){
 
     }, [setAnimes]);
 
-    const settings = {
-        dot: true,
-        className: "center w-100 carousel",
-        infinite: true,
-        lazyLoad: true,
-        speed: 500,
-        autoplay: true,
-        autoplaySpeed: 2500,
-        pauseOnHover: true,
-        slidesToShow: 1,
-        swipeToSlide: true,
-        nextArrow: <NextArrow />,
-        prevArrow: <PrevArrow />
-    }; 
-
     return(
         <div className="deslide-wrap">
             <div id="slider">
                 {
-                  (animes.length > 0 && <Slider {...settings}>
+                  (animes.length > 0 && 
+                  <Slider {...settings}>
                     {
                         animes.map((item, i) => (
                             <div key={`slide-${item.key}`} className="deslide-item">
@@ -102,4 +88,19 @@ export default function SliderMovie(){
             </div>
         </div>
     )
-}
+};
+
+const settings = {
+    dot: true,
+    className: "center w-100 carousel",
+    infinite: true,
+    lazyLoad: true,
+    speed: 500,
+    autoplay: true,
+    autoplaySpeed: 2500,
+    pauseOnHover: true,
+    slidesToShow: 1,
+    swipeToSlide: true,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />
+}; 

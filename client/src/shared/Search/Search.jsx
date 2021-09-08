@@ -9,7 +9,7 @@ import formatDate from "../../hooks/useFormatDatetime";
 import Highlighter from "react-highlight-words";
 import { updateView } from "../../reduxs/doSomethings";
 
-export default function Search(){
+export const Search = React.memo(function Search() {
     const list = useSelector(state => state.animes.data);
     
     const [state, setState] = useState({
@@ -119,4 +119,4 @@ export default function Search(){
         <div className="search-icon"><i className="fas fa-search"></i></div>
       </form>
     )
-  }
+});

@@ -1,7 +1,7 @@
 import React from "react";
 import usePosition from "../../hooks/usePosition";
 
-export default function ScrollToTop(){
+function ScrollToTop(){
     const position = usePosition();
   
     // Set the top cordinate to 0
@@ -20,4 +20,6 @@ export default function ScrollToTop(){
             <i className="fas fa-chevron-up"></i>
         </button>
     );
-}
+};
+
+export default React.memo(ScrollToTop);

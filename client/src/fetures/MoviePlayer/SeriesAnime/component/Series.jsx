@@ -4,18 +4,21 @@ import { controller } from "../../../../controller/apis/controller";
 import { requestGet } from "../../../../_axios/axiosClient";
 import "../css/series.css";
 
-export default function Series({ series, animeKey }){
+function Series({ series, animeKey }){
     const [animeSeries, setAnimeSeries] = useState([]);
 
     useEffect(() => {
-        requestGet(controller.SERIES(series)).then(response => {
-            var data = response.data;
-            var result = data.sort(function(a, b){
-                return a.ordinal - b.ordinal
+        if(series){
+            requestGet(controller.SERIES(series)).then(response => {
+                
+                var data = response.data;
+                var result = data.sort(function(a, b){
+                    return a.ordinal - b.ordinal
+                });
+    
+                setAnimeSeries(result);
             });
-
-            setAnimeSeries(result);
-        });
+        }
     }, [setAnimeSeries, series]);
 
     return(
@@ -46,4 +49,6 @@ export default function Series({ series, animeKey }){
             </div>
         </div>
     )
-}
+};
+
+export default React.memo(Series);

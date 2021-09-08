@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { commentService } from "../../../../../reduxs/comments/apis/getComments";
+import { commentService } from "../../../../reduxs/comments/apis/getComments";
 import UserAction from "../DisplayComment/UserAction";
 import UserAvatar from "../DisplayComment/UserAvatar";
 import UserComment from "../DisplayComment/UserComment";

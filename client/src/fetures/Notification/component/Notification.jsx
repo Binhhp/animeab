@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom";
 import { notifyActions } from "../../../reduxs/notification/actions/notify.actions";
 import { notifyService } from "../../../reduxs/notification/apis/getNotify";
-import { hubConnection } from "../../MoviePlayer/hook/signaIrHub";
+import { hubConnection } from "../../../hooks/signaIrHub";
 import "../css/noti.css";
 import CountNotifies from "./CountNotifies";
 import { ListNotifies } from "./ListNotifies";
 
-export default function Notification() {
+function Notification() {
 
     const userLoggedIn = useSelector(state => state.userLoggedIn);
     const [isShowBox, setShowBox] = useState(false);
@@ -47,4 +47,6 @@ export default function Notification() {
         </div>
         : ""
     )
-}
+};
+
+export default React.memo(Notification);

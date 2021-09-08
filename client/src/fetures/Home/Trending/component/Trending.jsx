@@ -9,59 +9,15 @@ import { updateView } from "../../../../reduxs/doSomethings";
 import { requestGet } from "../../../../_axios/axiosClient";
 import { controller } from "../../../../controller/apis/controller";
 
-export default function Featured(){
+export default function Trending() {
     
     const [animes, setAnimes] = useState([]);
-    
+
     useEffect(() => {
         requestGet(controller.GET_ANIME("", 0, false, "views", 10, 2)).then(response => {
             setAnimes(response.data)
         }).catch(error => console.log(error.message));
-    }, [setAnimes])
-    const settings = {
-        className: "center w-100 carousel",
-        infinite: true,
-        lazyLoad: true,
-        speed: 500,
-        autoplay: false,
-        autoplaySpeed: 2500,
-        pauseOnHover: true,
-        slidesToShow: 8,
-        slidesToScroll: 8,
-        swipeToSlide: true,
-        nextArrow: <NextArror />,
-        prevArrow: <PrevArrow />,
-        responsive: [
-            {
-                breakpoint: 1590,
-                settings: {
-                  slidesToShow: 6,
-                  slidesToScroll: 6,
-                }
-              },
-            {
-              breakpoint: 1025,
-              settings: {
-                slidesToShow: 4,
-                slidesToScroll: 4,
-              }
-            },
-            {
-              breakpoint: 600,
-              settings: {
-                slidesToShow: 4,
-                slidesToScroll: 4
-              }
-            },
-            {
-                breakpoint: 280,
-                settings: {
-                  slidesToShow: 3,
-                  slidesToScroll: 3
-                }
-              }
-          ]
-    }; 
+    }, [setAnimes]);
 
     const loading = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -106,11 +62,54 @@ export default function Featured(){
                             </Slider>
                         }
                     </div>
-                    <div className="action-slider">
-                        
-                    </div>
+                    <div className="action-slider"></div>
                 </div>
             </div>
         </div>
     )
 }
+
+const settings = {
+    className: "center w-100 carousel",
+    infinite: true,
+    lazyLoad: true,
+    speed: 500,
+    autoplay: false,
+    autoplaySpeed: 2500,
+    pauseOnHover: true,
+    slidesToShow: 8,
+    slidesToScroll: 8,
+    swipeToSlide: true,
+    nextArrow: <NextArror />,
+    prevArrow: <PrevArrow />,
+    responsive: [
+        {
+            breakpoint: 1590,
+            settings: {
+              slidesToShow: 6,
+              slidesToScroll: 6,
+            }
+          },
+        {
+          breakpoint: 1025,
+          settings: {
+            slidesToShow: 4,
+            slidesToScroll: 4,
+          }
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 4,
+            slidesToScroll: 4
+          }
+        },
+        {
+            breakpoint: 280,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3
+            }
+          }
+      ]
+}; 

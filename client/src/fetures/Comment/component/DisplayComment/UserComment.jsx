@@ -1,4 +1,4 @@
-import { commentService } from "../../../../../reduxs/comments/apis/getComments";
+import { commentService } from "../../../../reduxs/comments/apis/getComments";
 
 export default function UserComment({ displayName, when }) {
     return (

@@ -20,10 +20,10 @@ export const getAnimes = (animeKey = "") => {
         const response = await requestGet(url);
         if (response.code > 204) {
             if(animeKey !== ""){
-                dispatch(detailService.detailFailure("Error"));
+                dispatch(detailService.detailFailure(response.errors));
             }
             else{
-                dispatch(animeService.animesFailure("Error"));
+                dispatch(animeService.animesFailure(response.errors));
             }
         }
         else {
@@ -77,10 +77,10 @@ export const getEpisodes = (animeKey, episode = "") => {
         
         if (response.code > 204) {
             if(episode === ""){
-                dispatch(detailService.episodeOfAnimeFailure("Error"));
+                dispatch(detailService.episodeOfAnimeFailure(response.errors));
             }
             else{
-                dispatch(detailService.episodeFailure("Error"));
+                dispatch(detailService.episodeFailure(response.errors));
             }
         }
         else {
@@ -108,8 +108,8 @@ export const getAnimeByCateOfCollect = (categoryKey = "", collectionId = "") => 
         const response = await requestGet(url);
         
         if (response.code > 204) {
-            if(categoryKey !== "") dispatch(animeService.animeCateFailure("Error"));
-            else dispatch(animeService.animeCollectFailure("Error"));
+            if(categoryKey !== "") dispatch(animeService.animeCateFailure(response.errors));
+            else dispatch(animeService.animeCollectFailure(response.errors));
         }
         else {
             if(categoryKey !== "") dispatch(animeService.animeCateSuccess(response.data));

@@ -1,31 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Sidebar from "../SideBar/SideBarLeft";
 import "./style.css";
 import SideNavRight from "../SideBar/SideBarRight";
-import NavBar from "../NavBar/NavBar";
+import { NavBar } from "../NavBar/NavBar";
 import 'simplebar'; 
 import 'simplebar/dist/simplebar.css';
 import { Helmet } from "react-helmet";
 import { ErrorBoundary } from "../../shared/ErrorBoundary/ErrorBoundary";
 //Layout
-export default function Layout({ children, title, descript }){
+function Layout({ children, title, descript }){
 
     const [isMenuLeft, setMenuLeft] = useState(false);
-    const toggleMenuLeft = () => {
+    const toggleMenuLeft = useCallback(() => {
         setMenuLeft(!isMenuLeft);
-    };
+    }, [setMenuLeft, isMenuLeft]);
 
     const [isMenuRight, setMenuRight] = useState(false);
-
-    const toggleMenuRight = () => {
+    const toggleMenuRight = useCallback(() => {
         setMenuRight(!isMenuRight);
-    };
+    }, [setMenuRight, isMenuRight]);
 
-    const [isSearch, setSearch] = useState(false);
-
-      useEffect(() => {
-        window.scroll(0, 0);
-      }, []);
+    useEffect(() => {
+      window.scroll(0, 0);
+    }, []);
 
     return(
         <ErrorBoundary>
@@ -34,10 +31,7 @@ export default function Layout({ children, title, descript }){
                 <meta name="description" content={descript} />
             </Helmet>
             <div id="sidebar_menu_bg" className={isMenuLeft || isMenuRight ? "active" : ""}></div>
-            <NavBar 
-                    isSearch={isSearch}
-                    setSearch={setSearch} 
-                    toggleMenuLeft={toggleMenuLeft} 
+            <NavBar toggleMenuLeft={toggleMenuLeft} 
                     toggleMenuRight={toggleMenuRight}></NavBar>
                     
             <Sidebar isMenuLeft={isMenuLeft} setMenuLeft={setMenuLeft}></Sidebar>
@@ -53,4 +47,6 @@ export default function Layout({ children, title, descript }){
             </main>
         </ErrorBoundary>
     )
-}
+};
+
+export default React.memo(Layout);

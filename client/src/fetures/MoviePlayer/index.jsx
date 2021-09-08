@@ -1,7 +1,7 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Layout from "../../layouts/Layout/Layout";
-import AnimeVideo from "./AnimeDetail/component/VideoPlayer";
+import JwPlayerVideo from "./AnimeDetail/component/VideoPlayer";
 import AnimeInfor from "./AnimeDetail/component/Information";
 import Episodes from "./Episodes/component/Episode";
 import { useOptionSize } from "./hook/useOptionSize";
@@ -11,41 +11,39 @@ import { useDispatch, useSelector } from "react-redux";
 import { animeDetails } from "../../reduxs/doSomethings";
 import Series from "./SeriesAnime/component/Series";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import AnimeOffer from "./AnimeOffer/AnimeOffer";
+import { AnimeOffer } from "./AnimeOffer/AnimeOffer";
 import AnimeRelate from "./AnimeRelate/AnimeRelate";
-import CommentPlugin from "./CommentPlugins/component/Comment";
+import Comment from "../Comment/component/Comment";
+import { ActionVideo } from "./Action/ActionsVideo";
 
-export default function ViewMovie(){
+function ViewMovie(){
 
     const { meta, episode } = useParams();
 
     const dispatch = useDispatch();
     const index = useSelector(state => state.animeDetail.data);
     //List episode
-    const episodesArray = useSelector(state => state.animeEpisodeArr.data);
     const episodeItem = useSelector(state => state.animeEpisode.data);
     //Set size
     const {size, sizeEpisode} = useOptionSize();
 
     const [episodeActive, setEpisodeActive] = useState(episode);
-    const onVideoLoad = (event) => {
+    const onVideoLoad = useCallback((event) => {
         setEpisodeActive(event.item.key);
-    };
+    }, [setEpisodeActive]);
 
     useEffect(() => {
         setEpisodeActive(episode);
         dispatch(animeDetails(meta, episode));
     }, [dispatch, meta, episode, setEpisodeActive])
 
-    return(
-        <Layout 
-            title={ Object.keys(episodeItem).length > 0 && 
-                `${index.title} - ${episodeItem?.title.includes("Tập") 
-                    ? episodeItem?.title 
-                    : `Tập ${episodeItem?.episode} - ${episodeItem?.title}`}`  } 
+    const title = Object.keys(episodeItem).length > 0 && `${index.title} - ${episodeItem?.title.includes("Tập") 
+                    ? episodeItem?.title : `Tập ${episodeItem?.episode} - ${episodeItem?.title}`}`;
+    
+    const description = Object.keys(episodeItem).length > 0 && `AnimeAB - ${index?.title} ${episodeItem?.title}`;
 
-            descript={ Object.keys(episodeItem).length > 0 && `AnimeAB - ${index?.title} ${episodeItem?.title}` }>       
-            
+    return(
+        <Layout title={title} descript={description}>      
             <div id="anis-detail" className="anis-detail col-12">
                 <div className="anis">
                     <div className="anis-cover-wrap">
@@ -74,19 +72,21 @@ export default function ViewMovie(){
                             </div>
                         </div>
                         {/* -----Video/Iframe Anime----- */}
-                        <AnimeVideo 
-                            episodes={episodesArray} 
-                            titleAnime={index.title} 
-                            episodeItem={episodeItem} 
-                            size={size}
-                            onVideoLoad={onVideoLoad}></AnimeVideo>
+                        <div className="anis-jw-player">
+                            <JwPlayerVideo 
+                                titleAnime={index.title} 
+                                episodeItem={episodeItem} 
+                                size={size}
+                                onVideoLoad={onVideoLoad}></JwPlayerVideo>
+                            <ActionVideo anime={index} meta={meta} episode={episode}></ActionVideo>
+                        </div>
                         {/* -----List episodes----------- */}
-                        <Episodes meta={episodeActive} anime={index} episodes={episodesArray}></Episodes>
+                        <Episodes meta={episodeActive} anime={index}></Episodes>
                         {/* ------Series Anime----------- */}
                         { index?.series && <Series animeKey={index?.key} series={index?.series}></Series>}
                         {/* ----Comments Plugin
                             anime key set comment, link notify set notify comment---- */}
-                        <CommentPlugin animeKey={meta} linkNotify={`/xem-phim/${meta}/${episode}`}></CommentPlugin>
+                        <Comment animeKey={meta} linkNotify={`/xem-phim/${meta}/${episode}`}></Comment>
                     </div>
                     <AnimeInfor anime={index} sizeEpisode={sizeEpisode}></AnimeInfor>
                 </div>
@@ -101,4 +101,6 @@ export default function ViewMovie(){
             </div>
         </Layout>
     )
-}
+};
+
+export default React.memo(ViewMovie);

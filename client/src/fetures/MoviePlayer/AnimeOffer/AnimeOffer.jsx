@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { requestGet } from "../../../_axios/axiosClient";
 import Animes from "../../../shared/Animes/component/Animes";
 import { controller } from "../../../controller/apis/controller";
 
-export default function AnimeOffer({ categoryKey, animeKey }){
+export const AnimeOffer = React.memo(function AnimeOffer({ categoryKey, animeKey }){
     const [state, setState] = useState([]);
-
+    
     useEffect(() => {
         if(categoryKey){
             requestGet(controller.GET_ANIME_OFFER(categoryKey, animeKey))
@@ -15,6 +15,10 @@ export default function AnimeOffer({ categoryKey, animeKey }){
         }
     }, [categoryKey, animeKey, setState])
     return (
-        <Animes hiddenLoader={true} isMoreView={true} link="/animes" page={12} animes={state} title="Animes đề xuất"></Animes>
+        <Animes hiddenLoader={true} 
+                isMoreView={true} 
+                link="/animes" 
+                page={12} animes={state} 
+                title="Animes đề xuất"></Animes>
     )
-}
+}) 

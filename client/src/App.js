@@ -11,7 +11,7 @@ import ScrollToTop from "./layouts/Layout/ScrollToTop";
 import { useDispatch } from 'react-redux';
 import { doSomethings } from './reduxs/doSomethings';
 import Loading from "./shared/Loading/LoadingFilm/Loading";
-import { hubConnection } from './fetures/MoviePlayer/hook/signaIrHub';
+import { hubConnection } from './hooks/signaIrHub';
 
 toast.configure();
 // console.log = console.warn = console.error = () => {};

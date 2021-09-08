@@ -3,11 +3,14 @@ import "../css/movie.css";
 import ReactJWPlayer from 'react-jw-player';
 import { hanlderError, playList } from "../hook/useMovieCore";
 import LoadingInfinite from "../../../../shared/Loading/LoadingCircle/LoadingInfinite";
+import { useSelector } from "react-redux";
 
-export default function VideoPlayer({ episodes, episodeItem, titleAnime, size, onVideoLoad }){
+function VideoPlayer({ episodeItem, titleAnime, size, onVideoLoad }){
 
     const iframe = `<iframe mozallowfullscreen="true" webkitallowfullscreen="true" allowfullscreen="true" src="${episodeItem.link}"></iframe>`
     const [playlist, setPlaylist] = useState([]);
+
+    const episodes = useSelector(state => state.animeEpisodeArr.data);
 
     useEffect(() => {
         if(episodes && Object.keys(episodeItem).length > 0 && episodes.length > 0) {
@@ -36,5 +39,7 @@ export default function VideoPlayer({ episodes, episodeItem, titleAnime, size, o
             }
         </div>
     )
-}
+};
+
+export default React.memo(VideoPlayer);
 

@@ -8,7 +8,8 @@ export const Items = (anime, meta, episodes) => {
          <div className={`position-relative d-block ${meta === item.key ? "active-anis" : ""}`}>
              <Link onClick={() => updateView(anime.key, item.key)}
                  to={`/xem-phim/${anime.key}/${item.key}`} 
-                 className="imageouta">
+                 className="imageouta"
+                 title={item.title}>
                  <img src={item.image}
                      className="img-fluid shadow-sm w-100"
                      alt={item.title} />

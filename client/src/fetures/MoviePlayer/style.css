@@ -44,7 +44,8 @@
     background-size: cover;
     background-position: center center;
     filter: blur(20px);
-    opacity: .35
+    opacity: .35;
+    background-color: black;
 }
 @media screen and (max-width: 1590px){
     #anis-detail .anis-cover-wrap{
@@ -63,13 +64,15 @@
     }
 }
 
-.main-anis{
+.main-anis {
     width: 100%;
     padding: 30px 0;
     display: flex;
     flex-wrap: wrap;
 }
-
+.anis-video {
+    z-index: 10;
+}
 .anis-video .episode-title-wrapper{
     font-size: 15px;
     line-height: 1.2;

@@ -13,7 +13,7 @@ export default function SideBarLeft({ isMenuLeft, setMenuLeft }) {
     const collectIndexes = collections.length > 0 ? collections : [];
 
     const color = ["#d0e6a5", "#ffdd95", "#fc887b", "#ccabda", "#abccd8", "#d8b2ab"];
-
+    
     return(
         <nav id="sidebar" className={isMenuLeft ? "sidenav open" : "sidenav"}>
             <div className="scrollbar-sidenav" data-simplebar>

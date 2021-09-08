@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { commentService } from "../../../../../reduxs/comments/apis/getComments";
-import Loading from "../../../../../shared/Loading/LoadingElipsis/Loading";
+import { commentService } from "../../../../reduxs/comments/apis/getComments";
+import Loading from "../../../../shared/Loading/LoadingElipsis/Loading";
 
 function SendComment({animeKey}) {
     

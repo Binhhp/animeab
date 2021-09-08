@@ -20,15 +20,14 @@ export const detailReducers = (state = initialStateDetail, action) =>{
                 loading: true
             };
         case detailConstants.ANIMEDETAIL_SUCCESS:
-            return{
-                loading: false,
-                data: action.payload,
-                error: ''
-            };
+            var newArr = Object.assign({}, {
+                data: action.payload
+            });
+
+            return newArr;
         case detailConstants.ANIMEDETAIL_FAILURE:
             return{
                 loading: false,
-                data: "",
                 error: action.payload
             };
         default: return state;
@@ -43,15 +42,14 @@ export const episodeOfAnimeReducers = (state = initialState, action) =>{
                 loading: true
             };
         case detailConstants.EPISODES_OF_ANIME_SUCCESS:
-            return{
-                loading: false,
-                data: action.payload,
-                error: ''
-            };
+            var newArr = Object.assign({}, {
+                data: action.payload
+            });
+
+            return newArr;
         case detailConstants.EPISODES_OF_ANIME_FAILURE:
             return{
                 loading: false,
-                data: "",
                 error: action.payload
             };
         default: return state;
@@ -66,15 +64,14 @@ export const episodeReducers = (state = initialStateDetail, action) =>{
                 loading: true
             };
         case detailConstants.EPISODE_SUCCESS:
-            return{
-                loading: false,
-                data: action.payload,
-                error: ''
-            };
+            var newEpisodes = Object.assign({}, {
+                data: action.payload
+            });
+
+            return newEpisodes;
         case detailConstants.EPISODE_FAILURE:
             return{
                 loading: false,
-                data: "",
                 error: action.payload
             };
         default: return state;

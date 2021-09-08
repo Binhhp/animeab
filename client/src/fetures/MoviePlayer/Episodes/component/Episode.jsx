@@ -12,12 +12,11 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import LoadingEpisodes from "./LoadingEpisodes";
 import { Items } from "./Items";
 import { updateView } from "../../../../reduxs/doSomethings";
+import { useSelector } from "react-redux";
 
 export default function Episode({ ...props }){
 
-    const episodes = props.episodes?.sort(function(a,b){
-      return a.episode - b.episode
-    });
+    const episodes = useSelector(state => state.animeEpisodeArr.data);
 
     const settings = {
         className: "center carousel",

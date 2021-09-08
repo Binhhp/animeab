@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./nav-bar.css";
 import usePosition from "../../hooks/usePosition";
-import Search from "../../shared/Search/Search";
+import { Search } from "../../shared/Search/Search";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import FormClient from "../../fetures/Users/component/FormClient";
-import Notification from "../../fetures/NotificationHub/component/Notification";
+import Notification from "../../fetures/Notification/component/Notification";
 import logo from "../../assets/img/logo.png";
 
-export default function NavBar({ ...props }) {
+export const NavBar = React.memo(function NavBar({ ...props }) {
     
     const [isSearch, setSearch] = useState(false);
     const position = usePosition();
@@ -18,12 +18,12 @@ export default function NavBar({ ...props }) {
     const animesFilter = animes.length > 0 ? animes.filter(x => x.isStatus > 1) : [];
     
     const random = animesFilter.length > 0 ? animesFilter[Math.floor(Math.random() * animesFilter.length)] : {};
-
+  
     return (
             <div className={`fixed-header ${position > 70 ? "bg-shadow" : ""}`}>
                 <div className="container">
                     <div className="mobie_menu">
-                        <span onClick={() => props.toggleMenuLeft(props.className)} className="menu-left">
+                        <span onClick={() => props.toggleMenuLeft()} className="menu-left">
                             <i className="fas fa-bars"></i>
                         </span>
                     </div>
@@ -88,4 +88,4 @@ export default function NavBar({ ...props }) {
                 </div>
             </div>
      )
-}
+});

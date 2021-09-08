@@ -3,9 +3,10 @@ import { requestGet } from "../../../_axios/axiosClient";
 import Animes from "../../../shared/Animes/component/Animes";
 import { controller } from "../../../controller/apis/controller";
 
-export default function AnimeNewContents(){
+export default function AnimeNewContents() {
 
     const [animeNews, setAnimeNews] = useState([]);
+
     useEffect(() => {
         requestGet(controller.GET_ANIME_NEW(12)).then(response => {
             setAnimeNews(response.data)

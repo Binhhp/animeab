@@ -37,7 +37,7 @@
 .player-loading .ld-title{
     position: absolute;
     top: calc(40% + 90px);
-    left: -20px;
+    left: -29px;
     width: max-content;
 }
 .player-loading .lds-ring{

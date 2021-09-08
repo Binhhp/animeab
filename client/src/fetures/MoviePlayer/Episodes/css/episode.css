@@ -1,6 +1,10 @@
 
 /* ----Episode movie------ */
-
+.episodes-loader{
+    position: relative;
+    padding: 30px 0;
+    padding-bottom: 60px;
+}
 .episode{
     margin-top: 50px;
     width: 100%;
@@ -64,8 +68,17 @@
 }
 .episode .episode-item h6{
     margin: 0;
+    font-size: 14px;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    height: 33px;
+    overflow: hidden;
 }
-
+.episode .episode-item small{
+    font-size: 12px;
+}
 .episode .episode-item .active-anis{
     border-radius: 4px;
     border: 2px solid #cae962;

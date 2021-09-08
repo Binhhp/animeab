@@ -1,13 +1,13 @@
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { hubConnection } from "../../hook/signaIrHub";
+import { hubConnection } from "../../../hooks/signaIrHub";
 import "../css/comment.css";
-import { commentService } from "../../../../reduxs/comments/apis/getComments";
+import { commentService } from "../../../reduxs/comments/apis/getComments";
 import React from "react";
 import SendComment from "./EventHanlder/SendComment";
 import ListComment from "./ArrayList/ListComment";
-import LoadingElipsis from "../../../../shared/Loading/LoadingElipsis/Loading";
+import LoadingElipsis from "../../../shared/Loading/LoadingElipsis/Loading";
 
 function Comment({ animeKey, linkNotify }){
 
@@ -27,10 +27,10 @@ function Comment({ animeKey, linkNotify }){
     }, [animeKey, dispatch])
 
     const [valueSelect, setValueSelect] = useState("lastest");
-    const onChangeSelect = (e) => {
+    const onChangeSelect = useCallback((e) => {
         setValueSelect(e.target.value);
         dispatch(commentService.getAll(animeKey, e.target.value));
-    };
+    }, [setValueSelect, dispatch, animeKey]);
 
     return(
         <div className="anime-comments">
@@ -68,4 +68,4 @@ function Comment({ animeKey, linkNotify }){
         </div>
     )
 }
-export default React.memo(Comment);
+export default React.memo(Comment)
