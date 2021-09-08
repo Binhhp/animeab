@@ -28,6 +28,12 @@ function update(item) {
     }
 }
 
+function like_comment(idComment) {
+    return dispatch => {
+        dispatch(commentAction.like(idComment));
+    }
+}
+
 function calculateTime(time){
     let timer = new Date(time);
     let d = Date.now();
@@ -101,5 +107,6 @@ export const commentService = {
     getReplyComments,
     update,
     calculateTime,
-    sendMessage
+    sendMessage,
+    like_comment
 };

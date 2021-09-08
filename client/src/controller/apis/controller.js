@@ -120,6 +120,9 @@ export const controller = {
     SERIES: (key) => {
         let url = `${baseUrl}/series/${key}`;
         return url;
-    }
+    },
 
+    LIKE_COMMENT: (id, idComment) => {
+        return `${baseUrl}/likes?id=${id}&idComment=${idComment}`;
+    }
 }

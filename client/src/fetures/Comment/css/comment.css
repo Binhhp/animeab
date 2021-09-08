@@ -192,3 +192,6 @@
 .send-comment #form-loader{
     bottom: -40px;
 }
+.liked {
+    color: #cae962 !important;
+}

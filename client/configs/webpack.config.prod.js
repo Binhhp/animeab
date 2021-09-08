@@ -129,7 +129,13 @@ module.exports = {
         hot: true,
         open: true,
         watchContentBase: true,
-        historyApiFallback: true
+        historyApiFallback: true,
+        https: true,
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+            "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+        }
     },
 
     optimization: {

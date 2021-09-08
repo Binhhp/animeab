@@ -4,7 +4,8 @@ import UserAction from "../DisplayComment/UserAction";
 import UserAvatar from "../DisplayComment/UserAvatar";
 import UserComment from "../DisplayComment/UserComment";
 import ListReplyComment from "../ArrayList/ListReplyComment";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { hubConnection } from "../../../../hooks/signaIrHub";
 
 export default function ListComment({ comments, isMore, animeKey, linkNotify }) {
     const list = comments?.data;
@@ -26,6 +27,14 @@ export default function ListComment({ comments, isMore, animeKey, linkNotify }) 
 
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        hubConnection.on(`${animeKey}_like_comment`, async (response) => {
+            if(response) {
+                await dispatch(commentService.like_comment(response));
+            }
+        });
+    }, [animeKey, dispatch])
+
     return (
         <div className="list-comment">
             {list && 
@@ -43,6 +52,7 @@ export default function ListComment({ comments, isMore, animeKey, linkNotify }) 
                             <p className="message mb-cmt">{item.message}</p>
                             {/* action */}
                             <UserAction 
+                                animeKey={animeKey}
                                 setUserRevice={setUserRevice}
                                 comment={item} 
                                 count={list.filter(x => x.replyComment === item.key).length}
@@ -59,6 +69,7 @@ export default function ListComment({ comments, isMore, animeKey, linkNotify }) 
                         </div>
                         <div className="list-child" id={`${window.btoa(item.key)}`}>
                             <ListReplyComment 
+                                animeKey={animeKey}
                                 setUserRevice={setUserRevice}
                                 comment={item} 
                                 list={list.filter(x => x.replyComment === item.key)}></ListReplyComment>

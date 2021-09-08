@@ -18,12 +18,12 @@ function Comment({ animeKey, linkNotify }){
     const [isMore, setMore] = useState(showCmt);
 
     useEffect(() => {
-        dispatch(commentService.getAll(animeKey))
+        dispatch(commentService.getAll(animeKey));
         hubConnection.on(animeKey, async (response) => {
-            if(response){
+            if(response) {
                 await dispatch(commentService.update(response));
             }
-        })
+        });
     }, [animeKey, dispatch])
 
     const [valueSelect, setValueSelect] = useState("lastest");

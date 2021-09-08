@@ -1,6 +1,8 @@
+import { controller } from "../../../../controller/apis/controller";
+import { requestGet } from "../../../../_axios/axiosClient";
 
 export default function UserAction(
-    { count, isCount, comment, commentChild, setUserRevice}) {
+    { count, isCount, comment, commentChild, setUserRevice, animeKey}) {
     const showMsg = (isCount) => {
 
         if(commentChild){
@@ -42,9 +44,21 @@ export default function UserAction(
         }
     }
 
+    const likeComment = (e) => {
+        if(animeKey && comment) {
+            if(e.target.classList.contains("liked")) return;
+            const idComment = commentChild ? commentChild.key : comment.key;
+            requestGet(controller.LIKE_COMMENT(animeKey, idComment));
+            e.target.classList.add("liked");
+        }
+        return;
+    }
+
     return (
         <ul className="action">
-            <li><i className="fas fa-heart"></i>&nbsp;&nbsp;0</li>
+            <li onClick={(e) => likeComment(e)}><i className="fas fa-heart"></i>&nbsp;&nbsp;
+                {commentChild ? commentChild.likes : comment.likes}
+            </li>
             <li onClick={() => showMsg(isCount)}>
                 <i className="fas fa-comment-alt"></i>&nbsp;&nbsp;
                 {isCount || count}

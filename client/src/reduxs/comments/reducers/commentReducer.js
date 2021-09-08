@@ -23,7 +23,20 @@ export function commentReducer (state = {data: []}, action) {
                 ]
             }
             return updateState;
-
+        
+        case constants.LIKE:
+            const newArr = state?.data.filter(x => x?.key !== action.payload.key);
+            if(newArr) {
+                let rfState = {
+                    data: [
+                        action.payload,
+                        ...newArr
+                    ]
+                }
+                return rfState;
+            }
+            return state;
+            
         default : 
             return state
     }

@@ -45,7 +45,7 @@ export const ActionVideo = React.memo(function ActionVideo({ episode, meta, anim
             </div>
             <div className="server w-100">
                 <div className="position-relative">
-                    <div className="left item-server-title">
+                    <div className="item-server-title">
                         <div className="text-center note">
                             <span>Nếu server hiện tại không hoạt động hoặc lag, vui lòng thử các server khác bên cạnh.</span>
                         </div>

@@ -20,7 +20,7 @@ function ServerBackup({ animeKey, episode }) {
     }, [dispatch, animeKey, episode, setActive])
 
     return (
-        <div className="right item-server-content">
+        <div className="item-server-content">
             <div className="server-info">
                 <span>📢 Hiện tại chúng tôi chỉ upload hai server mong các bạn thông cảm. Nếu có lỗi xảy ra hãy báo lỗi cho chúng tôi để khắc phục.</span>
             </div>

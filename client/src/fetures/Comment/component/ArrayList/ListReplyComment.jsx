@@ -2,7 +2,7 @@ import UserAction from "../DisplayComment/UserAction";
 import UserAvatar from "../DisplayComment/UserAvatar";
 import UserComment from "../DisplayComment/UserComment";
 
-export default function ListReplyComment({ list, comment, setUserRevice }) {
+export default function ListReplyComment({ list, comment, setUserRevice, animeKey }) {
 
     return (
         <div className="comment-child" style={{display: 'none'}}>
@@ -16,6 +16,7 @@ export default function ListReplyComment({ list, comment, setUserRevice }) {
                                 when={item.when}></UserComment>
                             <p className="message mb-cmt">{item.message}</p>
                             <UserAction 
+                                animeKey={animeKey}
                                 isCount={false} 
                                 commentChild={item}
                                 comment={comment}

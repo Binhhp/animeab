@@ -28,4 +28,10 @@ export const commentAction = {
             type: constants.SEND_SUCCESS
         }
     },
+    like: (idComment) =>  {
+        return {
+            type: constants.LIKE,
+            payload: idComment
+        }
+    }
 };

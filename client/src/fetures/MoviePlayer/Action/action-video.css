@@ -36,10 +36,10 @@
 }
 .light-turn .anis-video{
     position: absolute;
-    left: 17.5%;
+    left: 17%;
 }
 .expand.light-turn .anis-video{
-    left: 6.3% !important;
+    left: 0% !important;
     top: -60px !important;
     width: 85% !important;
 }
@@ -65,13 +65,21 @@
     margin-top: 45px;
     background-color: #202125;
 }
+
+.anis-video .server .position-relative{
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
 .note{
     border-radius: 10px 0 0 10px;
     background-color: #CAE962;
     color: #08090B;
     font-size: 13px;
     font-weight: 500;
-    padding: 28px 15px;
+    padding: 35px 15px;
+    overflow: hidden;
+    height: 100%;
 }
 .item-server-title{
     width: 25%;
@@ -81,6 +89,7 @@
     width: 75%;
     padding: 10px;
     font-size: 13px;
+    height: max-content;
 }
 .item-server-content .server-info{
     background-color: #51535B;
@@ -91,6 +100,8 @@
 .server-list{
     width: 100%;
     margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
 }
 .server-list-sub{
     font-weight: 600;
@@ -103,8 +114,8 @@
     color: #FFFFFF;
 }
 .server-list-content{
-    display: flex;
-    flex-wrap: wrap;
+    display: block;
+    width: max-content;
 }
 .server-list-content .backup{
     padding: 8px 11px;
@@ -114,6 +125,7 @@
     font-size: 11px;
     font-weight: 500;
     cursor: pointer;
+    float: left;
 }
 .server-list-content .backup:hover,.server-list-content .backup.active{
     background-color: #51535B;
