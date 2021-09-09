@@ -113,5 +113,25 @@ namespace AnimeAB.Core.Apis
                 return BadRequest(ex.Message);
             }
         }
+
+        [Route("likes")]
+        public IActionResult LikeComment([FromQuery]string id, [FromQuery]string idComment)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(id) && string.IsNullOrWhiteSpace(idComment))
+                {
+                    return BadRequest();
+                }
+
+                var comment = _unitOfWork.CommentPlugin.LikeComment(id, idComment);
+                _hubContext.Clients.All.SendAsync( id + "_" + "like_comment", comment);
+                return Ok();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

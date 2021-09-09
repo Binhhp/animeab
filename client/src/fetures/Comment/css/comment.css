@@ -13,8 +13,9 @@
 }
 .block-comment{
     padding: 15px 30px;
-    background-color: rgba(255,255,255,.2);
+    background-color: #2a2c31;
 }
+/* rgba(255,255,255,.2) */
 .top-block{
     display: flex;
     flex-wrap: wrap;
@@ -50,7 +51,7 @@
     margin-right: 10px;
 }
 .sort-comment #sort-comment{
-    background-color: #3d3e44;
+    background-color: #4A4B51;
     width: 170px;
     border: none;
     outline: none;
@@ -144,7 +145,7 @@
     padding: 15px 25px;
     outline: none;
     resize: none;
-    background: #2a2c31;
+    background: #51535B;
     color: #FFFFFF;
     border: none;
     font-size: 13px;
@@ -194,4 +195,28 @@
 }
 .liked {
     color: #cae962 !important;
+}
+.block-enable {
+    width: 100%;
+    text-align: center;
+    padding: 25px;
+}
+.block-enable button{
+    border: 0px;
+    font-size: 15px;
+    color: #FFFFFF;
+    background: #7851a9;
+    width: max-content;
+    padding: 7px 14px;
+    border-radius: 6px;
+    text-align: center;
+}
+.comment-anime{
+    margin-left: 15px;
+    padding: 5px 14px;
+    font-size: 13px;
+    color: #2a2c31;
+    cursor: pointer;
+    background: #cae962;
+    border-radius: 25px;
 }

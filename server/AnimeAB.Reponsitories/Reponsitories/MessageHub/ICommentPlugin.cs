@@ -42,5 +42,11 @@ namespace AnimeAB.Reponsitories.Reponsitories.MessageHub
         /// <param name="notify"></param>
         /// <returns></returns>
         Task ReadNotifiAsync(string user, string notify);
+        /// <summary>
+        /// Like comment
+        /// </summary>
+        /// <param name="animeKey"></param>
+        /// <param name="commentKey"></param>
+        Comment LikeComment(string animeKey, string commentKey);
     }
 }

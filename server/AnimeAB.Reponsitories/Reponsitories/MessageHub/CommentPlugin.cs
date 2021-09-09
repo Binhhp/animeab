@@ -122,5 +122,27 @@ namespace AnimeAB.Reponsitories.Reponsitories.MessageHub
                 throw ex;
             }
         }
+        /// <summary>
+        /// Like comment
+        /// </summary>
+        /// <param name="animeKey"></param>
+        /// <param name="commentKey"></param>
+        public Comment LikeComment(string animeKey, string commentKey)
+        {
+            try
+            {
+                var data = Task.Run(() => database.GetAsync(Table.COMMENT + "/" + animeKey + "/" + commentKey));
+
+                Comment comment = data.Result.ResultAs<Comment>();
+                comment.Likes += 1;
+
+                database.SetAsync(Table.COMMENT + "/" + animeKey + "/" + commentKey + "/Likes", comment.Likes);
+                return comment;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

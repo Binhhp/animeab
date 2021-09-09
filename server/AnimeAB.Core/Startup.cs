@@ -31,7 +31,9 @@ namespace AnimeAB.Core
     {
         public static IWebHostEnvironment _env;
         public IConfiguration Configuration { get; }
-        public const string NameCors = "ApiCors";
+        readonly string AnimeABClientCors = "animeab";
+        readonly string LocalClient = "https://animeab.tk";
+        readonly string LocalhostDev = "http://localhost:3000";
 
         public Startup(IWebHostEnvironment env)
         {
@@ -50,11 +52,25 @@ namespace AnimeAB.Core
         {
             var configFirebase = Configuration.GetSection("Firebase");
             AppSettingFirebase appSettingFirebase = configFirebase.Get<AppSettingFirebase>();
-
-            services.AddCors();
+            //Enable cors
+            services.AddCors(options =>
+            {
+                options.AddPolicy(AnimeABClientCors,
+                        builder =>
+                        {
+                            builder.WithOrigins(LocalClient, LocalhostDev)
+                                    .AllowAnyMethod()
+                                    .AllowAnyHeader()
+                                    .SetIsOriginAllowed(origin => true) // allow any origin
+                                    .AllowCredentials();
+                        });
+            });
+            //Memory caching
             services.AddResponseCaching();
             services.AddMemoryCache();
+            //SignalIR use json
             services.AddSignalR();
+            //Authenticate cookies default and jwt
             services.AddAuthentication(opt =>
             {
                 opt.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -99,9 +115,11 @@ namespace AnimeAB.Core
                 //filter validation
                 options.Filters.Add<ValidationFilter>();
             })
+                //add fluent validator
                 .AddFluentValidation(mvcConfiguration =>
                             mvcConfiguration.RegisterValidatorsFromAssemblyContaining<Startup>())
                 .SetCompatibilityVersion(CompatibilityVersion.Latest)
+                //enable return xml format
                 .AddXmlDataContractSerializerFormatters()
                 .AddRazorRuntimeCompilation();
 
@@ -169,11 +187,7 @@ namespace AnimeAB.Core
                 });
             }
 
-            app.UseCors(x => x
-                  .AllowAnyMethod()
-                  .AllowAnyHeader()
-                  .SetIsOriginAllowed(origin => true) // allow any origin
-                  .AllowCredentials());
+            app.UseCors(AnimeABClientCors);
 
             app.UseHttpsRedirection();
 
