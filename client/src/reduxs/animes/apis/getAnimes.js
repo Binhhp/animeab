@@ -1,8 +1,6 @@
 
 import { animeService } from "../actions/anime.actions";
-
 import { requestGet, requestPost } from "../../../_axios/axiosClient";
-
 import { detailService } from "../actions/detail.actions";
 import { controller } from "../../../controller/apis/controller";
 

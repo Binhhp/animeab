@@ -1,5 +1,5 @@
 import { controller } from "../../../../controller/apis/controller";
-import { requestGet } from "../../../../_axios/axiosClient";
+import { requestAuthGet } from "../../../../_axios/axiosClient";
 
 export default function UserAction(
     { count, isCount, comment, commentChild, setUserRevice, animeKey}) {
@@ -48,7 +48,7 @@ export default function UserAction(
         if(animeKey && comment) {
             if(e.target.classList.contains("liked")) return;
             const idComment = commentChild ? commentChild.key : comment.key;
-            requestGet(controller.LIKE_COMMENT(animeKey, idComment));
+            requestAuthGet(controller.LIKE_COMMENT(animeKey, idComment));
             e.target.classList.add("liked");
         }
         return;

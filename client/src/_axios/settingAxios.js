@@ -1,7 +1,7 @@
 import axios from "axios";
-import QueryString from "qs";
 import config from "../reduxs/store";
 import { userService } from "../reduxs/user/api/userService";
+import { requestPost } from "./axiosClient";
 import { cookies } from "./cookies";
 
 const apiURL = process.env.REACT_APP_API_URL;
@@ -78,21 +78,19 @@ export async function refreshToken() {
 
     const refresh_token = cookies.getCookie('rf_user');
 
-    const urlRefresh = process.env.REACT_APP_REFRESH_TOKEN;
     const data = {
-        grant_type: "refresh_token",
         refresh_token: refresh_token
     };
 
-    const options = {
-        'Content-Type': 'application/x-www-form-urlencoded'
-    };
-    const response = await axios.post(urlRefresh, QueryString.stringify(data), {
-            headers: options
-        }).catch(async error => {
+    const response = await requestPost("client/refresh_token", JSON.stringify(data)).catch(async error => {
             await config.store.dispatch(userService.logout());
             return Promise.reject(error);
         });
+
+    if(response.code > 204) {
+        await config.store.dispatch(userService.logout());
+        return Promise.reject("Unauthorize");
+    }
 
     return response;
 }

@@ -1,7 +1,7 @@
 
 
 import { commentAction } from "../actions/comment.actions";
-import { requestGet, requestPost } from "../../../_axios/axiosClient";
+import { requestAuthPost, requestGet } from "../../../_axios/axiosClient";
 import { toast } from "react-toastify";
 import { controller } from "../../../controller/apis/controller";
 
@@ -88,7 +88,7 @@ const sendMessage = (e, user, userLogginedId, animeKey, comment = "", userRevice
     
             let url = controller.SEND_COMMENT(animeKey, linkNotify, userRevice);
     
-            await requestPost(url, JSON.stringify(person));
+            await requestAuthPost(url, JSON.stringify(person));
             await dispatch(commentAction.send_success());
             e.target.value = "";
         }
