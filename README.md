@@ -3,8 +3,8 @@ Watch anime free online vietsub
 # Technology
 - ReactJS
 - .Net Core Web Api
-- Firebase Realtime Database
-- Redis
+- Firebase Database
+- SignaIR
 # Website
 Live on: https://animeab.tk/
 <br />
