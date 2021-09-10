@@ -14,11 +14,14 @@ using AnimeAB.Core.ChatHubs;
 using AnimeAB.Reponsitories.Interface;
 using AnimeAB.Reponsitories.Entities;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace AnimeAB.Core.Apis
 {
     [Route("api")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Consumes(MediaTypeNames.Application.Json)]
     [Produces(MediaTypeNames.Application.Json)]
     public class MessageController : ControllerBase
@@ -37,6 +40,7 @@ namespace AnimeAB.Core.Apis
 
         [Route("comments")]
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetComments(
             [FromQuery]string id, [FromQuery]string sort = "", 
             [FromQuery]string user_reply = "")
@@ -89,6 +93,7 @@ namespace AnimeAB.Core.Apis
 
         [Route("notification")]
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetNotifications([FromQuery]string user, [FromQuery] string notify = "", [FromQuery]bool count = false)
         {
             try
@@ -115,6 +120,7 @@ namespace AnimeAB.Core.Apis
         }
 
         [Route("likes")]
+        [HttpGet]
         public IActionResult LikeComment([FromQuery]string id, [FromQuery]string idComment)
         {
             try

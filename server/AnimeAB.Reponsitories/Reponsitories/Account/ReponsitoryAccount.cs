@@ -24,11 +24,9 @@ namespace AnimeAB.Reponsitories.Reponsitories.Account
         private readonly FirebaseAuthProvider authProvider;
         private readonly IFirebaseClient database;
         private readonly FirebaseStorage storage;
-        private string apiKey { get; set; }
 
         public ReponsitoryAccount(AppSettingFirebase appSetting)
         {
-            apiKey = appSetting.ApiKey;
             authProvider = FirebaseManager.Authenticate(appSetting.ApiKey);
             database = FirebaseManager.Database(appSetting.AuthSecret, appSetting.DatabaseURL);
             storage = FirebaseManager.Storage(appSetting.StorageBucket);
@@ -71,7 +69,11 @@ namespace AnimeAB.Reponsitories.Reponsitories.Account
                 return Error(ex.Message);
             }
         }
-
+        /// <summary>
+        /// notify child function
+        /// </summary>
+        /// <param name="localId"></param>
+        /// <returns></returns>
         private async Task NotifySuccessRegister(string localId)
         {
             var notification = new Notification
@@ -85,7 +87,12 @@ namespace AnimeAB.Reponsitories.Reponsitories.Account
 
             await Task.Run(() => database.SetAsync(Table.NOTIFICATION + "/" + localId + "/" + notification.Key, notification));
         }
-
+        /// <summary>
+        /// update email child function
+        /// </summary>
+        /// <param name="localId"></param>
+        /// <param name="isEmail"></param>
+        /// <returns></returns>
         private async Task UpdateEmail(string localId, bool isEmail)
         {
             await Task.Run(() => database.SetAsync(Table.USERS + "/" + localId + "/IsEmailVerified", isEmail));
@@ -278,7 +285,7 @@ namespace AnimeAB.Reponsitories.Reponsitories.Account
                     }
                 }
 
-                await Task.Run(() => database.SetAsync(Table.USERS + "/" + userUpdated.LocalId, user));
+                await Task.Run(() => database.UpdateAsync(Table.USERS + "/" + userUpdated.LocalId, user));
 
                 return Success(user);
             }

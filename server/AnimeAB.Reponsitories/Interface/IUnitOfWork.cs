@@ -5,6 +5,7 @@ using AnimeAB.Reponsitories.Reponsitories.AnimeSeries;
 using AnimeAB.Reponsitories.Reponsitories.Category;
 using AnimeAB.Reponsitories.Reponsitories.Collection;
 using AnimeAB.Reponsitories.Reponsitories.MessageHub;
+using AnimeAB.Reponsitories.Reponsitories.TokenManager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,5 +23,6 @@ namespace AnimeAB.Reponsitories.Interface
         IReponsitoryAnimeDetail AnimeDetailEntity { get; }
         IReponsitoryAnimeSeries AnimeSeries { get; }
         ICommentPlugin CommentPlugin { get; }
+        IRefreshTokenGuide RefreshToken { get; }
     }
 }

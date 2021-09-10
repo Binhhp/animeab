@@ -1,5 +1,4 @@
-import { controller } from "../../../../controller/apis/controller";
-import { requestAuthGet } from "../../../../_axios/axiosClient";
+import { hubConnection } from "../../../../hooks/signaIrHub";
 
 export default function UserAction(
     { count, isCount, comment, commentChild, setUserRevice, animeKey}) {
@@ -48,7 +47,12 @@ export default function UserAction(
         if(animeKey && comment) {
             if(e.target.classList.contains("liked")) return;
             const idComment = commentChild ? commentChild.key : comment.key;
-            requestAuthGet(controller.LIKE_COMMENT(animeKey, idComment));
+            const data = {
+                id: animeKey,
+                idComment: idComment
+            };
+            
+            hubConnection.invoke("LikeComment", data);
             e.target.classList.add("liked");
         }
         return;

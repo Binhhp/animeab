@@ -32,7 +32,7 @@ namespace AnimeAB.Core.Apis
 
         [HttpPost]
         [Consumes(MediaTypeNames.Application.Json)]
-        public IActionResult SignUpClient([FromBody] ClientDto client)
+        public IActionResult SignUpClient([FromBody]ClientDto client)
         {
             try
             {
@@ -153,6 +153,22 @@ namespace AnimeAB.Core.Apis
                 }
 
                 return BadRequest("INVALID_ID_TOKEN");
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [Route("refresh_token")]
+        [HttpPost]
+        [Consumes(MediaTypeNames.Application.Json)]
+        public async Task<IActionResult> RefreshTokenContent([FromBody]RefreshTokenDto refreshToken)
+        {
+            try
+            {
+                var result = await _unitOfWork.RefreshToken.RefreshTokenAsync(refreshToken.refresh_token);
+                return Ok(result);
             }
             catch(Exception ex)
             {

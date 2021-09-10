@@ -244,9 +244,16 @@ namespace AnimeAB.Reponsitories.Reponsitories.Anime
                     ));
                 }
 
-                var deleteImageStorage = Task.Run(() => storage.Child(Table.ANIME).Child(anie.FileName).DeleteAsync());
                 var deleteDb = Task.Run(() => database.DeleteAsync(Table.ANIME + "/" + key));
-                await Task.WhenAll(deleteImageStorage, deleteDb);
+                if (!string.IsNullOrWhiteSpace(anie.FileName))
+                {
+                    var deleteImageStorage = Task.Run(() => storage.Child(Table.ANIME).Child(anie.FileName).DeleteAsync());
+                    await Task.WhenAll(deleteImageStorage, deleteDb);
+                }
+                else
+                {
+                    Task.WaitAny(deleteDb);
+                }
 
                 return Success();
             }

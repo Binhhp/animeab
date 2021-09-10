@@ -13,7 +13,7 @@ namespace AnimeAB.Reponsitories.Entities
         public string Title { get; set; }
         public string FileName { get; set; } = "";
         public int Views { get; set; }
-
+        //link animevsub
         public string Link { get; set; }
         public bool Iframe { get; set; } = false;
 

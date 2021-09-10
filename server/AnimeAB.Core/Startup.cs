@@ -24,6 +24,7 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using AnimeAB.Reponsitories.Utils;
 using AnimeAB.Core.ChatHubs;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using AnimeAB.Core.Middleware;
 
 namespace AnimeAB.Core
 {
@@ -158,33 +159,17 @@ namespace AnimeAB.Core
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
 
             app.UseStaticFiles();
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                app.UseExceptionHandler("/");
             }
             else
             {
-                app.UseExceptionHandler(appError =>
-                {
-                    appError.Run(async context =>
-                    {
-                        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                        context.Response.ContentType = "application/json";
-                        var contextFeature = context.Features.Get<IExceptionHandlerFeature>();
-
-                        if (contextFeature != null)
-                        {
-                            await context.Response.WriteAsync(new ErrorDetails { 
-                                StatusCode = context.Response.StatusCode,
-                                Message = "Internal Server Error"
-                            }.ToString());
-                        }
-                    });
-                });
+                app.ConfigureCustomExceptionMiddleware();
             }
 
             app.UseCors(AnimeABClientCors);
@@ -205,11 +190,5 @@ namespace AnimeAB.Core
             });
 
         }
-    }
-
-    public class ErrorDetails
-    {
-        public int StatusCode { get; set; }
-        public string Message { get; set; }
     }
 }

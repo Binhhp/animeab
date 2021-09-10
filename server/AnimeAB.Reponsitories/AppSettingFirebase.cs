@@ -19,5 +19,6 @@ namespace AnimeAB.Reponsitories
         public string AppId { get; set; }
         public string MeasurementId { get; set; }
         public string JwtAuthFirebase { get; set; }
+        public string EndpointRefreshToken { get; set; }
     }
 }
