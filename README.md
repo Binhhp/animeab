@@ -4,7 +4,7 @@ Watch anime free online vietsub
 - ReactJS
 - .Net Core Web Api
 - Firebase Database
-- Signalr
+- SignaIR
 # Website
 Live on: https://animeab.tk/
 <br />
