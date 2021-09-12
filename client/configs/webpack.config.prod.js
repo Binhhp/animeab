@@ -6,10 +6,12 @@ const RobotstxtPlugin = require("robotstxt-webpack-plugin");
 const SitemapPlugin = require('sitemap-webpack-plugin').default;
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 //set path entry and output
 const PATHS = {
-    src: path.join(__dirname, '../src/index.js'),
-    build: path.join(__dirname, '../build')
+    src: path.join(__dirname, '../src/index.tsx'),
+    build: path.join(__dirname, '../build'),
+    tsConfig: path.join(__dirname, '../tsconfig.json')
 };
 //setting sitemap
 const options = {
@@ -30,6 +32,18 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: ['babel-loader'],
+            },
+            {
+                test: /\.(tsx|ts)?$/,
+                use: [
+                    {
+                      loader: 'ts-loader',
+                      options: {
+                        transpileOnly: true
+                      }
+                    }
+                ],
+                exclude: /node_modules/,
             },
             {
                 test: /\.css$/i,
@@ -68,7 +82,7 @@ module.exports = {
     },
 
     resolve: {
-        extensions: ['*', '.js', '.jsx'],
+        extensions: ['.ts', '.tsx', ".js", ".jsx", ".json"],
     },
     
     output: {
@@ -80,6 +94,7 @@ module.exports = {
 
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
+        new TsconfigPathsPlugin({ configFile: PATHS.tsConfig }),
         //webpack css
         new MiniCssExtractPlugin({
             linkType: false,

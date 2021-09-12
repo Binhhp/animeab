@@ -1,3 +1,4 @@
+import { Dispatch } from 'react';
 
 import { notifyActions } from "../actions/notify.actions";
 import { requestGet } from "../../../_axios/axiosClient";
@@ -8,8 +9,8 @@ export const notifyService = {
     notifyLength: getNotifyCount
 }
 //Get all notifies
-function getNotifies(user, notify = "") {
-    return async dispatch => {
+function getNotifies(user: any, notify = "") {
+    return async (dispatch: Dispatch<any>) => {
 
         await dispatch(notifyActions.request());
 
@@ -26,8 +27,8 @@ function getNotifies(user, notify = "") {
     }
 }
 ///Get count notifies not read
-function getNotifyCount(user) {
-    return async dispatch => {
+function getNotifyCount(user: any) {
+    return async (dispatch: Dispatch<any>) => {
 
         let apiURL = controller.NOTIFY(user, "", true);
         const response = await requestGet(apiURL);

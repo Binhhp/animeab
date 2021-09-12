@@ -10,13 +10,13 @@ export const useActions = {
             type: userConstants.LOGIN_REQUEST
         }
     },
-    loginSuccess: (user) => {
+    loginSuccess: (user: any) => {
         return{
             type: userConstants.LOGIN_SUCCESS,
             payload: user
         }
     },
-    loginFailture: (errors) => {
+    loginFailture: (errors: string) => {
         return{
             type: userConstants.LOGIN_FAILURE,
             payload: errors
@@ -34,7 +34,7 @@ export const useActions = {
         }
     },
 
-    registerFailture: (errors) => {
+    registerFailture: (errors?: string) => {
         return{
             type: userConstants.REGISTER_FAILURE,
             payload: errors
@@ -50,14 +50,14 @@ export const useActions = {
             type: userConstants.GETALL_REQUEST
         }
     },
-    getUserSuccess: (user) => {
+    getUserSuccess: (user: any) => {
         return{
             type: userConstants.GETALL_SUCCESS,
             payload: user
         }
     },
 
-    getUserFailture: (errors) => {
+    getUserFailture: (errors: string) => {
         return{
             type: userConstants.GETALL_FAILURE,
             payload: errors
@@ -75,7 +75,7 @@ export const useActions = {
         }
     },
 
-    passwordFailture: (errors) => {
+    passwordFailture: (errors: string) => {
         return{
             type: userConstants.PASSWORD_FAILURE,
             payload: errors

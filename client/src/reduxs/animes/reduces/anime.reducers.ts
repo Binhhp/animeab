@@ -1,22 +1,6 @@
-
-import { animeConstants } from "../actions/anime.constants.js";
-
-interface IAnimeState {
-    loading: boolean,
-    data: [],
-    error: string
-}
-
-type Action = {
-    type: string,
-    payload: any
-}
-
-const initialState: IAnimeState = {
-    loading: false,
-    data: [],
-    error: ""
-};
+import { Action } from './../../interface/domain';
+import { initialState } from "../../interface/domain";
+import { animeConstants } from "../actions/anime.constants";
 
 export const animesReducers = (state = initialState, action: Action) =>{
     switch (action.type) {

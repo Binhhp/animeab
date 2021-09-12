@@ -1,4 +1,4 @@
-import {collectConstants } from "./collect.constants.js";
+import {collectConstants } from "./collect.constants";
 
 export const collectService = {
     request: () => {
@@ -6,13 +6,13 @@ export const collectService = {
             type: collectConstants.COLLECTION_REQUEST
         }
     },
-    success: (data) => {
+    success: (data: any) => {
         return{
             type: collectConstants.COLLECTION_SUCCESS,
             payload: data
         }
     },
-    failture: (errors) => {
+    failture: (errors: string) => {
         return{
             type: collectConstants.COLLECTION_FAILURE,
             payload: errors

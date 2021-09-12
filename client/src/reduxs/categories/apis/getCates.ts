@@ -2,9 +2,10 @@
 import { cateService } from "../actions/cate.actions";
 import { requestGet } from "../../../_axios/axiosClient";
 import { controller } from "../../../controller/apis/controller";
+import { Dispatch } from "react";
 
 export const getCates = () =>{
-    return async dispatch => {
+    return async (dispatch: Dispatch<any>) => {
         if(localStorage.getItem("persist:__cate")) return;
         dispatch(cateService.request());
 

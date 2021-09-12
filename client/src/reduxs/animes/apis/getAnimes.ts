@@ -5,7 +5,7 @@ import { detailService } from "../actions/detail.actions";
 import { controller } from "../../../controller/apis/controller";
 
 export const getAnimes = (animeKey = "") => {
-    return async dispatch => {
+    return async (dispatch: any) => {
         if(animeKey !== ""){
             dispatch(detailService.detailRequest());
         }
@@ -36,10 +36,10 @@ export const getAnimes = (animeKey = "") => {
 }
 
 export const getAnimesFilter = (keyword = "", cateFilters = [], collectFilters = []) =>{
-    return async dispatch => {
+    return async (dispatch: any) => {
 
         dispatch(animeService.animesFilterRequest());
-        var response = {};
+        var response: any = {};
         
         var path = controller.GET_ANIME_FILTER(keyword);
 
@@ -59,9 +59,9 @@ export const getAnimesFilter = (keyword = "", cateFilters = [], collectFilters =
     }
 }
 
-export const getEpisodes = (animeKey, episode = "") => {
+export const getEpisodes = (animeKey: string, episode = "") => {
     
-    return async dispatch => {
+    return async (dispatch: any) => {
         if(episode !== ""){
             await dispatch(detailService.episodeRequest());
         }
@@ -93,7 +93,7 @@ export const getEpisodes = (animeKey, episode = "") => {
 }
 
 export const getAnimeByCateOfCollect = (categoryKey = "", collectionId = "") => {
-    return async dispatch => {
+    return async (dispatch: any) => {
         var url = controller.GET_ANIMECATE_OF_ANIMECOLLECT(categoryKey, collectionId);
         
         if(categoryKey !== ""){
@@ -116,12 +116,12 @@ export const getAnimeByCateOfCollect = (categoryKey = "", collectionId = "") => 
     }
 }
 
-export const updateViewAnime = (animeKey) => {
+export const updateViewAnime = (animeKey: string) => {
     let urlView = controller.UPDATE_VIEW(animeKey);
     return requestGet(urlView);
 }
 
-export const updateViewAnimeDetail = (animeKey, animeDetailKey) => {
+export const updateViewAnimeDetail = (animeKey: string, animeDetailKey: string) => {
     let urlViewDetail = controller.UPDATE_VIEW(animeKey, animeDetailKey);
     return requestGet(urlViewDetail);
 }

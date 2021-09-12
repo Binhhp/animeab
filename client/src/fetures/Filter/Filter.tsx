@@ -54,8 +54,8 @@ export default function Filter() {
         const eleCate = document.querySelectorAll(".category-filter .active");
         const eleCollect = document.querySelectorAll(".collect-filter .active");
 
-        var arrCateFilters: any[] = [];
-        var arrCollectFilters: any[] = [];
+        var arrCateFilters: any = [];
+        var arrCollectFilters: any = [];
 
         if(eleCate.length > 0){
 

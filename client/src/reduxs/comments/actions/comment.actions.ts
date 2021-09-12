@@ -6,13 +6,13 @@ export const commentAction = {
             type: constants.REQUEST
         }
     },
-    success: (comment) => {
+    success: (comment: any) => {
         return{
             type: constants.SUCCESS,
             payload: comment
         }
     },
-    update: (item) => {
+    update: (item: any) => {
         return{
             type: constants.UPDATE,
             payload: item
@@ -28,7 +28,7 @@ export const commentAction = {
             type: constants.SEND_SUCCESS
         }
     },
-    like: (idComment) =>  {
+    like: (idComment: string) =>  {
         return {
             type: constants.LIKE,
             payload: idComment

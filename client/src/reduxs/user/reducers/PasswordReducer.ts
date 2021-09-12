@@ -1,6 +1,7 @@
+import { Action } from './../../interface/domain';
 import { userConstants } from "../action/UserType";
 
-export function PasswordReducer(state = {}, action) {
+export function PasswordReducer(state = {}, action: Action) {
     switch (action.type) {
       case userConstants.PASSWORD_CLEAR:
           return {};

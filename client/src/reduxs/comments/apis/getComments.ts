@@ -1,12 +1,12 @@
 
-
+import { Dispatch } from 'react';
 import { commentAction } from "../actions/comment.actions";
 import { requestAuthPost, requestGet } from "../../../_axios/axiosClient";
 import { toast } from "react-toastify";
 import { controller } from "../../../controller/apis/controller";
 
-function getAll(animeKey, sort = 'lastest') {
-    return async dispatch => {
+function getAll(animeKey: string, sort = 'lastest') {
+    return async (dispatch: Dispatch<any>) => {
         
         await dispatch(commentAction.request());
 
@@ -22,23 +22,23 @@ function getAll(animeKey, sort = 'lastest') {
     }
 }
 
-function update(item) {
-    return dispatch => {
+function update(item: any) {
+    return (dispatch: Dispatch<any>) => {
         dispatch(commentAction.update(item));
     }
 }
 
-function like_comment(idComment) {
-    return dispatch => {
+function like_comment(idComment: string) {
+    return (dispatch: Dispatch<any>) => {
         dispatch(commentAction.like(idComment));
     }
 }
 
-function calculateTime(time){
-    let timer = new Date(time);
-    let d = Date.now();
+function calculateTime(time: string | number | Date) {
+    let timer: number = (new Date(time)).getTime();
+    let d: number = Date.now();
     
-    let cal = d - timer;
+    let cal: number = d - timer;
 
     let second = cal / 1000;
     if(second < 0) return `Vừa xong`;
@@ -63,39 +63,50 @@ function calculateTime(time){
     return `Khoảng ${Math.floor(years)} năm trước`;
 }
 
-const sendMessage = (e, user, userLogginedId, animeKey, comment = "", userRevice = "",linkNotify = "") => {
-    return async dispatch => {
-        if(e.keyCode === 13 && e.shiftKey === false){
-            e.preventDefault();
-            if(e.target.value === "") return toast.warn("Bạn hãy nhập nội dung bình luận nhé!!");
+export interface ISendMessage {
+    event: any,
+    user: any,
+    userLogginedId: string,
+    animeKey: string,
+    comment?: any | string | "",
+    userRevice?: string | "",
+    linkNotify?: string | ""
+}
+
+const sendMessage = (message: ISendMessage) => {
+    return async (dispatch: Dispatch<any>) => {
+        if(message.event.keyCode === 13 && message.event.shiftKey === false){
+            message.event.preventDefault();
+            if(message.event.target.value === "") return toast.warn("Bạn hãy nhập nội dung bình luận nhé!!");
             
-            let msg = e.target.value;
+            let msg = message.event.target.value;
             
             await dispatch(commentAction.send_request());
 
             var checkUserRevice = msg.substring(msg.indexOf("@"), msg.indexOf(":"));
-            if(checkUserRevice.length < 3){
-                userRevice = comment.userLocal
+            
+            if(checkUserRevice.length < 3 && checkUserRevice.length > 0 && message?.comment){
+                message.userRevice = message.comment.userLocal
             };
     
             const person = {
-                user_local: userLogginedId,
-                name: user?.name,
-                photo_url: user?.photo_url || "https://i.imgur.com/q4Gd1Wi.jpg",
+                user_local: message.userLogginedId,
+                name: message.user?.name,
+                photo_url: message.user?.photo_url || "https://i.imgur.com/q4Gd1Wi.jpg",
                 message: msg,
-                reply_comment: comment.key || comment
+                reply_comment: message.comment?.key || message.comment
             };
     
-            let url = controller.SEND_COMMENT(animeKey, linkNotify, userRevice);
+            let url = controller.SEND_COMMENT(message.animeKey, message.linkNotify, message.userRevice);
     
             await requestAuthPost(url, JSON.stringify(person));
             await dispatch(commentAction.send_success());
-            e.target.value = "";
+            message.event.target.value = "";
         }
     }
 };
 
-async function getReplyComments(commentKey, animeKey) {
+async function getReplyComments(commentKey: string, animeKey: string) {
     let apiURL = controller.REPLY_COMMENT(animeKey, commentKey);
 
     const response = await requestGet(apiURL);

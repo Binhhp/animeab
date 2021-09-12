@@ -6,7 +6,7 @@ import persistedReducer from "./rootReducers";
 
 const middleware = [thunk];
 
-const store = createStore(
+const store: any = createStore(
     persistedReducer,
     composeWithDevTools(applyMiddleware(...middleware))
 );

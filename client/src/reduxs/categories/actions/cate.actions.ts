@@ -6,13 +6,13 @@ export const cateService = {
             type: cateConstants.CATEGORY_REQUEST
         }
     },
-    success: (data) => {
+    success: (data: any) => {
         return{
             type: cateConstants.CATEGORY_SUCCESS,
             payload: data
         }
     },
-    failture: (errors) => {
+    failture: (errors: string) => {
         return{
             type: cateConstants.CATEGORY_FAILURE,
             payload: errors

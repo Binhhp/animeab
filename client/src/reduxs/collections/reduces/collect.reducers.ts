@@ -1,13 +1,8 @@
+import { initialState, Action } from './../../interface/domain';
 
-import { collectConstants } from "../actions/collect.constants.js";
+import { collectConstants } from "../actions/collect.constants";
 
-const initialState = {
-    loading: false,
-    data: [],
-    error: ""
-};
-
-export const collectReducers = (state = initialState, action) =>{
+export const collectReducers: any = (state = initialState, action: Action) => {
 
     switch (action.type) {
         case collectConstants.COLLECTION_REQUEST:

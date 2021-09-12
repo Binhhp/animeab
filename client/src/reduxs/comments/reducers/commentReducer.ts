@@ -1,6 +1,7 @@
+import { Action } from './../../interface/domain';
 import { constants } from "../actions/comment.constants";
 
-export function commentReducer (state = {data: []}, action) {
+export function commentReducer (state = { data: [] }, action: Action) {
     switch (action.type) {
         case constants.REQUEST:
             return {
@@ -14,7 +15,7 @@ export function commentReducer (state = {data: []}, action) {
 
             return comments;
         case constants.UPDATE:
-            let checkData = state.data.filter(x => x.key === action.payload.key);
+            let checkData = state.data.filter((x: any) => x.key === action.payload.key);
             if(checkData.length > 0) return state;
             let updateState = {
                 data: [
@@ -25,7 +26,7 @@ export function commentReducer (state = {data: []}, action) {
             return updateState;
         
         case constants.LIKE:
-            const newArr = state?.data.filter(x => x?.key !== action.payload.key);
+            const newArr = state?.data.filter((x: any) => x?.key !== action.payload.key);
             if(newArr) {
                 let rfState = {
                     data: [
@@ -42,7 +43,7 @@ export function commentReducer (state = {data: []}, action) {
     }
 }
 
-export function sendMessageReducer (state = {}, action) {
+export function sendMessageReducer (state = {}, action: Action) {
     switch (action.type) {
         case constants.SEND_REQUEST:
             return {

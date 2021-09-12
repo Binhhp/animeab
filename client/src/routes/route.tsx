@@ -10,7 +10,7 @@ const Home = lazy(() => import("../fetures/Home"));
 const Categories = lazy(() => import("../fetures/AnimeCategories/AnimeCategories"));
 const AnimeCollections = lazy(() => import("../fetures/AnimeCollections/AnimeCollections"));
 
-export default function route(){
+export default function route() {
     
     return (
         <Switch>

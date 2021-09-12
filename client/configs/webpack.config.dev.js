@@ -6,7 +6,7 @@ const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const PATHS = {
-    src: path.join(__dirname, '../src/index.js'),
+    src: path.join(__dirname, '../src/index.tsx'),
     build: path.join(__dirname, '../build')
 };
 
@@ -55,7 +55,7 @@ module.exports = {
     },
 
     resolve: {
-        extensions: ['*', '.js', '.jsx'],
+        extensions: ['*', '.ts', '.tsx', '.js', '.jsx'],
     },
     
     output: {

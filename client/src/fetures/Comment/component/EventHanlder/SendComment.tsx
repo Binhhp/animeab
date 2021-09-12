@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { commentService } from "../../../../reduxs/comments/apis/getComments";
+import { commentService, ISendMessage } from "../../../../reduxs/comments/apis/getComments";
 import Loading from "../../../../shared/Loading/LoadingElipsis/Loading";
 
 interface PropsSendComment {
@@ -13,7 +13,15 @@ function SendComment({ animeKey }: PropsSendComment) {
 
     const sendMessage = useSelector((state: any) => state.sendMessage);
     const dispatch = useDispatch();
-
+    const hanlderMessage = (event: any) => {
+        const request: ISendMessage = {
+            event: event,
+            user: user,
+            userLogginedId: userLogined?.user.localId,
+            animeKey: animeKey,
+        };
+        dispatch(commentService.sendMessage(request))
+    }
     return (
         <div className="comment">
             {(userLogined?.loggedIn 
@@ -24,7 +32,7 @@ function SendComment({ animeKey }: PropsSendComment) {
                     </div>
                     <div className="box-comment">
                         <textarea 
-                            onKeyDown={(e) => dispatch(commentService.sendMessage(e, user, userLogined?.user.localId, animeKey))} 
+                            onKeyDown={(e) => hanlderMessage(e)} 
                             rows={2} placeholder="Viết bình luận..." 
                             className="form-control"></textarea>
                             

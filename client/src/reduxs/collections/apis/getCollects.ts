@@ -1,10 +1,11 @@
+import { Dispatch } from 'react';
 
-import { collectService } from "../actions/collect.actions.js";
+import { collectService } from "../actions/collect.actions";
 import { requestGet } from "../../../_axios/axiosClient";
-import { controller } from "../../../controller/apis/controller.js";
+import { controller } from "../../../controller/apis/controller";
 
 export const getCollects = () =>{
-    return async dispatch => {
+    return async (dispatch: Dispatch<any>) => {
         if(localStorage.getItem("persist:__col")) return;
         await dispatch(collectService.request());
 

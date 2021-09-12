@@ -1,6 +1,5 @@
-import React from "react";
 
-export default function SortList(){
+export default function SortList() {
     return(
         <svg style={{width: `20px`}} focusable="false" data-prefix="far" data-icon="th-list" role="img" 
         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { commentService } from "../../../../reduxs/comments/apis/getComments";
+import { commentService, ISendMessage } from "../../../../reduxs/comments/apis/getComments";
 import UserAction from "../DisplayComment/UserAction";
 import UserAvatar from "../DisplayComment/UserAvatar";
 import UserComment from "../DisplayComment/UserComment";
@@ -33,6 +33,19 @@ export default function ListComment({ comments, isMore, animeKey, linkNotify }: 
     const [userRevice, setUserRevice] = useState("");
 
     const dispatch = useDispatch();
+    const sendMessage = (event: any, item: any) => {
+        const request: ISendMessage = {
+            event: event,
+            user: user,
+            userLogginedId: userLogined?.user.localId,
+            animeKey: animeKey,
+            comment: item,
+            userRevice: userRevice,
+            linkNotify: linkNotify
+        };
+
+        dispatch(commentService.sendMessage(request))
+    }
 
     useEffect(() => {
         hubConnection.on(`${animeKey}_like_comment`, async (response) => {
@@ -83,9 +96,7 @@ export default function ListComment({ comments, isMore, animeKey, linkNotify }: 
                             <div className="send-comment" style={{display: `none`}}>
                                 <div className="box-comment">
                                     <textarea 
-                                        onKeyDown={(e) => 
-                                        dispatch(commentService.sendMessage(e, user, 
-                                            userLogined?.user.localId, animeKey, item, userRevice, linkNotify))} 
+                                        onKeyDown={(e) => sendMessage(e, item)} 
                                         rows={2} placeholder="Viết bình luận..." className="form-control"></textarea>
                                     <span><i className="fas fa-paper-plane"></i></span>
                                 </div>

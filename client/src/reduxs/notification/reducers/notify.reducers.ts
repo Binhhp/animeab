@@ -1,7 +1,8 @@
+import { Action } from './../../interface/domain';
 
-import { notifyConstants } from "../actions/notify.constants.js";
+import { notifyConstants } from "../actions/notify.constants";
 
-export const notifyReducers = (state = { data: [] }, action) =>{
+export const notifyReducers = (state = { data: [] }, action: Action) =>{
 
     switch (action.type) {
         case notifyConstants.NOTIFY_REQUEST:
@@ -19,7 +20,7 @@ export const notifyReducers = (state = { data: [] }, action) =>{
         case notifyConstants.NOTIFY_UPDATE:
             if(state?.data.length > 0)
             {
-                let checkData = state.data.filter(x => x.key === action.payload.key);
+                let checkData = state.data.filter((x: any) => x.key === action.payload.key);
                 if(checkData.length > 0) return state;
             }
             let updateState = {

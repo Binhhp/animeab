@@ -8,7 +8,7 @@ import { getCates } from "./categories/apis/getCates";
 import { getCollects } from "./collections/apis/getCollects";
 
 export function doSomethings(){
-    return dispatch => {
+    return (dispatch: any) => {
         let runAway = [
             dispatch(getAnimes()),
             dispatch(getCates()),
@@ -19,8 +19,8 @@ export function doSomethings(){
     };
 }
 
-export function animeDetails(animeKey, episode = ""){
-    return dispatch => Promise.all([
+export function animeDetails(animeKey: string, episode = ""){
+    return (dispatch: any) => Promise.all([
         dispatch(getEpisodes(animeKey)),
         dispatch(getEpisodes(animeKey, episode)),
         dispatch(getAnimes(animeKey)),
@@ -28,21 +28,21 @@ export function animeDetails(animeKey, episode = ""){
     ])
 }
 
-export function animeCategories(categoryKey){
-    return dispatch => Promise.all([
+export function animeCategories(categoryKey: string){
+    return (dispatch: any) => Promise.all([
         dispatch(getAnimeByCateOfCollect(categoryKey)),
         window.scroll(0, 0)
     ])
 }
 
-export function animeCollections(collectionId){
-    return dispatch => Promise.all([
+export function animeCollections(collectionId: string){
+    return (dispatch: any) => Promise.all([
         dispatch(getAnimeByCateOfCollect("",collectionId)),
         window.scroll(0, 0)
     ])
 }
 
-export function updateView(animeKey, animeDetailKey, isViewAnime = false){
+export function updateView(animeKey: string, animeDetailKey: string, isViewAnime = false){
     if(isViewAnime){
         return updateViewAnimeDetail(animeKey, animeDetailKey);
     }

@@ -1,6 +1,6 @@
 import{
     animeConstants
-} from "./anime.constants.js";
+} from "./anime.constants";
 
 export const animeService = {
     animesRequest: () => {
@@ -8,13 +8,13 @@ export const animeService = {
             type: animeConstants.ANIMES_REQUEST
         }
     },
-    animesSuccess: (message) => {
+    animesSuccess: (animes: any) => {
         return{
             type: animeConstants.ANIMES_SUCCESS,
-            payload: message
+            payload: animes
         }
     },
-    animesFailure: (errors) => {
+    animesFailure: (errors: string) => {
         return{
             type: animeConstants.ANIMES_FAILURE,
             payload: errors
@@ -25,10 +25,10 @@ export const animeService = {
             type: animeConstants.ANIMES_FILTER_REQUEST
         }
     },
-    animesFilterSuccess: (message) => {
+    animesFilterSuccess: (animeFilter: any) => {
         return{
             type: animeConstants.ANIMES_FILTER_SUCCESS,
-            payload: message
+            payload: animeFilter
         }
     },
     animeCateRequest: () => {
@@ -36,13 +36,13 @@ export const animeService = {
             type: animeConstants.ANIMES_CATEGORIES_REQUEST
         }
     },
-    animeCateSuccess: (message) => {
+    animeCateSuccess: (animeCate: any) => {
         return{
             type: animeConstants.ANIMES_CATEGORIES_SUCCESS,
-            payload: message
+            payload: animeCate
         }
     },
-    animeCateFailure: (errors) => {
+    animeCateFailure: (errors: string) => {
         return{
             type: animeConstants.ANIMES_CATEGORIES_FAILURE,
             payload: errors
@@ -53,13 +53,13 @@ export const animeService = {
             type: animeConstants.ANIMES_COLLECTIONS_REQUEST
         }
     },
-    animeCollectSuccess: (message) => {
+    animeCollectSuccess: (animeCollect: any) => {
         return{
             type: animeConstants.ANIMES_COLLECTIONS_SUCCESS,
-            payload: message
+            payload: animeCollect
         }
     },
-    animeCollectFailure: (errors) => {
+    animeCollectFailure: (errors: string) => {
         return{
             type: animeConstants.ANIMES_COLLECTIONS_FAILURE,
             payload: errors

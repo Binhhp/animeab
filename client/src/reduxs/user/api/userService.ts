@@ -1,3 +1,4 @@
+import { Dispatch } from 'react';
 
 import { toast } from "react-toastify";
 import { requestAuthGet, requestAuthPost, requestGet, requestPost } from "../../../_axios/axiosClient";
@@ -13,8 +14,8 @@ export const userService = {
     changePassword
 };
 
-function login(email, password){
-    return async dispatch => {
+function login(email: string, password: string){
+    return async (dispatch: Dispatch<any>) => {
         
         await dispatch(useActions.loginRequest());
         const url = `/client?email=${email}&&password=${password}`;
@@ -26,7 +27,7 @@ function login(email, password){
                 closeOnClick: true,
                 autoClose: false
             });
-            await dispatch(useActions.loginFailture({}));
+            await dispatch(useActions.loginFailture("Error"));
         }
         else{
             const user = response.data;
@@ -44,7 +45,7 @@ function login(email, password){
 }
 
 function logout() {
-    return dispatch => {
+    return (dispatch: Dispatch<any>) => {
         Promise.all([
             cookies.setCookie("ac_user", "", -1),
             cookies.setCookie("rf_user", "", -1),
@@ -57,8 +58,8 @@ function logout() {
     }
 }
 
-function register(user){
-    return async dispatch => {
+function register(user: any){
+    return async (dispatch: Dispatch<any>) => {
         
         await dispatch(useActions.registerRequest());
         const url = `/client`;
@@ -81,17 +82,17 @@ function register(user){
 }
 
 export function getUser(){
-    return async dispatch => {
+    return async (dispatch: Dispatch<any>) => {
         if(localStorage.getItem("__user")){
             return;
         }
-
-        let user = JSON.parse(localStorage.getItem("LOGIN_INFO"));
+        const user: any = localStorage.getItem("LOGIN_INFO");
+        const userStorage = JSON.parse(user);
         if(user === null) return;
 
         await dispatch(useActions.getUserRequest());
 
-        const url = `/client/${user.localId}`;
+        const url = `/client/${userStorage.localId}`;
         const response = await requestAuthGet(url);
 
         if(response.code > 204){
@@ -106,8 +107,8 @@ export function getUser(){
     }
 }
 
-function password(email) {
-    return async dispatch => {
+function password(email: string) {
+    return async (dispatch: Dispatch<any>) => {
 
         await dispatch(useActions.passwordRequest());
         
@@ -124,8 +125,8 @@ function password(email) {
     }
 }
 
-function updateProfile(user, user_uid) {
-    return async dispatch => {
+function updateProfile(user: any, user_uid: string) {
+    return async (dispatch: Dispatch<any>) => {
         await dispatch(useActions.profileRequest());
         
         const url = `/client/${user_uid}`;
@@ -141,7 +142,8 @@ function updateProfile(user, user_uid) {
             await dispatch(useActions.profileSuccess());
         }
         else{
-            const userStorage = JSON.parse(localStorage.getItem("__user"));
+            const user: any = localStorage.getItem("__user");
+            const userStorage = JSON.parse(user);
             await dispatch(useActions.profileSuccess());
 
             if(response.data?.email !== userStorage?.email){
@@ -160,8 +162,8 @@ function updateProfile(user, user_uid) {
     }
 }
 
-function changePassword(user_uid, payload) {
-    return async dispatch => {
+function changePassword(user_uid: string, payload: any) {
+    return async (dispatch: Dispatch<any>) => {
 
         await dispatch(useActions.changePasswordRequest());
         

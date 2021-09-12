@@ -6,13 +6,13 @@ export const detailService = {
             type: detailConstants.ANIMEDETAIL_REQUEST
         }
     },
-    detailSuccess: (message) => {
+    detailSuccess: (detail: any) => {
         return{
             type: detailConstants.ANIMEDETAIL_SUCCESS,
-            payload: message
+            payload: detail
         }
     },
-    detailFailure: (errors) => {
+    detailFailure: (errors: string) => {
         return{
             type: detailConstants.ANIMEDETAIL_FAILURE,
             payload: errors
@@ -23,13 +23,13 @@ export const detailService = {
             type: detailConstants.EPISODES_OF_ANIME_REQUEST
         }
     },
-    episodeOfAnimeSuccess: (message) => {
+    episodeOfAnimeSuccess: (episodeOfAni: any) => {
         return{
             type: detailConstants.EPISODES_OF_ANIME_SUCCESS,
-            payload: message
+            payload: episodeOfAni
         }
     },
-    episodeOfAnimeFailure: (errors) => {
+    episodeOfAnimeFailure: (errors: string) => {
         return{
             type: detailConstants.EPISODES_OF_ANIME_FAILURE,
             payload: errors
@@ -40,13 +40,13 @@ export const detailService = {
             type: detailConstants.EPISODE_REQUEST
         }
     },
-    episodeSuccess: (message) => {
+    episodeSuccess: (episode: any) => {
         return{
             type: detailConstants.EPISODE_SUCCESS,
-            payload: message
+            payload: episode
         }
     },
-    episodeFailure: (errors) => {
+    episodeFailure: (errors: string) => {
         return{
             type: detailConstants.EPISODE_FAILURE,
             payload: errors

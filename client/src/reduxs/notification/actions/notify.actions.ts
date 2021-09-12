@@ -6,20 +6,20 @@ export const notifyActions = {
             type: notifyConstants.NOTIFY_REQUEST
         }
     },
-    success: (data) => {
+    success: (data: any) => {
         return{
             type: notifyConstants.NOTIFY_SUCCESS,
             payload: data
         }
     },
-    update: (notify) => {
+    update: (notify: any) => {
         return{
             type: notifyConstants.NOTIFY_UPDATE,
             payload: notify
         }
     },
 
-    count_success: (count) => {
+    count_success: (count: number) => {
         return{
             type: notifyConstants.NOTIFY_COUNT_SUCCESS,
             payload: count

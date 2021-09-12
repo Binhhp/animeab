@@ -1,6 +1,5 @@
-import React from "react";
 
-export default function SearchSVG(){
+export default function SearchSVG() {
     return(
         <svg xmlns="http://www.w3.org/2000/svg" 
             width="23" height="23" 

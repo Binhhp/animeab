@@ -1,6 +1,7 @@
+import { Action } from './../../interface/domain';
 import { notifyConstants } from "../actions/notify.constants";
 
-export const notifyCountReducers = (state = {count: 0}, action) =>{
+export const notifyCountReducers = (state = {count: 0}, action: Action) =>{
 
     switch (action.type) {
             

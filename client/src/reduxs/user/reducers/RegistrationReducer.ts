@@ -1,6 +1,7 @@
+import { Action } from './../../interface/domain';
 import { userConstants } from "../action/UserType";
 
-export function RegistrationReducer(state = {}, action) {
+export function RegistrationReducer(state = {}, action: Action) {
     switch (action.type) {
       case userConstants.REGISTER_REQUEST:
         return { registering: true };
