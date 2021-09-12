@@ -1,4 +1,4 @@
-export default function responseStatus(code, message, data, errors) {
+export default function responseStatus(code: any, message: string | any, data: any, errors: string | any) {
     return {
         code: code,
         message: message,

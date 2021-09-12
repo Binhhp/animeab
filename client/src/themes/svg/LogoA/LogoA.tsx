@@ -4,7 +4,7 @@ export default function LogoA() {
     return (
 		<svg className="logo logow logores" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
 			width="100" height="50"
-			viewBox="0 0 384.5 132" style={{ enableBackground: `new 0 0 384.5 132` }}>
+			viewBox="0 0 384.5 132">
 			<g id="Capa_3">
 				<g id="Capa_8">
 					<path d="M91.5,31.3H25.1c-6.6,0-12,5.4-12,12v66.4c0,6.6,5.4,12,12,12h66.4c6.6,0,12-5.4,12-12V43.3

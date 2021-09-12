@@ -1,5 +1,5 @@
 
-export function matchStateToTerm(state, value) {
+export function matchStateToTerm(state: any, value: string) {
     const regex = new RegExp(`${value.toLowerCase()}`);
     const title = state.title.toLowerCase();
     const titleSupport = state.titleVie.toLowerCase();
@@ -8,11 +8,11 @@ export function matchStateToTerm(state, value) {
 }
   
   
-export function fakeRequest(value, list, cb) {
+export function fakeRequest(value: any, list: any, cb: any) {
 
   try{
     return setTimeout(cb, 500, value ?
-      list.filter(state => matchStateToTerm(state, value)).slice(0, 6)
+      list.filter((state: any) => matchStateToTerm(state, value)).slice(0, 6)
       : list
     )
   }

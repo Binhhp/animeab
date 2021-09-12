@@ -35,7 +35,7 @@ export const controller = {
         return filterApi;
     },
 
-    GET_EPISODE: (animeKey, episode = "") => {
+    GET_EPISODE: (animeKey: string, episode = "") => {
         let episodeApis = `${baseUrl}/animes/episodes?id=${animeKey}`;
         if(episode !== "")
         {
@@ -55,7 +55,7 @@ export const controller = {
         return cateOfCollectApi;
     },
 
-    GET_ANIME_RANK: (sort) => {
+    GET_ANIME_RANK: (sort: string) => {
         let url = `${baseUrl}/animes?des=${sort}&take=10&completed=3`;
         return url;
     },
@@ -68,17 +68,17 @@ export const controller = {
         return url;
     },
 
-    GET_ANIME_OFFER: (categoryKey, animeKey) => {
+    GET_ANIME_OFFER: (categoryKey: string, animeKey: string) => {
         let url = `api/animes?offer=true&cate=${categoryKey}&id=${animeKey}&random=true&take=17`;
         return url;
     },
 
-    GET_ANIME_RELATE: (categoryKey, animeKey, sort) => {
+    GET_ANIME_RELATE: (categoryKey: string, animeKey: string, sort: string) => {
         var url = `/api/animes?cate=${categoryKey}&id=${animeKey}&des=${sort}&take=10&completed=3`;
         return url;
     },
 
-    UPDATE_VIEW: (animeKey, animeDetailKey = "") => {
+    UPDATE_VIEW: (animeKey: string, animeDetailKey = "") => {
         let viewApi = `${baseUrl}/animes/${animeKey}${animeDetailKey !== "" ? `/${animeDetailKey}/` : '/'}views`;
         return viewApi;
     },
@@ -86,26 +86,26 @@ export const controller = {
     GET_CATES: `${baseUrl}/categories`,
     GET_COLLECTES: `${baseUrl}/collections`,
 
-    GET_COMMENTS: (animeKey, sort = 'lastest') => {
+    GET_COMMENTS: (animeKey: string, sort = 'lastest') => {
         return `${baseUrl}/comments?id=${animeKey}&sort=${sort}`;
     },
 
-    SEND_COMMENT: (animeKey, link_notify = "", receiver = "") => {
+    SEND_COMMENT: (animeKey: string, link_notify: string = "", receiver: string = "") => {
         let commentApi = `/api/comments?id=${animeKey}`;
     
-        if(link_notify !== "" & receiver !== "")
+        if(link_notify !== "" && receiver !== "")
             commentApi += `&receiver=${receiver}&link_notify=${link_notify}`;
 
         return commentApi;
     },
     
-    REPLY_COMMENT: (animeKey, user_reply) => {
+    REPLY_COMMENT: (animeKey: string, user_reply: string) => {
         let replyCommentApi = controller.GET_COMMENTS(animeKey);
         replyCommentApi += `&user_reply=${user_reply}&sort="lastest"`;
         return replyCommentApi;
     },
 
-    NOTIFY: (user_uid, notify = "", isCount = false) => {
+    NOTIFY: (user_uid: string, notify = "", isCount = false) => {
         let notifyApi = `${baseUrl}/notification?user=${user_uid}`;
         if(notify !== "")
             notifyApi += `&notify=${notify}`;
@@ -117,12 +117,12 @@ export const controller = {
         return notifyApi;
     },
 
-    SERIES: (key) => {
+    SERIES: (key: string) => {
         let url = `${baseUrl}/series/${key}`;
         return url;
     },
 
-    LIKE_COMMENT: (id, idComment) => {
+    LIKE_COMMENT: (id: string, idComment: string) => {
         return `${baseUrl}/likes?id=${id}&idComment=${idComment}`;
     }
 }

@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 // Hook
-const useLocalStorage = (key, initialValue) => {
+const useLocalStorage = (key: string, initialValue: any) => {
     // Trạng thái để lưu trữ giá trị của chúng ta
     // Truyền hàm trạng thái ban đầu cho useState để logic chỉ được thực thi một lần
     const [storedValue, setStoredValue] = useState(() => {
@@ -18,7 +18,7 @@ const useLocalStorage = (key, initialValue) => {
     });
     // Trả về một phiên bản gói của hàm setter của useState ...
     // ... duy trì giá trị mới cho localStorage.
-    const setValue = (value) => {
+    const setValue = (value: any) => {
       try {
         // Cho phép giá trị là một hàm để chúng ta có cùng một API như useState
         const valueToStore =

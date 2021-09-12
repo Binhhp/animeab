@@ -2,9 +2,9 @@
 import responseStatus from "./responseStatus";
 import { instance, instanceAuth } from "./settingAxios";
 //Request Https Get
-export async function requestGet(url) {
+export async function requestGet(url: string) {
     
-    const response = await instance.get(url).catch(error => {
+    const response: any = await instance.get(url).catch(error => {
         return {
             status: error.response.status,
             statusText: error.message,
@@ -16,9 +16,9 @@ export async function requestGet(url) {
     return responseStatus(response.status, response.statusText, response.data, response.errors);
 };
 //Request Https Post
-export async function requestPost(url, data) {
+export async function requestPost(url: string, data: any) {
 
-    const response = await instance.post(url, data).catch(error => {
+    const response: any = await instance.post(url, data).catch(error => {
 
         return {
             status: error.response.status,
@@ -31,9 +31,9 @@ export async function requestPost(url, data) {
     return responseStatus(response?.status, response?.statusText, response?.data, response?.errors);
 };
 
-export async function requestAuthGet(url) {
+export async function requestAuthGet(url: string) {
     
-    const response = await instanceAuth.get(url).catch(error => {
+    const response: any = await instanceAuth.get(url).catch(error => {
 
         return {
             status: error.response.status,
@@ -46,9 +46,9 @@ export async function requestAuthGet(url) {
     return responseStatus(response.status, response.statusText, response.data, response.errors);
 };
 //Request Https Post
-export async function requestAuthPost(url, data) {
+export async function requestAuthPost(url: string, data: any) {
 
-    const response = await instanceAuth.post(url, data, {
+    const response: any = await instanceAuth.post(url, data, {
         headers: {
             'Content-Type': 'application/json',
         }

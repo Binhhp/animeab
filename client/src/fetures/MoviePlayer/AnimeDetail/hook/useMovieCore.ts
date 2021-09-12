@@ -1,5 +1,5 @@
 
-const playList = (episodes, titleAnime, episodeItem) => {
+const playList = (episodes: any, titleAnime: string, episodeItem: any) => {
 
     let listVideo = [];
     if(episodes && titleAnime && episodeItem){
@@ -21,7 +21,7 @@ const playList = (episodes, titleAnime, episodeItem) => {
             }],
         });
 
-        episodes?.filter(x => x.episode > episodeItem.episode).map((item, i) => (
+        episodes?.filter((x: any) => x.episode > episodeItem.episode).map((item: any) => (
             listVideo.push({
                 title: item.title.includes("Tập") ? item.title : `Tập ${item.episode} - ${item.title}`,
                 description: titleAnime,
