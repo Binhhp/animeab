@@ -1,8 +1,6 @@
-import { Action } from './../../interface/domain';
-
 import { notifyConstants } from "../actions/notify.constants";
 
-export const notifyReducers = (state = { data: [] }, action: Action) =>{
+export const notifyReducers = (state = { data: [] }, action: IActionNotify): StateAction => {
 
     switch (action.type) {
         case notifyConstants.NOTIFY_REQUEST:
@@ -12,7 +10,7 @@ export const notifyReducers = (state = { data: [] }, action: Action) =>{
             
         case notifyConstants.NOTIFY_SUCCESS:
             var notifies = Object.assign({}, {
-                data: [...action.payload]
+                data: action.payload
             });
 
             return notifies;
@@ -20,7 +18,7 @@ export const notifyReducers = (state = { data: [] }, action: Action) =>{
         case notifyConstants.NOTIFY_UPDATE:
             if(state?.data.length > 0)
             {
-                let checkData = state.data.filter((x: any) => x.key === action.payload.key);
+                let checkData = state.data.filter((x: any) => x.key === (action.payload as Notification).key);
                 if(checkData.length > 0) return state;
             }
             let updateState = {

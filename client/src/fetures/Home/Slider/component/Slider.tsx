@@ -26,7 +26,7 @@ const settings: any = {
 }; 
 
 export default function SliderMovie() {
-    const [animes, setAnimes] = useState([]);
+    const [animes, setAnimes] = useState<Animes[]>([]);
 
     useEffect(() => {
         requestGet(ApiController.GET_ANIME("", 0, true)).then(response => {

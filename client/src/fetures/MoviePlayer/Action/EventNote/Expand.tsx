@@ -1,6 +1,6 @@
 
 export default function Expand() {
-    const expand = () => {
+    const expand = (): void => {
         var classElement = (document.getElementById("animeAB") as HTMLElement).classList;
         var iconExpand = (document.getElementById("icon-expand") as HTMLElement);
 
@@ -17,11 +17,10 @@ export default function Expand() {
             iconExpand.classList.remove("fa-expand");
             classElement.add("expand");
         }
-        return;
     }
     
     return (
-        <div onClick={() => expand()} className="font-action mr-4">
+        <div onClick={expand} className="font-action mr-4">
             <i id="icon-expand" className="fas fa-expand mr-2"></i>
             <span id="expand">Mở rộng</span>
         </div>

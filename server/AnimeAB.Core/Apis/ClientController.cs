@@ -35,7 +35,7 @@ namespace AnimeAB.Core.Apis
         public IActionResult SignUpClient([FromBody]ClientDto client)
         {
             try
-            {
+            {                
                 AccountSignUpDto account = _mapper.Map<AccountSignUpDto>(client);
                 var result = _unitOfWork.AccountEntity.CreateEmailPasswordAsync(account);
 

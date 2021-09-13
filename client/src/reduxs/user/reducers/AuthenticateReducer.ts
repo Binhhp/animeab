@@ -1,10 +1,10 @@
-import { Action } from './../../interface/domain';
+
 import { userConstants } from "../action/UserType";
 
 let user = JSON.parse(localStorage.getItem('LOGIN_INFO') as any);
 
 const initialState = user ? { loggedIn: true, user } : {};
-export function AuthenticateReducer(state = initialState, action: Action) {
+export function AuthenticateReducer(state = initialState, action: any) {
     switch (action.type) {
       case userConstants.LOGIN_CLEAR:
           let newArr = {};

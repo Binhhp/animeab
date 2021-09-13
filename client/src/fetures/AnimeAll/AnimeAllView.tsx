@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 export default function AnimeAllView() {
 
-    const animes = useSelector((state: any) => state.animes.data);
+    const animes: Animes[] = useSelector((state: any) => state.animes.data);
 
     useEffect(() => {
         window.scroll(0, 0)

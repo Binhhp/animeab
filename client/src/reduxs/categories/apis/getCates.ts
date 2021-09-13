@@ -9,7 +9,7 @@ export const getCates = () =>{
         if(localStorage.getItem("persist:__cate")) return;
         dispatch(cateService.request());
 
-        let url: string = ApiController.GET_CATES();
+        const url: string = ApiController.GET_CATES();
         const response = await requestGet(url);
         if (response.code > 204) {
             dispatch(cateService.failture("Error"));

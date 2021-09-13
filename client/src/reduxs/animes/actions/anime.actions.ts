@@ -1,65 +1,66 @@
+
 import{
     animeConstants
 } from "./anime.constants";
 
 export const animeService = {
-    animesRequest: () => {
+    animesRequest: (): IActionAnime => {
         return{
             type: animeConstants.ANIMES_REQUEST
         }
     },
-    animesSuccess: (animes: any) => {
+    animesSuccess: (animes: Animes[]): IActionAnime => {
         return{
             type: animeConstants.ANIMES_SUCCESS,
             payload: animes
         }
     },
-    animesFailure: (errors: string) => {
+    animesFailure: (errors: string): IActionAnime => {
         return{
             type: animeConstants.ANIMES_FAILURE,
             payload: errors
         }
     },
-    animesFilterRequest: () => {
+    animesFilterRequest: (): IActionAnime => {
         return{
             type: animeConstants.ANIMES_FILTER_REQUEST
         }
     },
-    animesFilterSuccess: (animeFilter: any) => {
+    animesFilterSuccess: (animeFilter: Animes[]): IActionAnime => {
         return{
             type: animeConstants.ANIMES_FILTER_SUCCESS,
             payload: animeFilter
         }
     },
-    animeCateRequest: () => {
+    animeCateRequest: (): IActionAnime => {
         return{
             type: animeConstants.ANIMES_CATEGORIES_REQUEST
         }
     },
-    animeCateSuccess: (animeCate: any) => {
+    animeCateSuccess: (animeCate: Animes[]): IActionAnime => {
         return{
             type: animeConstants.ANIMES_CATEGORIES_SUCCESS,
             payload: animeCate
         }
     },
-    animeCateFailure: (errors: string) => {
+    animeCateFailure: (errors: string): IActionAnime => {
         return{
             type: animeConstants.ANIMES_CATEGORIES_FAILURE,
             payload: errors
         }
     },
-    animeCollectRequest: () => {
+    animeCollectRequest: (): IActionAnime => {
         return{
             type: animeConstants.ANIMES_COLLECTIONS_REQUEST
         }
     },
-    animeCollectSuccess: (animeCollect: any) => {
+    animeCollectSuccess: (animeCollect: Animes[]): IActionAnime => {
         return{
             type: animeConstants.ANIMES_COLLECTIONS_SUCCESS,
             payload: animeCollect
         }
     },
-    animeCollectFailure: (errors: string) => {
+    animeCollectFailure: (errors: string): IActionAnime => {
         return{
             type: animeConstants.ANIMES_COLLECTIONS_FAILURE,
             payload: errors

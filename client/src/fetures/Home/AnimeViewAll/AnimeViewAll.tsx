@@ -5,7 +5,7 @@ import { ApiController } from "../../../controller/apis/controller";
 
 export default function AnimeViewAll(){
 
-    const [animeViewAll, setAnimeViewAll] = useState([]);
+    const [animeViewAll, setAnimeViewAll] = useState<Animes[]>([]);
     useEffect(() => {
         requestGet(ApiController.GET_ANIME("", 3)).then(response => {
             setAnimeViewAll(response.data)

@@ -18,16 +18,16 @@ import { ActionVideo } from "./Action/ActionsVideo";
 
 function MoviePlayer() {
 
-    const { meta, episode } = useParams<any>();
+    const { meta, episode } = useParams<{ meta: string, episode: string }>();
 
     const dispatch = useDispatch();
-    const index = useSelector((state: any) => state.animeDetail.data);
+    const index: Animes = useSelector((state: any) => state.animeDetail.data);
     //List episode
-    const episodeItem = useSelector((state: any) => state.animeEpisode.data);
+    const episodeItem: AnimeDetail = useSelector((state: any) => state.animeEpisode.data);
     //Set size
     const {size, sizeEpisode} = useOptionSize();
 
-    const [episodeActive, setEpisodeActive] = useState(episode);
+    const [episodeActive, setEpisodeActive] = useState<string>(episode);
     const onVideoLoad = useCallback((event) => {
         setEpisodeActive(event.item.key);
     }, [setEpisodeActive]);

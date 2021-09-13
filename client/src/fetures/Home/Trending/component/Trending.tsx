@@ -11,7 +11,7 @@ import { ApiController } from "../../../../controller/apis/controller";
 
 export default function Trending() {
     
-    const [animes, setAnimes] = useState([]);
+    const [animes, setAnimes] = useState<Animes[]>([]);
 
     useEffect(() => {
         requestGet(ApiController.GET_ANIME("", 0, false, "views", 10, 2)).then(response => {

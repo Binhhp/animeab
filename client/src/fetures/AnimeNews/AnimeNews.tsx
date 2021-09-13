@@ -8,13 +8,14 @@ import { ApiController } from "../../controller/apis/controller";
 
 export default function AnimeNews() {
 
-    const [state, setState] = useState<[]>([]);
+    const [state, setState] = useState<Animes[]>([]);
 
     const getAnimeNews = useCallback(async function(){
         await setState([]);
         requestGet(ApiController.GET_ANIME_NEW(0))
             .then(async (response) => {
-                await setState(response.data);
+                const data = response.data as Animes[];
+                await setState(data);
                 return;
             })
             .catch(error => console.log(error.statusText))

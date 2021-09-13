@@ -5,10 +5,10 @@ import { ApiController } from "../../../controller/apis/controller";
 
 function AnimeRelate({ categoryKey, animeKey }: any){
 
-    const [animeViewDay, setAnimeViewDay] = useState([]);
-    const [animeViewMonth, setAnimeVieMonth] = useState([]);
-    const [animeViewWeek, setAnimeViewWeek] = useState([]);
-
+    const [animeViewDay, setAnimeViewDay] = useState<Animes[]>([]);
+    const [animeViewMonth, setAnimeVieMonth] = useState<Animes[]>([]);
+    const [animeViewWeek, setAnimeViewWeek] = useState<Animes[]>([]);
+    
     const getAnimeView = useCallback(function(sort) {
         requestGet(ApiController.GET_ANIME_RELATE(categoryKey, animeKey, sort))
         .then(response => {

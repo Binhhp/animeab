@@ -13,7 +13,7 @@ function SendComment({ animeKey }: PropsSendComment) {
 
     const sendMessage = useSelector((state: any) => state.sendMessage);
     const dispatch = useDispatch();
-    const hanlderMessage = (event: any) => {
+    const hanlderMessage = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
         const request: ISendMessage = {
             event: event,
             user: user,

@@ -1,52 +1,52 @@
 import{ detailConstants } from "./detail.constants";
 
 export const detailService = {
-    detailRequest: () => {
+    detailRequest: (): IActionAnimeDetail => {
         return{
             type: detailConstants.ANIMEDETAIL_REQUEST
         }
     },
-    detailSuccess: (detail: any) => {
+    detailSuccess: (detail: AnimeDetail): IActionAnimeDetail => {
         return{
             type: detailConstants.ANIMEDETAIL_SUCCESS,
             payload: detail
         }
     },
-    detailFailure: (errors: string) => {
+    detailFailure: (errors: string): IActionAnimeDetail => {
         return{
             type: detailConstants.ANIMEDETAIL_FAILURE,
             payload: errors
         }
     },
-    episodeOfAnimeRequest: () => {
+    episodeOfAnimeRequest: (): IActionAnimeDetail => {
         return{
             type: detailConstants.EPISODES_OF_ANIME_REQUEST
         }
     },
-    episodeOfAnimeSuccess: (episodeOfAni: any) => {
+    episodeOfAnimeSuccess: (episodeOfAni: AnimeDetail[]): IActionAnimeDetail => {
         return{
             type: detailConstants.EPISODES_OF_ANIME_SUCCESS,
             payload: episodeOfAni
         }
     },
-    episodeOfAnimeFailure: (errors: string) => {
+    episodeOfAnimeFailure: (errors: string): IActionAnimeDetail => {
         return{
             type: detailConstants.EPISODES_OF_ANIME_FAILURE,
             payload: errors
         }
     },
-    episodeRequest: () => {
+    episodeRequest: (): IActionAnimeDetail => {
         return{
             type: detailConstants.EPISODE_REQUEST
         }
     },
-    episodeSuccess: (episode: any) => {
+    episodeSuccess: (episode: AnimeDetail[]): IActionAnimeDetail => {
         return{
             type: detailConstants.EPISODE_SUCCESS,
             payload: episode
         }
     },
-    episodeFailure: (errors: string) => {
+    episodeFailure: (errors: string): IActionAnimeDetail => {
         return{
             type: detailConstants.EPISODE_FAILURE,
             payload: errors

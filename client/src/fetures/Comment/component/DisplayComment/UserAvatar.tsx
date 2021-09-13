@@ -1,5 +1,8 @@
+interface PropsUserAvt {
+    photoUrl: string
+}
 
-export default function UserAvatar({photoUrl}: any) {
+export default function UserAvatar({ photoUrl }: PropsUserAvt) {
     return (
         <div className="media-left">
             <div className="avatar">

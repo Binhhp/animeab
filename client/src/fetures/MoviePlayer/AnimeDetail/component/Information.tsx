@@ -10,9 +10,9 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 function Information(props: any) {
 
-    const categories = useSelector((state: any) => state.categories.data);
-    var data = categories.filter((x: any) => x.key === props.anime.categoryKey);
-    var category = categories.length > 0 ? (data.length > 0 ? data[0] : {}) : {};
+    const categories: Categories[] = useSelector((state: any) => state.categories.data);
+    const data: Categories[] = categories.filter((x: any) => x.key === props.anime.categoryKey);
+    const category: Categories = data[0];
 
     const [isHidden, setHidden] = useState(true);
     

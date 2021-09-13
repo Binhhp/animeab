@@ -1,8 +1,10 @@
-import { initialState, Action } from './../../interface/domain';
-
+import { initialState } from './../../../entities/state';
 import { collectConstants } from "../actions/collect.constants";
 
-export const collectReducers: any = (state = initialState, action: Action) => {
+export const collectReducers: any = (
+    state = initialState, 
+    action: IActionCollect)
+    : StateAction => {
 
     switch (action.type) {
         case collectConstants.COLLECTION_REQUEST:

@@ -10,7 +10,7 @@ interface ISeries {
 }
 
 function Series({ series, animeKey }: ISeries) {
-    const [animeSeries, setAnimeSeries] = useState([]);
+    const [animeSeries, setAnimeSeries] = useState<AnimeSeries[]>([]);
 
     useEffect(() => {
         if(series){
@@ -39,7 +39,7 @@ function Series({ series, animeKey }: ISeries) {
                     </thead>
                     <tbody>
                         {
-                            animeSeries.map((item: any, i: number) => (
+                            animeSeries.map((item: AnimeSeries, i: number) => (
                                 <tr className={`table-item${item.key === animeKey ? ' series-active' : ''}`} 
                                     key={item.key}>
                                     <td className="series-film table-border-left">

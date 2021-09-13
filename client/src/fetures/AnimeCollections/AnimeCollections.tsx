@@ -10,8 +10,8 @@ import { animeCollections } from "../../reduxs/doSomethings";
 export default function AnimeCollections(){
     const { meta } = useParams<{ meta: string }>();
 
-    const collections = useSelector((state: any) => state.collections.data);
-    const indexes = collections.filter((item: any) => item.key === meta);
+    const collections: Collections[] = useSelector((state: any) => state.collections.data);
+    const indexes: Collections = collections.filter((item: any) => item.key === meta)[0];
 
     const animeCollects = useSelector((state: any) => state.animeCollections.data);
     const dispatch = useDispatch();
@@ -22,8 +22,8 @@ export default function AnimeCollections(){
 
     return(
         <Layout 
-            title={ indexes.length > 0 ? `AnimeAB - ${indexes[0].title}` : "" } 
-            descript={ indexes.length > 0 ? `AnimeAB - ${indexes[0].title}` : "" }>
+            title={ `AnimeAB - ${indexes.title}` } 
+            descript={ `AnimeAB - ${indexes.title}` }>
             <div className="main-pad">
                 <div className="anis-content">
                     <div className="anis-cate">
@@ -31,7 +31,7 @@ export default function AnimeCollections(){
                     </div>
                     <div className="anis-content-wrapper">
                         <div className="content">
-                            <Animes animes={animeCollects} flewBig={true} title={indexes.length > 0 ? indexes[0].title : ""}></Animes>
+                            <Animes animes={animeCollects} flewBig={true} title={indexes.title}></Animes>
                         </div>
                         <AnimeRanks></AnimeRanks>
                     </div>

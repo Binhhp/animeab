@@ -1,8 +1,10 @@
-import { Action } from './../../interface/domain';
-import { initialState } from "../../interface/domain";
+import { initialState } from './../../../entities/state';
 import { animeConstants } from "../actions/anime.constants";
 
-export const animesReducers = (state = initialState, action: Action) =>{
+export const animesReducers = (
+    state = initialState, 
+    action: IActionAnime)
+    : StateAction => {
     switch (action.type) {
         case animeConstants.ANIMES_REQUEST:
             return{
@@ -16,7 +18,7 @@ export const animesReducers = (state = initialState, action: Action) =>{
                 error: ''
             };
         case animeConstants.ANIMES_FAILURE:
-            return{
+            return {
                 loading: false,
                 data: "",
                 error: action.payload
@@ -25,7 +27,10 @@ export const animesReducers = (state = initialState, action: Action) =>{
     }
 }
 
-export const animesFilterReducers = (state = initialState, action: Action) =>{
+export const animesFilterReducers = (
+    state = initialState, 
+    action: IActionAnime)
+    : StateAction => {
     switch (action.type) {
         case animeConstants.ANIMES_FILTER_REQUEST:
             return{
@@ -43,7 +48,10 @@ export const animesFilterReducers = (state = initialState, action: Action) =>{
 }
 
 
-export const animesCateReducers = (state = initialState, action: Action) =>{
+export const animesCateReducers = (
+    state = initialState, 
+    action: IActionAnime)
+    : StateAction => {
     switch (action.type) {
         case animeConstants.ANIMES_CATEGORIES_REQUEST:
             return{
@@ -67,7 +75,10 @@ export const animesCateReducers = (state = initialState, action: Action) =>{
     }
 }
 
-export const animesCollectReducers = (state = initialState, action: Action) =>{
+export const animesCollectReducers = (
+    state = initialState,
+    action: IActionAnime)
+    : StateAction => {
     switch (action.type) {
         case animeConstants.ANIMES_COLLECTIONS_REQUEST:
             return{

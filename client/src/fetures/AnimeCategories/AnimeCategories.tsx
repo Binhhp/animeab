@@ -14,10 +14,10 @@ type QuizParam = {
 export default function Categories() {
     const { meta } = useParams<QuizParam>();
 
-    const categories = useSelector((state: any) => state.categories.data);
+    const categories: Categories[] = useSelector((state: any) => state.categories.data);
     const indexes = categories.filter((item: any) => item.key === meta);
 
-    const animeCates = useSelector((state: any) => state.animeCategories.data);
+    const animeCates: Animes[] = useSelector((state: any) => state.animeCategories.data);
     const dispatch = useDispatch();
 
     useEffect(() => {

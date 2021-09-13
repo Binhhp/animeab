@@ -1,11 +1,10 @@
 import { toast } from "react-toastify";
 
 export default function ErrorReport() {
-    const error = () => {
+    const error = (): void => {
         toast.success("Cảm ơn bạn đã báo lỗi! Chúng tôi sẽ khắc phục sự cố trong tích tắc!", {
             autoClose: 5000
         });
-        return;
     };
     return (
         <div className="font-action" onClick={error}>

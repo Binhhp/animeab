@@ -1,10 +1,10 @@
-import { Action } from './../../interface/domain';
+
 import { userConstants } from "../action/UserType";
 
 let storage = JSON.parse(localStorage.getItem('__user') as any);
 
 const initialState = storage ? storage : {};
-export function UserReducer (state = initialState, action: Action) {
+export function UserReducer (state = initialState, action: IActionAnimeUser) {
     switch (action.type) {
         case userConstants.GETALL_CLEAR:
             return {};
@@ -26,7 +26,7 @@ export function UserReducer (state = initialState, action: Action) {
     }
 }
 
-export function UserProfileReducer (state = {}, action: Action) {
+export function UserProfileReducer (state = {}, action: IActionAnimeUser) {
     switch (action.type) {
         case userConstants.PROFILE_REQUEST:
             return {
@@ -40,7 +40,7 @@ export function UserProfileReducer (state = {}, action: Action) {
     }
 }
 
-export function UserChangePasswordReducer (state = {}, action: Action) {
+export function UserChangePasswordReducer (state = {}, action: IActionAnimeUser) {
     switch (action.type) {
         case userConstants.CHANGE_PASSWORD_REQUEST:
             return {

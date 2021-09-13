@@ -70,8 +70,8 @@ function Comment({ animeKey, linkNotify }: PropsComment){
                                     comments={comments} 
                                     animeKey={animeKey}></ListComment>}
 
-                            {comments?.data && comments.data.filter((comment: any) => comment.replyComment === "").length > showCmt && 
-                                ((isMore < comments.data.filter((comment: any) => comment.replyComment === "").length
+                            {comments?.data && comments.data.filter((comment: Comment) => comment.replyComment === "").length > showCmt && 
+                                ((isMore < comments.data.filter((comment: Comment) => comment.replyComment === "").length
                                 
                                 && <span onClick={() => setMore(isMore + showCmt)} 
                                         className="comment-more">Xem các bình luận trước</span>)

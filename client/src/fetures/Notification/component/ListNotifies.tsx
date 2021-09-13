@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { notifyService } from "../../../reduxs/notification/apis/getNotify";
 import Loading from "../../../shared/Loading/LoadingCircle/LoadingInfinite";
 import { commentService } from "../../../reduxs/comments/apis/getComments";
-import React from "react";
+
 export function ListNotifies({ user }: any) {
     const notify = useSelector((state: any) => state.notification);
     const dispatch = useDispatch();
@@ -24,7 +24,7 @@ export function ListNotifies({ user }: any) {
         (notify?.loading && <Loading></Loading>)
         || (notify?.data.length > 0 
             ? <div className="list-new-noti" data-simplebar>
-                {notify?.data.map((item: any, i: number) => (
+                {notify?.data.map((item: Notification, i: number) => (
                     <div key={`notify-${i}`} className={`noti-item ${item?.isRead === false ? ' active' : ''}`}>
                         <Link to={item?.linkNotify} onClick={(e) => onNotify(e, item?.linkNotify, item?.key)}>
                             <div className="style-scope"></div>

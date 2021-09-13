@@ -1,4 +1,4 @@
-
+import { Dispatch } from 'react';
 import { animeService } from "../actions/anime.actions";
 import { requestGet, requestPost } from "../../../_axios/axiosClient";
 import { detailService } from "../actions/detail.actions";
@@ -6,7 +6,7 @@ import { ApiController } from "../../../controller/apis/controller";
 
 export const getAnimes = (animeKey = "") => {
     return async (dispatch: any) => {
-        if(animeKey !== ""){
+        if(animeKey !== "") {
             dispatch(detailService.detailRequest());
         }
         else{
@@ -35,8 +35,11 @@ export const getAnimes = (animeKey = "") => {
     }
 }
 
-export const getAnimesFilter = (keyword = "", cateFilters = [], collectFilters = []) =>{
-    return async (dispatch: any) => {
+export const getAnimesFilter = (
+    keyword: string = "", 
+    cateFilters: string[] = [], 
+    collectFilters: string[] = []) => {
+    return async (dispatch: Dispatch<any>) => {
 
         dispatch(animeService.animesFilterRequest());
         var response: any = {};
@@ -117,11 +120,11 @@ export const getAnimeByCateOfCollect = (categoryKey = "", collectionId = "") => 
 }
 
 export const updateViewAnime = (animeKey: string) => {
-    let urlView = ApiController.UPDATE_VIEW(animeKey);
+    const urlView = ApiController.UPDATE_VIEW(animeKey);
     return requestGet(urlView);
 }
 
 export const updateViewAnimeDetail = (animeKey: string, animeDetailKey: string) => {
-    let urlViewDetail = ApiController.UPDATE_VIEW(animeKey, animeDetailKey);
+    const urlViewDetail = ApiController.UPDATE_VIEW(animeKey, animeDetailKey);
     return requestGet(urlViewDetail);
 }

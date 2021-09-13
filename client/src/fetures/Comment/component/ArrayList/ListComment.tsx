@@ -15,7 +15,7 @@ interface Props {
 }
 
 export default function ListComment({ comments, isMore, animeKey, linkNotify }: Props) {
-    const list = comments?.data;
+    const list: Comment[] = comments?.data;
     const user = useSelector((state: any) => state.userCurrent);
     const userLogined = useSelector((state: any) => state.userLoggedIn);
 

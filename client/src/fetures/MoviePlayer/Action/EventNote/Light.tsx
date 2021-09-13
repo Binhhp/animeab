@@ -1,6 +1,6 @@
 
 export default function Light() {
-    const turnLight = () => {
+    const turnLight = (): void => {
         var classElement = (document.getElementById("animeAB") as HTMLElement).classList;
         var ligth = document.getElementById("light") as HTMLElement;
 
@@ -12,11 +12,10 @@ export default function Light() {
             ligth.innerText = "Bật đèn";
             classElement.add("light-turn");
         }
-        return;
     } 
 
     return (
-        <div onClick={() => turnLight()} className="font-action mr-4">  
+        <div onClick={turnLight} className="font-action mr-4">  
             <i className="fas fa-lightbulb mr-2"></i>
             <span id="light">Tắt đèn</span>
             <span className="on_off ml-2">On</span>

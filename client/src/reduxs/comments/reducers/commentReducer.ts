@@ -1,7 +1,10 @@
-import { Action } from './../../interface/domain';
+
 import { constants } from "../actions/comment.constants";
 
-export function commentReducer (state = { data: [] }, action: Action) {
+export function commentReducer (
+    state = { data: [] }, 
+    action: IActionComment)
+    : StateAction {
     switch (action.type) {
         case constants.REQUEST:
             return {
@@ -10,12 +13,12 @@ export function commentReducer (state = { data: [] }, action: Action) {
             
         case constants.SUCCESS:
             var comments = Object.assign({}, {
-                data: [...action.payload]
+                data: action.payload
             });
 
             return comments;
         case constants.UPDATE:
-            let checkData = state.data.filter((x: any) => x.key === action.payload.key);
+            let checkData = state.data.filter((x: any) => x.key === (action.payload as Comment).key);
             if(checkData.length > 0) return state;
             let updateState = {
                 data: [
@@ -26,7 +29,7 @@ export function commentReducer (state = { data: [] }, action: Action) {
             return updateState;
         
         case constants.LIKE:
-            const newArr = state?.data.filter((x: any) => x?.key !== action.payload.key);
+            const newArr = state?.data.filter((x: any) => x?.key !== (action.payload as Comment).key);
             if(newArr) {
                 let rfState = {
                     data: [
@@ -43,7 +46,10 @@ export function commentReducer (state = { data: [] }, action: Action) {
     }
 }
 
-export function sendMessageReducer (state = {}, action: Action) {
+export function sendMessageReducer (
+    state = {}, 
+    action: IActionComment)
+    : StateAction {
     switch (action.type) {
         case constants.SEND_REQUEST:
             return {

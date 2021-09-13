@@ -4,7 +4,7 @@ import Animes from "../../../shared/Animes/component/Animes";
 import { ApiController } from "../../../controller/apis/controller";
 
 export const AnimeOffer = React.memo(function AnimeOffer({ categoryKey, animeKey }: any){
-    const [state, setState] = useState([]);
+    const [state, setState] = useState<Animes[]>([]);
     
     useEffect(() => {
         if(categoryKey){

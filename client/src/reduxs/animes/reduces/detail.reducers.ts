@@ -1,7 +1,10 @@
-import { Action, initialState } from './../../interface/domain';
+import { initialCurrentState, initialState } from './../../../entities/state';
 import { detailConstants } from "../actions/detail.constants";
 //GET anime detail
-export const detailReducers = (state = initialState, action: Action) =>{
+export const detailReducers = (
+    state = initialCurrentState, 
+    action: IActionAnimeDetail)
+    : StateAction => {
     switch (action.type) {
         case detailConstants.ANIMEDETAIL_REQUEST:
             return{
@@ -23,7 +26,10 @@ export const detailReducers = (state = initialState, action: Action) =>{
     }
 }
 //GET list episodes of anime
-export const episodeOfAnimeReducers = (state = initialState, action: Action) =>{
+export const episodeOfAnimeReducers = (
+    state = initialState, 
+    action: IActionAnimeDetail)
+    : StateAction => {
     switch (action.type) {
         case detailConstants.EPISODES_OF_ANIME_REQUEST:
             return{
@@ -45,7 +51,10 @@ export const episodeOfAnimeReducers = (state = initialState, action: Action) =>{
     }
 }
 //GET episode current anime
-export const episodeReducers = (state = initialState, action: Action) =>{
+export const episodeReducers = (
+    state = initialState, 
+    action: IActionAnimeDetail)
+    : StateAction => {
     switch (action.type) {
         case detailConstants.EPISODE_REQUEST:
             return{

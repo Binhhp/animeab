@@ -16,10 +16,10 @@ export default function Filter() {
     
     const title = keyword !== null && keyword !== "" ? "Kết quả tìm kiếm theo <em>" + keyword + "</em>" : "Kết quả tìm kiếm";
 
-    const categories = useSelector((state: any) => state.categories.data);
-    const collections = useSelector((state: any) => state.collections.data);
+    const categories: Categories[] = useSelector((state: any) => state.categories.data);
+    const collections: Collections[] = useSelector((state: any) => state.collections.data);
 
-    const animeFilters = useSelector((state: any) => state.animesFilter.data);
+    const animeFilters: Animes[] = useSelector((state: any) => state.animesFilter.data);
     const dispatch = useDispatch();
 
     useEffect(function(){
@@ -51,16 +51,16 @@ export default function Filter() {
     };
 
     const filter = () => {
-        const eleCate = document.querySelectorAll(".category-filter .active");
-        const eleCollect = document.querySelectorAll(".collect-filter .active");
+        const eleCate: NodeListOf<Element> = document.querySelectorAll(".category-filter .active");
+        const eleCollect: NodeListOf<Element> = document.querySelectorAll(".collect-filter .active");
 
-        var arrCateFilters: any = [];
-        var arrCollectFilters: any = [];
+        var arrCateFilters: string[] = [];
+        var arrCollectFilters: string[] = [];
 
         if(eleCate.length > 0){
 
             eleCate.forEach((el, i) => {
-                const dataKey = el.getAttribute("data-key");
+                const dataKey = el.getAttribute("data-key") as string;
                 arrCateFilters.push(dataKey)
             });
 
@@ -69,7 +69,7 @@ export default function Filter() {
         if(eleCollect.length > 0){
 
             eleCollect.forEach((el, i) => {
-                const dataKey = el.getAttribute("data-key");
+                const dataKey = el.getAttribute("data-key") as string;
                 arrCollectFilters.push(dataKey)
             });
 

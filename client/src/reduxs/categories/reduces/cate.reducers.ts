@@ -1,7 +1,10 @@
-import { initialState, Action } from './../../interface/domain';
+import { initialState } from './../../../entities/state';
 import { cateConstants } from "../actions/cate.constants";
 
-export const cateReducers: any = (state = initialState, action: Action) =>{
+export const cateReducers = (
+    state = initialState, 
+    action: IActionCategory)
+    : StateAction => {
     switch (action.type) {
         case cateConstants.CATEGORY_REQUEST:
             return{

@@ -5,7 +5,7 @@ import { ApiController } from "../../../controller/apis/controller";
 
 export default function AnimeNewContents() {
 
-    const [animeNews, setAnimeNews] = useState([]);
+    const [animeNews, setAnimeNews] = useState<Animes[]>([]);
 
     useEffect(() => {
         requestGet(ApiController.GET_ANIME_NEW(12)).then(response => {

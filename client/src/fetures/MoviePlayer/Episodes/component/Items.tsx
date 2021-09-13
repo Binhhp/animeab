@@ -4,7 +4,7 @@ import { updateView } from "../../../../reduxs/doSomethings";
 
 export default function Items(anime: any, meta: string, episodes: any[]) {
     return (
-      episodes.map((item: any, i: number) => (
+      episodes.map((item: AnimeDetail, i: number) => (
         <div key={`episode-${i}`} className="episode-item">
          <div className={`position-relative d-block ${meta === item.key ? "active-anis" : ""}`}>
              <Link onClick={() => updateView(anime.key, item.key)}

@@ -1,11 +1,11 @@
-import React from "react";
+
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "../css/collect.css";
 
 export default function Collection() {
-    const collections = useSelector((state: any) => state.collections.data);
+    const collections: Collections[] = useSelector((state: any) => state.collections.data);
     const loading = [1, 2, 3, 4];
 
     return(

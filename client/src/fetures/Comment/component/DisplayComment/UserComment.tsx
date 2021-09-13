@@ -1,6 +1,11 @@
 import { commentService } from "../../../../reduxs/comments/apis/getComments";
 
-export default function UserComment({ displayName, when }: any) {
+interface PropsComment {
+    displayName: string,
+    when: Date
+}
+
+export default function UserComment({ displayName, when }: PropsComment) {
     return (
         <div className="user-cmt mb-cmt">
             <span className="user-name">{displayName}</span>
