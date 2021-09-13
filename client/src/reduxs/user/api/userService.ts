@@ -1,8 +1,8 @@
+import { Cookies } from './../../../_axios/cookies';
 import { Dispatch } from 'react';
 
 import { toast } from "react-toastify";
 import { requestAuthGet, requestAuthPost, requestGet, requestPost } from "../../../_axios/axiosClient";
-import { cookies } from "../../../_axios/cookies";
 import { useActions } from "../action/UserAction";
 
 export const userService = {
@@ -33,8 +33,8 @@ function login(email: string, password: string){
             const user = response.data;
 
             localStorage.setItem("LOGIN_INFO", JSON.stringify(user, ['localId']));
-            cookies.setCookie("ac_user", user.token, 30);
-            cookies.setCookie("rf_user", user.refresh_token, 30);
+            Cookies.setCookies("ac_user", user.token, 30);
+            Cookies.setCookies("rf_user", user.refresh_token, 30);
 
             await dispatch(useActions.loginSuccess(user));
             toast.success("Đăng nhập thành công", {
@@ -47,8 +47,8 @@ function login(email: string, password: string){
 function logout() {
     return (dispatch: Dispatch<any>) => {
         Promise.all([
-            cookies.setCookie("ac_user", "", -1),
-            cookies.setCookie("rf_user", "", -1),
+            Cookies.setCookies("ac_user", "", -1),
+            Cookies.setCookies("rf_user", "", -1),
             localStorage.removeItem("__user"),
             localStorage.removeItem("LOGIN_INFO"),
 
@@ -179,8 +179,8 @@ function changePassword(user_uid: string, payload: any) {
             toast.success("Thay đổi mật khẩu thành công!");
             const payloadResponse = response.data;
 
-            cookies.setCookie("ac_user", payloadResponse.token, 30);
-            cookies.setCookie("rf_user", payloadResponse.refresh_token, 30);
+            Cookies.setCookies("ac_user", payloadResponse.token, 30);
+            Cookies.setCookies("rf_user", payloadResponse.refresh_token, 30);
 
             await dispatch(useActions.changePasswordSuccess());
         }

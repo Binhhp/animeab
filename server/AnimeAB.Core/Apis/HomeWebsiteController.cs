@@ -172,18 +172,18 @@ namespace AnimeAB.Core.Apis
 
                 if (!string.IsNullOrWhiteSpace(keyword)){
                     Regex rg = new Regex(keyword.ToLower());
-                    animes = animes.Where(x => (rg.Matches(x.Title.ToLower())).Count() > 0).ToList();
+                    animes = animes.Where(x => (rg.Matches(x.Title.ToLower())).Count() > 0 || (rg.Matches(x.TitleVie.ToLower())).Count() > 0).ToList();
                 }
                 if(filter.CategoryFilters.Count() > 0)
                 {
-                    animes = animes.Where(x => filter.CategoryFilters.Contains(x.CategoryKey)).ToList();
+                    animes = animes.Where(x => filter.CategoryFilters.Contains(x.CategoryKey)).OrderByDescending(x => x.Views).ToList();
                 }
                 if(filter.CollectFilters.Count() > 0)
                 {
-                    animes = animes.Where(x => filter.CollectFilters.Contains(x.CollectionId)).ToList();
+                    animes = animes.Where(x => filter.CollectFilters.Contains(x.CollectionId)).OrderByDescending(x => x.Views).ToList();
                 }
 
-                return Ok(animes.OrderByDescending(x => x.Views).ToList());
+                return Ok(animes.ToList());
             }
             catch
             {

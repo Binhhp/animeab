@@ -1,8 +1,14 @@
 
 const baseUrl = "api";
-
-export const controller = {
-    GET_ANIME: (animeKey = "", stus = 0, banner = false, sort = "date", take = 0, trend = 0) => {
+export class ApiController {
+    
+    static GET_ANIME(
+        animeKey = "", 
+        stus = 0, 
+        banner = false,
+        sort = "date",
+        take = 0,
+        trend = 0): string {
         let url = `${baseUrl}/animes`;
 
         if(animeKey !== "") url += `/${animeKey}`;
@@ -25,26 +31,26 @@ export const controller = {
         }
 
         return url;
-    },
+    }
 
-    GET_ANIME_FILTER: (keyword = "") => {
-        let filterApi = controller.GET_ANIME();
+    static GET_ANIME_FILTER(keyword = ""): string {
+        let filterApi = ApiController.GET_ANIME();
         if(keyword !== ""){
             filterApi += `&q=${keyword}`;
         }
         return filterApi;
-    },
+    }
 
-    GET_EPISODE: (animeKey: string, episode = "") => {
+    static GET_EPISODE(animeKey: string, episode = ""): string {
         let episodeApis = `${baseUrl}/animes/episodes?id=${animeKey}`;
         if(episode !== "")
         {
             episodeApis += `&episode=${episode}`
         }
         return episodeApis;
-    },
+    }
 
-    GET_ANIMECATE_OF_ANIMECOLLECT: (categoryKey = "", collectionId = "") => {
+    static GET_ANIMECATE_OF_ANIMECOLLECT(categoryKey = "", collectionId = ""): string {
         let cateOfCollectApi = `${baseUrl}/animes?des=views&des=date&`;
         if(categoryKey !== ""){
             cateOfCollectApi += `cate=${categoryKey}`;
@@ -53,59 +59,64 @@ export const controller = {
             cateOfCollectApi += `collect=${collectionId}`;
         }
         return cateOfCollectApi;
-    },
+    }
 
-    GET_ANIME_RANK: (sort: string) => {
+    static GET_ANIME_RANK(sort: string):string {
         let url = `${baseUrl}/animes?des=${sort}&take=10&completed=3`;
         return url;
-    },
+    }
 
-    GET_ANIME_NEW: (take = 0) => {
+    static GET_ANIME_NEW(take = 0):string {
         let url = `${baseUrl}/animes?stus=2&des=date&des=views`;
         if(take > 0) {
             url += `&take=${take}`;
         }
         return url;
-    },
+    }
 
-    GET_ANIME_OFFER: (categoryKey: string, animeKey: string) => {
+    static GET_ANIME_OFFER(categoryKey: string, animeKey: string): string {
         let url = `api/animes?offer=true&cate=${categoryKey}&id=${animeKey}&random=true&take=17`;
         return url;
-    },
+    }
 
-    GET_ANIME_RELATE: (categoryKey: string, animeKey: string, sort: string) => {
+    static GET_ANIME_RELATE(categoryKey: string, animeKey: string, sort: string): string {
         var url = `/api/animes?cate=${categoryKey}&id=${animeKey}&des=${sort}&take=10&completed=3`;
         return url;
-    },
+    }
 
-    UPDATE_VIEW: (animeKey: string, animeDetailKey = "") => {
+    static UPDATE_VIEW(animeKey: string, animeDetailKey = ""): string {
         let viewApi = `${baseUrl}/animes/${animeKey}${animeDetailKey !== "" ? `/${animeDetailKey}/` : '/'}views`;
         return viewApi;
-    },
+    }
 
-    GET_CATES: `${baseUrl}/categories`,
-    GET_COLLECTES: `${baseUrl}/collections`,
+    static GET_CATES(): string {
+        return `${baseUrl}/categories`
+    }
+    
+    static GET_COLLECTES(): string {
+        return `${baseUrl}/collections`
+    }
 
-    GET_COMMENTS: (animeKey: string, sort = 'lastest') => {
+    static GET_COMMENTS(animeKey: string, sort = 'lastest'): string {
         return `${baseUrl}/comments?id=${animeKey}&sort=${sort}`;
-    },
+    }
 
-    SEND_COMMENT: (animeKey: string, link_notify: string = "", receiver: string = "") => {
+    static SEND_COMMENT(animeKey: string, link_notify: string = "", receiver: string = ""): string {
         let commentApi = `/api/comments?id=${animeKey}`;
     
         if(link_notify !== "" && receiver !== "")
             commentApi += `&receiver=${receiver}&link_notify=${link_notify}`;
 
         return commentApi;
-    },
+    }
     
-    REPLY_COMMENT: (animeKey: string, user_reply: string) => {
-        let replyCommentApi = controller.GET_COMMENTS(animeKey);
+    static REPLY_COMMENT(animeKey: string, user_reply: string): string {
+        let replyCommentApi = ApiController.GET_COMMENTS(animeKey);
         replyCommentApi += `&user_reply=${user_reply}&sort="lastest"`;
         return replyCommentApi;
-    },
+    }
 
-    NOTIFY: (user_uid: string, notify = "", isCount = false) => {
+    static NOTIFY(user_uid: string, notify = "", isCount = false): string {
         let notifyApi = `${baseUrl}/notification?user=${user_uid}`;
         if(notify !== "")
             notifyApi += `&notify=${notify}`;
@@ -115,14 +126,14 @@ export const controller = {
         }
 
         return notifyApi;
-    },
+    }
 
-    SERIES: (key: string) => {
+    static SERIES(key: string): string {
         let url = `${baseUrl}/series/${key}`;
         return url;
-    },
+    }
 
-    LIKE_COMMENT: (id: string, idComment: string) => {
+    static LIKE_COMMENT(id: string, idComment: string): string {
         return `${baseUrl}/likes?id=${id}&idComment=${idComment}`;
     }
 }

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { controller } from "../../controller/apis/controller";
+import { ApiController } from "../../controller/apis/controller";
 import { requestGet } from "../../_axios/axiosClient";
 import Ranks from "../AreaLeft/component/AreaLeft";
 
@@ -9,7 +9,7 @@ export default function AnimeRanks(){
     const [animeViewWeek, setAnimeViewWeek] = useState([]);
 
     const getAnimeView = useCallback(function(sort){
-        requestGet(controller.GET_ANIME_RANK(sort))
+        requestGet(ApiController.GET_ANIME_RANK(sort))
         .then(response => {
             if(sort === "viewDay"){
                 setAnimeViewDay(response.data)

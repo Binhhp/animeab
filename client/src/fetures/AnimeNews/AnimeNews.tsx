@@ -4,7 +4,7 @@ import Layout from "../../layouts/Layout/Layout";
 import AreaCategories from "../../shared/AreaCategories/component/AreaCategories";
 import { requestGet } from "../../_axios/axiosClient";
 import AnimeRanks from "../../shared/Ranks/AnimeRanks";
-import { controller } from "../../controller/apis/controller";
+import { ApiController } from "../../controller/apis/controller";
 
 export default function AnimeNews() {
 
@@ -12,7 +12,7 @@ export default function AnimeNews() {
 
     const getAnimeNews = useCallback(async function(){
         await setState([]);
-        requestGet(controller.GET_ANIME_NEW(0))
+        requestGet(ApiController.GET_ANIME_NEW(0))
             .then(async (response) => {
                 await setState(response.data);
                 return;

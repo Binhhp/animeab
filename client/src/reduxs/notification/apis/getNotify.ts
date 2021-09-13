@@ -2,7 +2,7 @@ import { Dispatch } from 'react';
 
 import { notifyActions } from "../actions/notify.actions";
 import { requestGet } from "../../../_axios/axiosClient";
-import { controller } from "../../../controller/apis/controller";
+import { ApiController } from "../../../controller/apis/controller";
 
 export const notifyService = {
     notifies: getNotifies,
@@ -14,7 +14,7 @@ function getNotifies(user: any, notify = "") {
 
         await dispatch(notifyActions.request());
 
-        let url = controller.NOTIFY(user, notify);
+        let url = ApiController.NOTIFY(user, notify);
 
         const response = await requestGet(url);
         
@@ -30,7 +30,7 @@ function getNotifies(user: any, notify = "") {
 function getNotifyCount(user: any) {
     return async (dispatch: Dispatch<any>) => {
 
-        let apiURL = controller.NOTIFY(user, "", true);
+        let apiURL = ApiController.NOTIFY(user, "", true);
         const response = await requestGet(apiURL);
         
         if (response.code > 204) {

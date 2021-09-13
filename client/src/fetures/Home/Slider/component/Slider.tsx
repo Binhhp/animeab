@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import { updateView } from "../../../../reduxs/doSomethings";
 import { requestGet } from "../../../../_axios/axiosClient";
-import { controller } from "../../../../controller/apis/controller";
+import { ApiController } from "../../../../controller/apis/controller";
 
 const settings: any = {
     dot: true,
@@ -29,7 +29,7 @@ export default function SliderMovie() {
     const [animes, setAnimes] = useState([]);
 
     useEffect(() => {
-        requestGet(controller.GET_ANIME("", 0, true)).then(response => {
+        requestGet(ApiController.GET_ANIME("", 0, true)).then(response => {
             setAnimes(response.data)
         }).catch(error => console.log(error.message));
 

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { requestGet } from "../../../_axios/axiosClient";
 import AreaLeft from "../../../shared/AreaLeft/component/AreaLeft";
-import { controller } from "../../../controller/apis/controller";
+import { ApiController } from "../../../controller/apis/controller";
 
 function AnimeRelate({ categoryKey, animeKey }: any){
 
@@ -10,7 +10,7 @@ function AnimeRelate({ categoryKey, animeKey }: any){
     const [animeViewWeek, setAnimeViewWeek] = useState([]);
 
     const getAnimeView = useCallback(function(sort) {
-        requestGet(controller.GET_ANIME_RELATE(categoryKey, animeKey, sort))
+        requestGet(ApiController.GET_ANIME_RELATE(categoryKey, animeKey, sort))
         .then(response => {
             if(sort === "viewDay"){
                 setAnimeViewDay(response.data)

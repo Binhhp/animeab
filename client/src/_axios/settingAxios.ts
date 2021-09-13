@@ -1,8 +1,8 @@
+import { Cookies } from './cookies';
 import axios from "axios";
 import config from "../reduxs/store";
 import { userService } from "../reduxs/user/api/userService";
 import { requestPost } from "./axiosClient";
-import { cookies } from "./cookies";
 
 const apiURL = process.env.REACT_APP_API_URL;
 let options = {
@@ -25,9 +25,9 @@ let instanceAuth = axios.create({
 (function(){
 
     instanceAuth.interceptors.request.use(config => {
-        if(!cookies.checkCookie("ac_user")) return Promise.reject("Interval Server Error");
+        if(!Cookies.checkCookies("ac_user")) return Promise.reject("Interval Server Error");
 
-        const access_token = cookies.getCookie("ac_user");
+        const access_token = Cookies.getCookies("ac_user");
 
         if(access_token && config) {
             config.headers.Authorization = `Bearer ${access_token}`;
@@ -50,8 +50,8 @@ let instanceAuth = axios.create({
             try {
                 const rs = await refreshToken();
                 const { id_token, refresh_token } = rs?.data;
-                cookies.setCookie("rf_user", refresh_token, 30);
-                cookies.setCookie("ac_user", id_token, 30);
+                Cookies.setCookies("rf_user", refresh_token, 30);
+                Cookies.setCookies("ac_user", id_token, 30);
 
                 instance.defaults.headers.Authorization = `Bearer ${id_token}`;
                 orginalRequest.headers.Authorization = `Bearer ${id_token}`;
@@ -71,12 +71,12 @@ let instanceAuth = axios.create({
 
 export async function refreshToken() {
 
-    if(!cookies.checkCookie('rf_user')) {
+    if(!Cookies.checkCookies('rf_user')) {
         await config.store.dispatch(userService.logout());
         return Promise.reject("Error No Refresh");
     }
 
-    const refresh_token = cookies.getCookie('rf_user');
+    const refresh_token = Cookies.getCookies('rf_user');
 
     const data = {
         refresh_token: refresh_token

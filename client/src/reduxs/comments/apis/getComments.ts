@@ -3,14 +3,14 @@ import { Dispatch } from 'react';
 import { commentAction } from "../actions/comment.actions";
 import { requestAuthPost, requestGet } from "../../../_axios/axiosClient";
 import { toast } from "react-toastify";
-import { controller } from "../../../controller/apis/controller";
+import { ApiController } from "../../../controller/apis/controller";
 
 function getAll(animeKey: string, sort = 'lastest') {
     return async (dispatch: Dispatch<any>) => {
         
         await dispatch(commentAction.request());
 
-        let apiURL = controller.GET_COMMENTS(animeKey, sort);
+        let apiURL = ApiController.GET_COMMENTS(animeKey, sort);
         const response = await requestGet(apiURL);
         
         if (response.code > 204) {
@@ -97,7 +97,7 @@ const sendMessage = (message: ISendMessage) => {
                 reply_comment: message.comment?.key || message.comment
             };
     
-            let url = controller.SEND_COMMENT(message.animeKey, message.linkNotify, message.userRevice);
+            let url = ApiController.SEND_COMMENT(message.animeKey, message.linkNotify, message.userRevice);
     
             await requestAuthPost(url, JSON.stringify(person));
             await dispatch(commentAction.send_success());
@@ -107,7 +107,7 @@ const sendMessage = (message: ISendMessage) => {
 };
 
 async function getReplyComments(commentKey: string, animeKey: string) {
-    let apiURL = controller.REPLY_COMMENT(animeKey, commentKey);
+    let apiURL = ApiController.REPLY_COMMENT(animeKey, commentKey);
 
     const response = await requestGet(apiURL);
     return response.data;

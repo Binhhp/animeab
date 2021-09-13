@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { controller } from "../../../../controller/apis/controller";
+import { ApiController } from "../../../../controller/apis/controller";
 import { requestGet } from "../../../../_axios/axiosClient";
 import "../css/series.css";
 
@@ -14,7 +14,7 @@ function Series({ series, animeKey }: ISeries) {
 
     useEffect(() => {
         if(series){
-            requestGet(controller.SERIES(series)).then(response => {
+            requestGet(ApiController.SERIES(series)).then(response => {
                 
                 var data = response.data;
                 var result = data.sort(function(a: any, b: any) {

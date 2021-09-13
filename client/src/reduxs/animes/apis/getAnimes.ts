@@ -2,7 +2,7 @@
 import { animeService } from "../actions/anime.actions";
 import { requestGet, requestPost } from "../../../_axios/axiosClient";
 import { detailService } from "../actions/detail.actions";
-import { controller } from "../../../controller/apis/controller";
+import { ApiController } from "../../../controller/apis/controller";
 
 export const getAnimes = (animeKey = "") => {
     return async (dispatch: any) => {
@@ -13,7 +13,7 @@ export const getAnimes = (animeKey = "") => {
             dispatch(animeService.animesRequest());
         }
 
-        var url = controller.GET_ANIME(animeKey);
+        var url = ApiController.GET_ANIME(animeKey);
 
         const response = await requestGet(url);
         if (response.code > 204) {
@@ -41,7 +41,7 @@ export const getAnimesFilter = (keyword = "", cateFilters = [], collectFilters =
         dispatch(animeService.animesFilterRequest());
         var response: any = {};
         
-        var path = controller.GET_ANIME_FILTER(keyword);
+        var path = ApiController.GET_ANIME_FILTER(keyword);
 
         var data = {
             CategoryFilters: cateFilters,
@@ -69,7 +69,7 @@ export const getEpisodes = (animeKey: string, episode = "") => {
             await dispatch(detailService.episodeOfAnimeRequest());
         }
 
-        var url = controller.GET_EPISODE(animeKey, episode);
+        var url = ApiController.GET_EPISODE(animeKey, episode);
 
         const response = await requestGet(url);
         
@@ -94,7 +94,7 @@ export const getEpisodes = (animeKey: string, episode = "") => {
 
 export const getAnimeByCateOfCollect = (categoryKey = "", collectionId = "") => {
     return async (dispatch: any) => {
-        var url = controller.GET_ANIMECATE_OF_ANIMECOLLECT(categoryKey, collectionId);
+        var url = ApiController.GET_ANIMECATE_OF_ANIMECOLLECT(categoryKey, collectionId);
         
         if(categoryKey !== ""){
             await dispatch(animeService.animeCateRequest());
@@ -117,11 +117,11 @@ export const getAnimeByCateOfCollect = (categoryKey = "", collectionId = "") => 
 }
 
 export const updateViewAnime = (animeKey: string) => {
-    let urlView = controller.UPDATE_VIEW(animeKey);
+    let urlView = ApiController.UPDATE_VIEW(animeKey);
     return requestGet(urlView);
 }
 
 export const updateViewAnimeDetail = (animeKey: string, animeDetailKey: string) => {
-    let urlViewDetail = controller.UPDATE_VIEW(animeKey, animeDetailKey);
+    let urlViewDetail = ApiController.UPDATE_VIEW(animeKey, animeDetailKey);
     return requestGet(urlViewDetail);
 }
