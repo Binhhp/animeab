@@ -30,6 +30,7 @@ coverage
 /server/AnimeAB.Reponsitories/bin
 /server/AnimeAB.Reponsitories/app.config
 /server/packages
+/auto/packages
 /auto/AutoAnimeAB/packages
 /auto/AutoAnimeAB/.vs
 /auto/AutoAnimeAB/AnimeABSetup
