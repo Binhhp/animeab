@@ -18,28 +18,7 @@ namespace AnimeAB.Reponsitories.Reponsitories.AnimeSeries
         {
             database = FirebaseManager.Database(appSetting.AuthSecret, appSetting.DatabaseURL);
         }
-        /// <summary>
-        /// Get curent series
-        /// </summary>
-        /// <param name="series"></param>
-        /// <returns></returns>
-        public async Task<List<Entities.AnimeSeries>> GetCurentSeriesAsync(string series)
-        {
-            try
-            {
-                List<Entities.AnimeSeries> animeSeries = new List<Entities.AnimeSeries>();
-                var data = await database.GetAsync(Table.ANIMESERIES + "/" + series + "/" + Table.ANIMESERIESDETAIL);
-                if(data.Body != "null")
-                {
-                    animeSeries = (data.ResultAs<Dictionary<string, Entities.AnimeSeries>>()).Values.ToList();
-                }
-                return animeSeries;
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
-        }
+
         /// <summary>
         /// Get Series
         /// </summary>
@@ -72,7 +51,10 @@ namespace AnimeAB.Reponsitories.Reponsitories.AnimeSeries
         {
             try
             {
-                var item = new Series { Key = series, DateCreated = DateTime.UtcNow };
+                var data = await database.GetAsync(Table.ANIMESERIES + "/" + series);
+                if (data.Body != "null") return false;
+
+                var item = new Series { Key = series, DateCreated = DateTime.Now };
                 await database.SetAsync(Table.ANIMESERIES + "/" + series, item);
                 return true;
             }
@@ -86,15 +68,14 @@ namespace AnimeAB.Reponsitories.Reponsitories.AnimeSeries
         /// </summary>
         /// <param name="series"></param>
         /// <returns></returns>
-        public async Task<bool> DeleteSeriesAsync(string series)
+        public async Task<bool> DeleteSeriesAsync(string series, List<Animes> animes)
         {
             try
             {
-                var data = await database.GetAsync(Table.ANIMESERIES + "/" + series + "/" + Table.ANIMESERIESDETAIL);
-                if(data.Body != "null")
+                var list = animes.Where(x => x.Series.Equals(series)).ToList();
+                if(list.Count > 0)
                 {
-                    var animeSeries = (data.ResultAs<Dictionary<string, Entities.AnimeSeries>>()).Keys.ToList();
-                    await Task.WhenAll(animeSeries.Select(s => Task.Run(() => database.SetAsync(Table.ANIME + "/" + s + "/Series", ""))));
+                    list.ForEach(item => database.SetAsync(Table.ANIME + "/" + item.Key + "/Series", ""));
                 }
                 await database.DeleteAsync(Table.ANIMESERIES + "/" + series);
                 return true;
@@ -110,20 +91,12 @@ namespace AnimeAB.Reponsitories.Reponsitories.AnimeSeries
         /// <param name="series"></param>
         /// <param name="animeSeries"></param>
         /// <returns></returns>
-        public async Task<bool> CreateAnimeSeriesAsync(string series, Entities.AnimeSeries animeSeries)
+        public bool CreateAnimeSeriesAsync(string series, string[] idAnimes)
         {
             try
             {
-                var data = await database.GetAsync(Table.ANIMESERIES + "/" + series + "/" + Table.ANIMESERIESDETAIL + "/" + animeSeries.Key);
-                if(data.Body != "null")
-                {
-                    return false;
-                }
+                idAnimes.ToList().ForEach(id => database.SetAsync(Table.ANIME + "/" + id + "/Series", series));
 
-                var setAnimeSeries = Task.Run(() => database.SetAsync(Table.ANIMESERIES + "/" + series + "/" + Table.ANIMESERIESDETAIL + "/" + animeSeries.Key, animeSeries));
-                var setAnime = Task.Run(() => database.SetAsync(Table.ANIME + "/" + animeSeries.Key + "/Series", series));
-
-                await Task.WhenAll(setAnimeSeries, setAnime);
                 return true;
             }
             catch(Exception ex)
@@ -137,15 +110,11 @@ namespace AnimeAB.Reponsitories.Reponsitories.AnimeSeries
         /// <param name="series"></param>
         /// <param name="animeSeries"></param>
         /// <returns></returns>
-        public async Task<bool> DeleteAnimeSeriesAsync(string series, string animeSeries)
+        public bool DeleteAnimeSeriesAsync(string idAnime)
         {
             try
             {
-                var removeSeries = Task.Run(() => database.DeleteAsync(Table.ANIMESERIES + "/" + series + "/" + Table.ANIMESERIESDETAIL + "/" + animeSeries));
-                var deleteAnimeSeries = Task.Run(() => database.SetAsync(Table.ANIME + "/" + animeSeries + "/Series", ""));
-                
-                await Task.WhenAll(removeSeries, deleteAnimeSeries);
-                
+                database.SetAsync(Table.ANIME + "/" + idAnime + "/Series", "");
                 return true;
             }
             catch(Exception ex)

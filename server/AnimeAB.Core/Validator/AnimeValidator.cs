@@ -67,15 +67,10 @@ namespace AnimeAB.Core.Validator
                .WithMessage("Bạn cần nhập thời lượng anime.")
                .NotNull();
 
-            RuleFor(x => x.CollectionId)
-               .NotEmpty()
-               .WithMessage("Bạn cần chọn bộ sưu tập.")
-               .NotNull();
-
-            RuleFor(x => x.CategoryKey)
-               .NotEmpty()
-               .WithMessage("Bạn cần chọn thể loại.")
-               .NotNull();
+            RuleFor(x => x.Categories)
+                .NotEmpty()
+                .WithMessage("Bạn cần chọn thể loại anime")
+                .NotNull();
         }
     }
 }

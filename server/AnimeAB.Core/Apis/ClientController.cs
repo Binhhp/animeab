@@ -1,6 +1,7 @@
 ﻿
 using AnimeAB.Reponsitories.Domain;
 using AnimeAB.Reponsitories.DTO;
+using AnimeAB.Reponsitories.Entities;
 using AnimeAB.Reponsitories.Interface;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -169,6 +170,48 @@ namespace AnimeAB.Core.Apis
             {
                 var result = await _unitOfWork.RefreshToken.RefreshTokenAsync(refreshToken.refresh_token);
                 return Ok(result);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [Route("favorite")]
+        [HttpGet]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> GetAnimeFavorite(
+            [FromQuery] string uid,
+            [FromQuery] string idAnime)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(uid)) return BadRequest("UID_ISVALID");
+                if(!string.IsNullOrWhiteSpace(idAnime))
+                {
+                    _unitOfWork.AnimeFavorite.RemoveAnime(idAnime, uid);
+                    return NoContent();
+                }
+
+                IEnumerable<AnimeFavoriteDomain> result = await _unitOfWork.AnimeFavorite.GetAnimes(uid);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [Route("favorite")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPost]
+        [Consumes(MediaTypeNames.Application.Json)]
+        public IActionResult PostAnimeFavorite([FromBody]AnimeFavorite animeFavorite)
+        {
+            try
+            {
+                _unitOfWork.AnimeFavorite.AddAnime(animeFavorite);
+                return NoContent();
             }
             catch(Exception ex)
             {

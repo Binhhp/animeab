@@ -134,7 +134,6 @@ namespace AnimeAB.Reponsitories.Reponsitories.Anime
                 anime.ViewWeeks = r.Next(801, 1500);
                 anime.ViewMonths = r.Next(1501, 4000);
                 anime.DateCreated = DateTime.UtcNow;
-                anime.DateRelease = DateTime.UtcNow;
                 anime.IsStatus = 1;
 
                 await database.SetAsync(Table.ANIME + "/" + anime.Key, anime);

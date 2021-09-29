@@ -51,10 +51,12 @@ namespace AnimeAB.Reponsitories.Reponsitories.Account
 
                 var user = new AnimeUser
                 {
+                    LocalId = userCreated.LocalId,
                     Email = userCreated.Email,
                     DisplayName = userCreated.DisplayName,
                     IsEmailVerified = userCreated.IsEmailVerified,
-                    Role = account.Role
+                    Role = account.Role,
+                    PhotoUrl = userCreated.PhotoUrl
                 };
 
                 Task.Run(() => database.SetAsync(Table.USERS + "/" + userCreated.LocalId, user));
@@ -74,7 +76,7 @@ namespace AnimeAB.Reponsitories.Reponsitories.Account
         /// </summary>
         /// <param name="localId"></param>
         /// <returns></returns>
-        private async Task NotifySuccessRegister(string localId)
+        private void NotifySuccessRegister(string localId)
         {
             var notification = new Notification
             {
@@ -85,7 +87,7 @@ namespace AnimeAB.Reponsitories.Reponsitories.Account
                 UserRevice = localId
             };
 
-            await Task.Run(() => database.SetAsync(Table.NOTIFICATION + "/" + localId + "/" + notification.Key, notification));
+            database.SetAsync(Table.NOTIFICATION + "/" + localId + "/" + notification.Key, notification);
         }
         /// <summary>
         /// update email child function
@@ -93,9 +95,9 @@ namespace AnimeAB.Reponsitories.Reponsitories.Account
         /// <param name="localId"></param>
         /// <param name="isEmail"></param>
         /// <returns></returns>
-        private async Task UpdateEmail(string localId, bool isEmail)
+        private void UpdateEmail(string localId, bool isEmail)
         {
-            await Task.Run(() => database.SetAsync(Table.USERS + "/" + localId + "/IsEmailVerified", isEmail));
+            database.SetAsync(Table.USERS + "/" + localId + "/IsEmailVerified", isEmail);
         }
         /// <summary>
         /// Sign in email password
@@ -122,7 +124,9 @@ namespace AnimeAB.Reponsitories.Reponsitories.Account
 
                 if (userQuery.IsEmailVerified != userLoggined.IsEmailVerified)
                 {
-                    await Task.WhenAll(UpdateEmail(userLoggined.LocalId, userLoggined.IsEmailVerified), NotifySuccessRegister(userLoggined.LocalId));
+                    Parallel.Invoke(
+                        () => UpdateEmail(userLoggined.LocalId, userLoggined.IsEmailVerified), 
+                        () =>  NotifySuccessRegister(userLoggined.LocalId));
                 }
 
                 if (isClient)
@@ -261,11 +265,13 @@ namespace AnimeAB.Reponsitories.Reponsitories.Account
                 var firebaseAuth = await authProvider.UpdateProfileAsync(profile.Token, profile.DisplayName, photoURL);
 
                 var userUpdated = firebaseAuth.User;
-                var user = new AnimeUser
+                var user = new Client
                 {
                     Email = userUpdated.Email,
                     DisplayName = userUpdated.DisplayName,
-                    IsEmailVerified = userUpdated.IsEmailVerified
+                    IsEmailVerified = userUpdated.IsEmailVerified,
+                    PhotoUrl = photoURL,
+                    LocalId = userUpdated.LocalId
                 };
 
                 if (!string.IsNullOrWhiteSpace(profile.Email))
@@ -285,8 +291,7 @@ namespace AnimeAB.Reponsitories.Reponsitories.Account
                     }
                 }
 
-                await Task.Run(() => database.UpdateAsync(Table.USERS + "/" + userUpdated.LocalId, user));
-
+                await database.UpdateAsync(Table.USERS + "/" + userUpdated.LocalId, user);
                 return Success(user);
             }
             catch(Exception ex)

@@ -10,6 +10,5 @@ namespace AnimeAB.Reponsitories.Entities
     {
         public string Key { get; set; }
         public DateTime DateCreated { get; set; }
-        public List<AnimeSeries> AnimeSeries { get; set; }
     }
 }

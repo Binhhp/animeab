@@ -4,6 +4,7 @@ using AnimeAB.Reponsitories.Reponsitories.AnimeDetail;
 using AnimeAB.Reponsitories.Reponsitories.AnimeSeries;
 using AnimeAB.Reponsitories.Reponsitories.Category;
 using AnimeAB.Reponsitories.Reponsitories.Collection;
+using AnimeAB.Reponsitories.Reponsitories.Favorite;
 using AnimeAB.Reponsitories.Reponsitories.MessageHub;
 using AnimeAB.Reponsitories.Reponsitories.TokenManager;
 using System;
@@ -24,5 +25,6 @@ namespace AnimeAB.Reponsitories.Interface
         IReponsitoryAnimeSeries AnimeSeries { get; }
         ICommentPlugin CommentPlugin { get; }
         IRefreshTokenGuide RefreshToken { get; }
+        IReponsitoryFavorite AnimeFavorite { get; }
     }
 }

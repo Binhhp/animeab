@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 using AnimeAB.Reponsitories.DTO;
 using Microsoft.Extensions.Caching.Memory;
 using AnimeAB.Core.CacheMemory;
+using AnimeAB.Core.Filters;
+using AnimeAB.Core.ApiResponse;
 
 namespace AnimeAB.Core.Apis
 {
@@ -25,15 +27,20 @@ namespace AnimeAB.Core.Apis
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IMemoryCache _cache;
-        public HomeWebsiteController(IUnitOfWork unitOfWork, IMemoryCache cache)
+        private readonly IMapper _mapper;
+        public HomeWebsiteController(
+            IUnitOfWork unitOfWork, 
+            IMemoryCache cache, 
+            IMapper mapper)
         {
             this.unitOfWork = unitOfWork;
-            this._cache = cache;
+            _cache = cache;
+            _mapper = mapper;
         }
 
         [Route("animes")]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Animes>>> GetAnimes
+        public async Task<ActionResult<IEnumerable<AnimeResponse>>> GetAnimes
             ([FromQuery]AnimeFilterRoot root)
         {
             try
@@ -47,105 +54,59 @@ namespace AnimeAB.Core.Apis
                 }
 
                 animes = cacheEntry;
-                //filter keyword
-                if(!string.IsNullOrWhiteSpace(root.q)){
-
-                    Regex rg = new Regex(root.q.ToLower());
-                    animes = animes.Where(x => (rg.Matches(x.Title.ToLower())).Count() > 0 || (rg.Matches(x.TitleVie.ToLower())).Count() > 0).ToList();
-                }
                 //filter category
                 if (!string.IsNullOrWhiteSpace(root.cate))
                 {
-                    if (root.offer) animes = animes.Where(x => !x.CategoryKey.Equals(root.cate)).ToList();
-                    else animes = animes.Where(x => x.CategoryKey.Equals(root.cate)).ToList();
+                    if (root.cate.IndexOf(",") > -1)
+                    {
+                        animes = animes.Where(x => x.Categories.Values.Any(x => root.cate.IndexOf(x.Key) > -1)).ToList();
+                    }
+                    else
+                    {
+                        animes = animes.Where(x => x.Categories.ContainsKey(root.cate)).ToList();
+                    }
                 }
+
                 //filter key anime
-                if(!string.IsNullOrWhiteSpace(root.id))
-                {
+                if (!string.IsNullOrWhiteSpace(root.id))
                     animes = animes.Where(x => !x.Key.Equals(root.id)).ToList();
-                }
                 //filter collection 
-                if(!string.IsNullOrWhiteSpace(root.collect))
-                {
+                if (!string.IsNullOrWhiteSpace(root.collect))
                     animes = animes.Where(x => x.CollectionId.Equals(root.collect)).ToList();
-                }
                 //filter isStatus
-                if(root.stus > 0)
-                {
-                    animes = animes.Where(x => x.IsStatus < root.stus || x.IsStatus == root.stus).ToList();
-                }
-                if(root.completed > 0)
-                {
-                    animes = animes.Where(x => x.IsStatus == root.completed).ToList();
-                }
-                if(root.trend > 0)
-                {
-                    animes = animes.Where(x => x.IsStatus > root.trend || x.IsStatus == root.trend).ToList();
-                }
+                if (!string.IsNullOrWhiteSpace(root.status))
+                    animes = animes.FilterStatus(root.status).ToList();
+
                 //filter banner
                 if (root.banner)
-                {
                     animes = animes.Where(x => x.IsBanner == true && x.IsStatus > 1).ToList();
+
+                if (!string.IsNullOrWhiteSpace(root.type))
+                    animes = animes.FilterType(root.type).ToList();
+
+                //rank
+                if (root.rank)
+                {
+                    AnimeTrending animeTrending = animes.GetRanks(_mapper);
+                    return Ok(animeTrending);
                 }
                 //sort orderby
-                if (!string.IsNullOrWhiteSpace(root.asc))
-                {
-                    if (root.asc.Equals("views")) animes = animes.OrderBy(x => x.Views).ToList();
-                    if (root.asc.Equals("date")) animes = animes.OrderBy(x => x.DateRelease).ToList();
-                    if (root.asc.Equals("viewDay")) animes = animes.OrderBy(x => x.ViewDays).ToList();
-                    if (root.asc.Equals("viewWeek")) animes = animes.OrderBy(x => x.ViewWeeks).ToList();
-                    if (root.asc.Equals("viewMonth")) animes = animes.OrderBy(x => x.ViewMonths).ToList();
-                }
-                //sort order by descending
-                if (!string.IsNullOrWhiteSpace(root.des))
-                {
-                    if (root.des.Equals("views")) animes = animes.OrderByDescending(x => x.Views).ToList();
-                    if (root.des.Equals("date")) animes = animes.OrderByDescending(x => x.DateRelease).ToList();
-                    if (root.des.Equals("viewDay")) animes = animes.OrderByDescending(x => x.ViewDays).ToList();
-                    if (root.des.Equals("viewWeek")) animes = animes.OrderByDescending(x => x.ViewWeeks).ToList();
-                    if (root.des.Equals("viewMonth")) animes = animes.OrderByDescending(x => x.ViewMonths).ToList();
-                }
-                //take and random
-                if (root.random && root.take > 0)
-                {
-                    var animesRandom = new List<Animes>();
-                    Random r = new Random();
-                    for(var i = 0; i <= root.take; i++)
-                    {
-                        if(animesRandom.Count > 0)
-                        {
-                            while (true)
-                            {
-                                var index = r.Next(0, animes.Count);
-                                var anisRandom = animes[index];
-                                var checkItem = animesRandom.FirstOrDefault(x => x.Key.Equals(anisRandom.Key));
-                                if (checkItem == null)
-                                {
-                                    animesRandom.Add(anisRandom);
-                                    break;
-                                }
-                                else
-                                {
-                                    continue;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            var index = r.Next(0, animes.Count);
-                            var anisRandom = animes[index];
-                            animesRandom.Add(anisRandom);
-                        }
-                    }
+                if (!string.IsNullOrWhiteSpace(root.sort_by) && !string.IsNullOrWhiteSpace(root.order))
+                    animes = animes.SingleSort(root.sort_by, root.order);
 
-                    animes = animesRandom;
-                }
+                if (!string.IsNullOrWhiteSpace(root.sort))
+                    animes = animes.MultipleSort(root.sort);
+
+                //random element
+                if (root.random > 0)
+                    animes = animes.Random(root.random);
+
                 //take index
-                if(root.take > 0 && root.random == false)
-                {
+                if (root.take > 0)
                     animes = animes.Take(root.take).ToList();
-                }
-                return Ok(animes);
+
+                IEnumerable<AnimeResponse> responses = _mapper.Map<IEnumerable<AnimeResponse>>(animes);
+                return Ok(responses);
             }
             catch
             {
@@ -155,8 +116,8 @@ namespace AnimeAB.Core.Apis
 
         [Route("animes")]
         [HttpPost]
-        public async Task<ActionResult<IEnumerable<Animes>>> GetAnimesFiltered(
-            [FromQuery]string keyword, [FromBody]AnimeFilter filter)
+        public async Task<ActionResult<IEnumerable<AnimeResponse>>> PostAnimeFilter(
+            [FromBody]AnimeFilter filter)
         {
             try
             {
@@ -169,28 +130,43 @@ namespace AnimeAB.Core.Apis
                 }
 
                 animes = cacheEntry;
+                //filter keyword
+                if (!string.IsNullOrWhiteSpace(filter.q))
+                {
 
-                if (!string.IsNullOrWhiteSpace(keyword)){
-                    Regex rg = new Regex(keyword.ToLower());
+                    Regex rg = new Regex(filter.q.ToLower());
                     animes = animes.Where(x => (rg.Matches(x.Title.ToLower())).Count() > 0 || (rg.Matches(x.TitleVie.ToLower())).Count() > 0).ToList();
                 }
-                if(filter.CategoryFilters.Count() > 0)
+                else
                 {
-                    animes = animes.Where(x => filter.CategoryFilters.Contains(x.CategoryKey)).OrderByDescending(x => x.Views).ToList();
+                    animes = animes.OrderByDescending(x => x.DateRelease).ToList();
                 }
-                if(filter.CollectFilters.Count() > 0)
+                //filter cate
+                if (!string.IsNullOrWhiteSpace(filter.cate))
                 {
-                    animes = animes.Where(x => filter.CollectFilters.Contains(x.CollectionId)).OrderByDescending(x => x.Views).ToList();
+                    List<string> cateFilters = filter.cate.Split("+").ToList();
+                    animes = animes.Where(x => 
+                        x.Categories.Keys.ToList().Intersect(cateFilters).Count() == cateFilters.Count)
+                            .OrderByDescending(x => x.DateRelease)
+                            .ToList();
                 }
 
-                return Ok(animes.ToList());
+                if (!string.IsNullOrWhiteSpace(filter.collect))
+                {
+                    List<string> collectFilters = filter.collect.Split("+").ToList();
+                    animes = animes.Where(x => collectFilters.Contains(x.CollectionId))
+                        .OrderByDescending(x => x.DateRelease)
+                        .ToList();
+                }
+
+                IEnumerable<AnimeResponse> responses = _mapper.Map<IEnumerable<AnimeResponse>>(animes);
+                return Ok(responses);
             }
-            catch
+            catch(Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex.Message);
             }
         }
-
 
         [Route("animes/{animeKey}/views")]
         [HttpGet]
@@ -209,7 +185,8 @@ namespace AnimeAB.Core.Apis
 
         [Route("animes/{animeKey}/{animeDetailKey}/views")]
         [HttpGet]
-        public async Task<IActionResult> UpdateViewAnime([FromRoute]string animeKey, [FromRoute]string animeDetailKey)
+        public async Task<IActionResult> UpdateViewAnime(
+            [FromRoute]string animeKey, [FromRoute]string animeDetailKey)
         {
             try
             {
@@ -225,19 +202,41 @@ namespace AnimeAB.Core.Apis
         [Route("animes/episodes")]
         [HttpGet]
         public async Task<IActionResult> GetAnimeEpisode
-            ([FromQuery]string id, [FromQuery]string episode = "")
+            ([FromQuery]string id, 
+            [FromQuery]string episode = "",
+            [FromQuery]int sv = 0)
         {
             try
             {
                 if(!string.IsNullOrWhiteSpace(episode))
                 {
-                    AnimeDetailed episodeCurrent = await unitOfWork.AnimeDetailEntity.GetAnimeDetailAsync(id, episode);
-                    return Ok(episodeCurrent);
+                    AnimeDetailed episodeCurrent = 
+                        await unitOfWork.AnimeDetailEntity
+                             .GetAnimeDetailAsync(id, episode);
+
+                    if(sv == 1)
+                    {
+                        EpisodeAnimeVsub vuighe = _mapper.Map<EpisodeAnimeVsub>(episodeCurrent);
+                        return Ok(vuighe);
+                    }
+
+                    if(sv == 2)
+                    {
+                        EpisodeVuighe vuighe = _mapper.Map<EpisodeVuighe>(episodeCurrent);
+                        return Ok(vuighe);
+                    }
+
+                    EpisodeResponse response = _mapper.Map<EpisodeResponse>(episodeCurrent);
+                    return Ok(response);
                 }
                 else
                 {
-                    IEnumerable<AnimeDetailed> animeDetaileds = await unitOfWork.AnimeDetailEntity.GetCurrentAnimeAsync(id);
-                    return Ok(animeDetaileds);
+                    IEnumerable<AnimeDetailed> animeDetaileds = 
+                        await unitOfWork.AnimeDetailEntity.GetCurrentAnimeAsync(id);
+
+                    IEnumerable<EpisodeResponse> responses = 
+                        _mapper.Map<IEnumerable<EpisodeResponse>>(animeDetaileds);
+                    return Ok(responses);
                 }
             }
             catch
@@ -246,14 +245,25 @@ namespace AnimeAB.Core.Apis
             }
         }
 
-        [Route("animes/{animeKey}")]
+        [Route("animes/{id}")]
         [HttpGet]
-        public async Task<IActionResult> GetAnimeDetail([FromRoute]string animeKey)
+        public async Task<ActionResult<AnimeResponse>> GetAnimeDetail([FromRoute]string id)
         {
             try
             {
-                var anime = await unitOfWork.AnimeEntity.GetCurentAnimeAsync(animeKey);
-                return Ok(anime);
+                IEnumerable<Collections> collections = new List<Collections>();
+                if (!_cache.TryGetValue(CacheKeys.CollectionsEntry, out IEnumerable<Collections> cacheEntry))
+                {
+                    cacheEntry = await unitOfWork.CollectionEntity.GetCollectionsAsync();
+                    var cacheEntryOptions = new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromDays(365));
+                    _cache.Set(CacheKeys.CollectionsEntry, cacheEntry, cacheEntryOptions);
+                }
+                collections = cacheEntry.ToList();
+
+                var anime = await unitOfWork.AnimeEntity.GetCurentAnimeAsync(id);
+                AnimeResponse response = _mapper.Map<AnimeResponse>(anime);
+                response.Collection = collections.FirstOrDefault(x => x.Key.Equals(anime.CollectionId)).Title + " " + anime.DateRelease.Year;
+                return Ok(response);
             }
             catch
             {
@@ -307,12 +317,24 @@ namespace AnimeAB.Core.Apis
 
         [Route("series/{series}")]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<AnimeSeries>>> GetAnimeSeries(string series)
+        public async Task<ActionResult<IEnumerable<AnimeSeriesResponse>>> GetAnimeSeries(string series)
         {
             try
             {
-                var animeSeries = await unitOfWork.AnimeSeries.GetCurentSeriesAsync(series);
-                return animeSeries;
+                List<Animes> animes = new List<Animes>();
+                if (!_cache.TryGetValue(CacheKeys.AnimeEntry, out List<Animes> cacheEntry))
+                {
+                    cacheEntry = await unitOfWork.AnimeEntity.GetAnimesAsync();
+                    var cacheEntryOptions = new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromDays(7));
+                    _cache.Set(CacheKeys.AnimeEntry, cacheEntry, cacheEntryOptions);
+                }
+
+                animes = cacheEntry;
+                animes = animes.Where(x => x.Series.Equals(series)).OrderByDescending(x => x.DateRelease).ToList();
+                if(animes.Count == 0) return NotFound();
+
+                IEnumerable<AnimeSeriesResponse> animeSeries = _mapper.Map<IEnumerable<AnimeSeriesResponse>>(animes);
+                return Ok(animeSeries);
             }
             catch
             {

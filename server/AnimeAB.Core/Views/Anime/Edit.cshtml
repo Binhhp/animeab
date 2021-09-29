@@ -28,23 +28,41 @@
                                name="title" class="form-control edit" data-keyboard="Title" />
                     </div>
                     <div class="col-6">
-                        <label class="text-left">Tiêu đề bổ sung</label>
-                        <input class="form-control edit" name="titlevie" data-keyboard="TitleVie" type="text" placeholder="Tiêu đề" />
+                        <label class="text-left">Tiêu đề bổ sung, tìm kiếm</label>
+                        <input class="form-control edit"
+                               name="titlevie"
+                               data-keyboard="TitleVie"
+                               type="text"
+                               placeholder="Tiêu đề bổ sung, tìm kiếm" />
                     </div>
                 </div>
                 <div class="col-12 flex-wrap mb-3 d-flex">
                     <div class="col-6">
-                        <label class="text-left">Bộ sưu tập</label>
-                        <select name="collectionid" data-keyboard="CollectionId" class="form-control edit">
-                            @foreach (var item in (IEnumerable<AnimeAB.Reponsitories.Entities.Collections>)ViewData["Collections"])
-                            {
-                                <option value="@item.Key">@item.Title</option>
-                            }
-                        </select>
+                        <div class="row">
+                            <div class="col-6">
+                                <label class="text-left">Kiểu</label>
+                                <select class="form-control edit" name="type" data-keyboard="Type">
+                                    <option value="TV" selected>TV</option>
+                                    <option value="OVA">OVA</option>
+                                    <option value="Movie">Movie</option>
+                                    <option value="Special">Special</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <label class="text-left">Season</label>
+                                <input type="text" name="seasonedit" placeholder="Season" class="form-control edit" data-keyboard="Season" />
+                            </div>
+                        </div>
                     </div>
                     <div class="col-6">
+                        <label class="text-left">Thời gian phát hành</label>
+                        <input type="text" placeholder="Thời gian phát hành" id="date-edit" name="date" class="form-control edit" data-keyboard="DateRelease" />
+                    </div>
+                </div>
+                <div class="col-12 mb-1">
+                    <div class="col-12">
                         <label class="text-left">Thể loại</label>
-                        <select name="categorykey" data-keyboard="CategoryKey" class="form-control edit">
+                        <select id="categories" name="categories[]" data-keyboard="Categories" class="form-control edit" style="width: 100%" multiple="">
                             @foreach (var item in (IEnumerable<AnimeAB.Reponsitories.Entities.Categories>)ViewData["Categories"])
                             {
                                 <option value="@item.Key">@item.Title</option>
@@ -70,22 +88,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-6">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label class="text-left">Trainer</label>
-                                <input type="text" placeholder="Trainer" name="trainer" data-keyboard="Trainer" class="form-control edit" />
-                            </div>
-                            <div class="col-6">
-                                <label class="text-left">Kiểu</label>
-                                <select class="form-control edit" name="type" data-keyboard="Type">
-                                    <option value="TV" selected>TV</option>
-                                    <option value="OVA">OVA</option>
-                                    <option value="Movie">Movie</option>
-                                    <option value="Special">Special</option>
-                                </select>
-                            </div>
-                        </div>
+                    <div class="col-md-6">
+                        <label class="text-left">Trainer</label>
+                        <input type="text" placeholder="Trainer" name="trainer" data-keyboard="Trainer" class="form-control edit" />
                     </div>
                 </div>
                 <div class="col-12 mb-3">

@@ -122,7 +122,6 @@ namespace AnimeAB.Reponsitories.Reponsitories.AnimeDetail
 
                 var uploadMovie = Task.Run(() => database.SetAsync(pathDatabase, movie));
 
-                anime.DateRelease = DateTime.Now;
                 anime.EpisodeMoment += 1;
                 if(anime.EpisodeMoment == 1)
                 {

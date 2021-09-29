@@ -1,10 +1,13 @@
-﻿using AnimeAB.Reponsitories.Entities;
+﻿using AnimeAB.Core.ApiResponse;
+using AnimeAB.Core.CacheMemory;
+using AnimeAB.Reponsitories.Entities;
 using AnimeAB.Reponsitories.Interface;
 using AnimeAB.Reponsitories.Utils;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +15,8 @@ using System.Threading.Tasks;
 
 namespace AnimeAB.Core.Controllers
 {
-    [Authorize(Policy = RoleSchemes.Admin, AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [Authorize(Policy = RoleSchemes.Admin, 
+        AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     [Route("anime/series")]
     public class AnimeSeriesController : Controller
     {
@@ -62,8 +66,14 @@ namespace AnimeAB.Core.Controllers
         {
             try
             {
-                var data = await unitOfWork.AnimeSeries.GetCurentSeriesAsync(series);
-                return Ok(new { data = data });
+                List<Animes> animes = await unitOfWork.AnimeEntity.GetAnimesAsync();
+                animes = animes.Where(x => x.Series.Equals(series)).ToList();
+
+                if (animes.Count == 0) return NotFound();
+
+                IEnumerable<AnimeSeriesResponse> animeSeries = mapper.Map<IEnumerable<AnimeSeriesResponse>>(animes);
+
+                return Ok(new { data = animeSeries });
             }
             catch
             {
@@ -77,7 +87,9 @@ namespace AnimeAB.Core.Controllers
         {
             try
             {
-                await unitOfWork.AnimeSeries.DeleteSeriesAsync(series);
+                List<Animes> animes = await unitOfWork.AnimeEntity.GetAnimesAsync();
+
+                await unitOfWork.AnimeSeries.DeleteSeriesAsync(series, animes);
                 return NoContent();
             }
             catch
@@ -88,13 +100,9 @@ namespace AnimeAB.Core.Controllers
 
         [HttpPost]
         [Route("{series}")]
-        public async Task<IActionResult> CreateAnimeSeries(string series, AnimeSeries animeSeries)
+        public IActionResult CreateAnimeSeries(string series, string[] idAnimes)
         {
-            var anime = await unitOfWork.AnimeEntity.GetCurentAnimeAsync(animeSeries.Key);
-            animeSeries.LinkEnd = anime.LinkEnd;
-            animeSeries.LinkStart = anime.LinkStart;
-
-            var result = await unitOfWork.AnimeSeries.CreateAnimeSeriesAsync(series, animeSeries);
+            var result = unitOfWork.AnimeSeries.CreateAnimeSeriesAsync(series, idAnimes);
             if (!result)
             {
                 return BadRequest("Anime đã được thêm vào series");
@@ -103,12 +111,12 @@ namespace AnimeAB.Core.Controllers
         }
 
         [HttpDelete]
-        [Route("{series}/{animeSeries}")]
-        public async Task<IActionResult> DeleteAnimeSeries(string series, string animeSeries)
+        [Route("{series}/{idAnime}")]
+        public IActionResult DeleteAnimeSeries(string idAnime)
         {
             try
             {
-                await unitOfWork.AnimeSeries.DeleteAnimeSeriesAsync(series, animeSeries);
+                unitOfWork.AnimeSeries.DeleteAnimeSeriesAsync(idAnime);
                 return Ok();
             }
             catch

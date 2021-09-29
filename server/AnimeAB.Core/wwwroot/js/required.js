@@ -17,6 +17,13 @@ var rules = {
     password_confirm: {
         equalTo: "#password"
     },
+    season: {
+        required: true,
+        maxlength: 500
+    },
+    date: {
+        required: true
+    },
     key: {
         required: true,
         maxlength: 100
@@ -45,7 +52,7 @@ var rules = {
     },
     titlevie: {
         required: true,
-        maxlength: 150
+        maxlength: 1050
     },
     description: {
         required: true,
@@ -111,6 +118,13 @@ var messages = {
         required: "Bạn cần nhập session của anime",
         maxlength: "Session nhập không quá 50 ký tự"
     },
+    season: {
+        required: "Bạn cần nhập season của anime",
+        maxlength: "Session nhập không quá 500 ký tự"
+    },
+    date: {
+        required: "Bạn cần nhập năm phát hành của anime"
+    },
     year: {
         required: "Bạn cần nhập năm trình chiếu",
         number: "Năm trình chiếu phải là số",
@@ -127,7 +141,7 @@ var messages = {
     },
     titlevie: {
         required: "Bạn cần nhập tiêu đề bổ sung",
-        maxlength: "Tiếu đề bổ sung không quá 150 ký tự"
+        maxlength: "Tiếu đề bổ sung không quá 1050 ký tự"
     },
     description: {
         required: "Bạn cần nhập mô tả",

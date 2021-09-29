@@ -16,12 +16,13 @@ namespace AnimeAB.Reponsitories.Domain
         public string TitleVie { get; set; }
         public string Description { get; set; }
         public int MovieDuration { get; set; }
+        public DateTime DateRelease { get; set; }
         public string Trainer { get; set; }
         public int Episode { get; set; }
         public string CollectionId { get; set; }
-        public string CategoryKey { get; set; }
+        public Dictionary<string, Categories> Categories { get; set; }
         public int IsStatus { get; set; }
         public string Type { get; set; }
-        public string FacebookUrl { get; set; }
+        public string Season { get; set; }
     }
 }

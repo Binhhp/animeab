@@ -8,7 +8,8 @@ namespace AnimeAB.Reponsitories.DTO
 {
     public class AnimeFilter
     {
-        public string[] CategoryFilters { get; set; }
-        public string[] CollectFilters{ get; set; }
+        public string q { get; set; }
+        public string cate { get; set; }
+        public string collect { get; set; }
     }
 }

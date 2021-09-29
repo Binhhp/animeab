@@ -51,9 +51,9 @@ namespace AnimeAB.Core.Controllers
         {
             var list = await unitOfWork.AnimeEntity.GetAnimesAsync();
 
-            if(!string.IsNullOrWhiteSpace(filter.Category) && filter.Category != "all")
+            if (!string.IsNullOrWhiteSpace(filter.Category) && filter.Category != "all")
             {
-                list = list.Where(x => x.CategoryKey.Equals(filter.Category)).ToList();
+                list = list.Where(x => x.Categories.ContainsKey(filter.Category)).ToList();
             }
 
             if (!string.IsNullOrWhiteSpace(filter.Collection) && filter.Collection != "all")
@@ -86,13 +86,16 @@ namespace AnimeAB.Core.Controllers
         {
             try
             {
-                anime.FacebookUrl = "https://animeab.tk/" + anime.Key;
                 if (ModelState.IsValid)
                 {
                     if (anime.FileUpload == null && string.IsNullOrWhiteSpace(anime.Image))
                         return BadRequest("Bạn cần upload ảnh hoặc thêm url ảnh");
 
                     Animes item = _mapper.Map<Animes>(anime);
+
+                    var categories = await unitOfWork.CategoriesEntity.GetCategoriesAsync();
+                    var cateUpdate = categories.Where(x => anime.Categories.Contains(x.Key)).ToDictionary(p => p.Key, p => p);
+                    item.Categories = cateUpdate;
 
                     if (anime.FileUpload != null)
                     {
@@ -145,6 +148,11 @@ namespace AnimeAB.Core.Controllers
                 if (ModelState.IsValid)
                 {
                     AnimesDomain item = _mapper.Map<AnimesDomain>(animeDto);
+
+                    var categories = await unitOfWork.CategoriesEntity.GetCategoriesAsync();
+                    var cateUpdate = categories.Where(x => animeDto.Categories.Contains(x.Key)).ToDictionary(p => p.Key, p => p);
+                    item.Categories = cateUpdate;
+
                     if (animeDto.FileUpload != null)
                     {
                         if (animeDto.FileUpload.Length == 0) return BadRequest();
@@ -246,9 +254,9 @@ namespace AnimeAB.Core.Controllers
         public string Trainer { get; set; }
         public int Episode { get; set; }
         public int MovieDuration { get; set; }
-        public string CollectionId { get; set; }
-        public string CategoryKey { get; set; }
+        public DateTime DateRelease { get; set; }
         public string Type { get; set; }
-        public string FacebookUrl { get; set; }
+        public string[] Categories { get; set; }
+        public string Season { get; set; }
     }
 }

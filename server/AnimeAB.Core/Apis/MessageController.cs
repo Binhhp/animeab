@@ -16,6 +16,8 @@ using AnimeAB.Reponsitories.Entities;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using AnimeAB.Core.ApiResponse;
+using AnimeAB.Core.Filters;
 
 namespace AnimeAB.Core.Apis
 {
@@ -48,11 +50,19 @@ namespace AnimeAB.Core.Apis
             try
             {
                 IEnumerable<Comment> comments = await _unitOfWork.CommentPlugin.GetAsync(id);
-                if (sort == "lastest") comments = comments.OrderByDescending(x => x.When).ToList();
-                if (sort == "oldest") comments = comments.OrderBy(x => x.When).ToList();
                 if (!string.IsNullOrWhiteSpace(user_reply)) comments = comments.Where(x => x.ReplyComment.Equals(user_reply)).ToList();
 
-                return Ok(comments);
+                IEnumerable<AnimeUser> users = await _unitOfWork.AccountEntity.GetUsersAsync();
+
+                IEnumerable<CommentResponse> responses = comments.ToListResponse(users, sort,
+                    (x, sort) =>
+                    {
+                        return sort == "lastest" 
+                        ? x.OrderByDescending(x => x.When).ToList()
+                        : x.OrderBy(x => x.When).ToList();
+                    });
+
+                return Ok(responses);
             }
             catch(Exception ex)
             {
@@ -63,14 +73,24 @@ namespace AnimeAB.Core.Apis
         [Route("comments")]
         [HttpPost]
         public IActionResult PostComment(
-            [FromBody]CommentDto commentDto, [FromQuery]string id, [FromQuery]string receiver = "", [FromQuery]string link_notify = "")
+            [FromBody]CommentDto commentDto, 
+            [FromQuery]string id, 
+            [FromQuery]string receiver = "", 
+            [FromQuery]string link_notify = "")
         {
             try
             {
                 Comment comment = _mapper.Map<Comment>(commentDto);
                 Comment commentAdded = _unitOfWork.CommentPlugin.CreateAsync(comment, id);
 
-                Task.Run(() => _hubContext.Clients.All.SendAsync(id, commentAdded));
+                AnimeUser user = _unitOfWork.AccountEntity.GetUsersAsync()
+                        .Result.FirstOrDefault(x => x.LocalId == commentAdded.UserLocal);
+
+                if (user == null) return BadRequest("Interval Error Server");
+
+                CommentResponse response = commentAdded.ToResponse(user);
+
+                _hubContext.Clients.All.SendAsync(id, response);
                 if(!string.IsNullOrWhiteSpace(receiver) && !string.IsNullOrWhiteSpace(link_notify) && !commentDto.user_local.Equals(receiver))
                 {
                     var notification = new Notification
@@ -81,7 +101,7 @@ namespace AnimeAB.Core.Apis
                     };
 
                     Notification notifyAdded = _unitOfWork.CommentPlugin.AddNotifiAsync(notification);
-                    Task.Run(() => _hubContext.Clients.All.SendAsync(notification.UserRevice, notifyAdded));
+                    _hubContext.Clients.All.SendAsync(notification.UserRevice, notifyAdded);
                 }
                 return NoContent();
             }

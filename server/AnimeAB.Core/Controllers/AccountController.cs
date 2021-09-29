@@ -17,7 +17,9 @@ using System.Threading.Tasks;
 
 namespace AnimeAB.Core.Controllers
 {
-    [Authorize(Policy = RoleSchemes.Admin, AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [Authorize(
+        Policy = RoleSchemes.Admin, 
+        AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     [Route("anime")]
     public class AccountController : Controller
     {
@@ -25,7 +27,10 @@ namespace AnimeAB.Core.Controllers
         public readonly IAppContext appContext;
         private readonly IWebHostEnvironment _environment;
 
-        public AccountController(IUnitOfWork unitOfWork, IAppContext appContext, IWebHostEnvironment environment)
+        public AccountController(
+            IUnitOfWork unitOfWork, 
+            IAppContext appContext, 
+            IWebHostEnvironment environment)
         {
             this.unitOfWork = unitOfWork;
             this.appContext = appContext;
@@ -83,7 +88,8 @@ namespace AnimeAB.Core.Controllers
         public async Task<IActionResult> DeleteAccount([FromBody]UserDelete user)
         {
             var userLogined = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            if (userLogined == user.userId) return BadRequest("Tài khoản đang đăng nhập không thể xóa");
+            if (userLogined == user.userId) 
+                return BadRequest("Tài khoản đang đăng nhập không thể xóa");
 
             var result = await unitOfWork.AccountEntity.DeleteUserAsync(user.token, user.userId);
 
@@ -104,7 +110,8 @@ namespace AnimeAB.Core.Controllers
         public async Task<IActionResult> UpdateProfile(ProfileUpdate profile)
         {
             if (profile.FileUpload.Length == 0) return BadRequest();
-            if (string.IsNullOrWhiteSpace(profile.DisplayName) || string.IsNullOrWhiteSpace(profile.UserToken))
+            if (string.IsNullOrWhiteSpace(profile.DisplayName) 
+                || string.IsNullOrWhiteSpace(profile.UserToken))
                 return BadRequest();
 
             string uploads = Path.Combine(_environment.WebRootPath, $"image");
@@ -127,7 +134,11 @@ namespace AnimeAB.Core.Controllers
                 if (!result.Success) return BadRequest(result.Message);
 
                 var profileUpdated = (ProfileDto)result.Data;
-                var updateClaim = appContext.UpdateUserClaim(User.Identity as ClaimsIdentity, profileUpdated.DisplayName, profileUpdated.PhotoUrl);
+                var updateClaim = 
+                    appContext.UpdateUserClaim(
+                    User.Identity as ClaimsIdentity, 
+                    profileUpdated.DisplayName, profileUpdated.PhotoUrl);
+
                 fs.Close();
 
                 System.IO.File.Delete(filePath);

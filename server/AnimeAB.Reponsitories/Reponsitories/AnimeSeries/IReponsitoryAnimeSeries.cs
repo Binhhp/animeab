@@ -9,11 +9,10 @@ namespace AnimeAB.Reponsitories.Reponsitories.AnimeSeries
 {
     public interface IReponsitoryAnimeSeries
     {
-        Task<List<Entities.AnimeSeries>> GetCurentSeriesAsync(string series);
         Task<IEnumerable<Series>> GetSeriesAsync();
         Task<bool> CreateSeriesAsync(string series);
-        Task<bool> DeleteSeriesAsync(string series);
-        Task<bool> CreateAnimeSeriesAsync(string series, Entities.AnimeSeries animeSeries);
-        Task<bool> DeleteAnimeSeriesAsync(string series, string animeSeries);
+        Task<bool> DeleteSeriesAsync(string series, List<Animes> animes);
+        bool CreateAnimeSeriesAsync(string series, string[] idAnimes);
+        bool DeleteAnimeSeriesAsync(string idAnime);
     }
 }

@@ -13,11 +13,10 @@ namespace AnimeAB.Reponsitories.Entities
         public const string ANIMEDETAIL = "AnimeDetail";
         public const string CATEGORIES = "Categories";
         public const string USERS = "Users";
-        public const string ANIMESERIES = "AnimeSeries";
-        public const string ANIMESERIESDETAIL = "AnimeSeriesDetail";
+        public const string ANIMESERIES = "Series";
         public const string COMMENT = "Comments";
         public const string NOTIFICATION = "Notification";
-
+        public const string ANIMEFAVORITE = "AnimeFavorite";
         public static string PATHANIMEDETAILED(string animeKey, string animeDetailKey)
         {
             return ANIME + "/" + animeKey + "/" + ANIMEDETAIL + "/" + animeDetailKey;

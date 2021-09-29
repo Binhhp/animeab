@@ -262,10 +262,12 @@
     <Compile Include="Domain\ClientProfile.cs" />
     <Compile Include="Domain\ClientToken.cs" />
     <Compile Include="Domain\ProfileDomain.cs" />
+    <Compile Include="Domain\Client.cs" />
     <Compile Include="DTOs\AccountDto.cs" />
     <Compile Include="DTOs\AccountSignUpDto.cs" />
     <Compile Include="DTOs\AccountLoginDto.cs" />
     <Compile Include="DTOs\AnimeDtoFilter.cs" />
+    <Compile Include="Domain\AnimeFavoriteDomain.cs" />
     <Compile Include="DTOs\AnimeFilter.cs" />
     <Compile Include="DTOs\AnimeView.cs" />
     <Compile Include="DTOs\ChangePasswordClient.cs" />
@@ -275,7 +277,7 @@
     <Compile Include="DTOs\CommentLikeDto.cs" />
     <Compile Include="DTOs\ProfileDto.cs" />
     <Compile Include="DTOs\UpdateProfileClient.cs" />
-    <Compile Include="Entities\AnimeSeries.cs" />
+    <Compile Include="Entities\AnimeFavorite.cs" />
     <Compile Include="Entities\Comment.cs" />
     <Compile Include="Entities\Notification.cs" />
     <Compile Include="Entities\Series.cs" />
@@ -302,6 +304,8 @@
     <Compile Include="Reponsitories\Category\ReponsitoryCategories.cs" />
     <Compile Include="Reponsitories\Collection\IReponsitoryCollection.cs" />
     <Compile Include="Reponsitories\Collection\ReponsitoryCollection.cs" />
+    <Compile Include="Reponsitories\Favorite\IReponsitoryFavorite.cs" />
+    <Compile Include="Reponsitories\Favorite\ReponsitoryFavorite.cs" />
     <Compile Include="Reponsitories\MessageHub\CommentPlugin.cs" />
     <Compile Include="Reponsitories\MessageHub\ICommentPlugin.cs" />
     <Compile Include="Reponsitories\Response.cs" />

@@ -33,7 +33,7 @@ namespace AnimeAB.Core
         public static IWebHostEnvironment _env;
         public IConfiguration Configuration { get; }
         readonly string AnimeABClientCors = "animeab";
-        readonly string LocalClient = "https://animeab.tk";
+        readonly string LocalClient = "https://animeab.co";
         readonly string LocalhostDev = "http://localhost:3000";
 
         public Startup(IWebHostEnvironment env)

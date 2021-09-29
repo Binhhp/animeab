@@ -18,8 +18,7 @@ namespace AnimeAB.Reponsitories.Entities
         //Duration of movie
         public int MovieDuration { get; set; }
         //Date release
-        public DateTime DateRelease { get; set; }
-
+        public DateTime DateRelease { get; set; } = DateTime.Now;
         public int Episode { get; set; }
         public int EpisodeMoment { get; set; } = 0;
         public string LinkStart { get; set; } = "";
@@ -32,8 +31,7 @@ namespace AnimeAB.Reponsitories.Entities
         public bool IsBanner { get; set; }
 
         public string CollectionId { get; set; }
-        public string CategoryKey { get; set; }
-
+        public Dictionary<string, Categories> Categories { get; set; }
         //Curent date update view
         public DateTime DateCreated { get; set; }
         public int Views { get; set; }
@@ -41,6 +39,7 @@ namespace AnimeAB.Reponsitories.Entities
         public int ViewMonths{ get; set; }
         public int ViewWeeks{ get; set; }
 
+        public string Season { get; set; }
         //Series
         public string Series { get; set; } = "";
 
