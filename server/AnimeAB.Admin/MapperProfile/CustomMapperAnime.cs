@@ -1,0 +1,17 @@
+﻿
+using AnimeAB.Domain.DTOs;
+
+namespace AnimeAB.Admin.MapperProfile.MapperMember
+{
+    public static class CustomMapperAnime
+    {
+        public static string MapperCollect(this AnimeDto animes)
+        {
+            if(animes.DateRelease.Month < 4) return "xuan";
+            if (animes.DateRelease.Month < 7 && animes.DateRelease.Month > 3) return "he";
+            if (animes.DateRelease.Month < 10 && animes.DateRelease.Month > 6) return "thu";
+
+            return "dong";
+        }
+    }
+}
