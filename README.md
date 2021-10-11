@@ -1,6 +1,8 @@
 <strong>AnimeAB</strong>
+<br/>
 Watch anime free online vietsub
 <strong>Technologies</strong>
+<br/>
 - React / Redux + Typescript
 - .Net Core 3.1
 - Firebase Database
