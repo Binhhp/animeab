@@ -1,6 +1,7 @@
 <strong>AnimeAB</strong>
 <br/>
 Watch anime free online vietsub
+<br/>
 <strong>Technologies</strong>
 <br/>
 - React / Redux + Typescript
