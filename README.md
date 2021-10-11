@@ -1,8 +1,8 @@
 # AnimeAB
 Watch anime free online vietsub
 # Technology
-- ReactJS
-- .Net Core Web Api
+- React / Redux + Typescript
+- .Net Core 3.1
 - Firebase Database
 - SignaIR
 # Website
