@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "AnimeAB - Anime Series";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="app-title">
+    <div>
+        <h1><i class="fa fa-th-list"></i> Anime Series</h1>
+        <p>Quản lý series anime</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item">Anime Series</li>
+    </ul>
+</div>
+<div class="container">
+    <div class="card">
+        <div class="card-header text-right">
+            <a href="#" id="modal__btn-add" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-add"><i class="fa fa-plus"></i>Tạo series</a>
+        </div>
+        <div class="card-body">
+            <table id="myTable" class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th width="30%">Series Anime</th>
+                        <th width="30%">Ngày tạo</th>
+                        <th width="35%">Xử lý</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@{await Html.RenderPartialAsync("Add.cshtml");}
+@section scripts{
+    <script src="~/controllers/series.js"></script>
+}

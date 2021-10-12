@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "AnimeAB - Thể loại";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="app-title">
+    <div>
+        <h1><i class="fa fa-th-list"></i> Thể loại</h1>
+        <p>Các thể loại anime</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item">Thể loại</li>
+    </ul>
+</div>
+<div class="container">
+    <div class="card">
+        <div class="card-header text-right">
+            <a href="#" class="btn btn-info btn-sm" id="modal__btn-add" data-toggle="modal" data-target="#modal-add"><i class="fa fa-plus"></i>Thêm mới</a>
+        </div>
+        <div class="card-body">
+            <table id="myTable" class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th width="20%">Meta</th>
+                        <th width="20%">Tiêu đề</th>
+                        <th width="20%">Mô tả</th>
+                        <th width="20%">Xử lý</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@{await Html.RenderPartialAsync("Add.cshtml");}
+@{await Html.RenderPartialAsync("Edit.cshtml");}
+
+@section scripts{
+    <script src="~/controllers/categories.js"></script>
+}

@@ -1,0 +1,27 @@
+﻿<div class="modal fade" id="modal-add" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" style="width: 75%" role="document">
+        <div class="modal-content">
+            <form class="py-3 needs-validation" id="form-add" onsubmit="return false">
+                <div class="col-12 mb-3">
+                    <label class="text-left">Anime</label>
+                    <div style="width: 100%;">
+                        <select class="form-control" style="width: 100%; height: 30px" id="anime" multiple="multiple">
+                            @foreach (var anime in (List<AnimeAB.Domain.Entities.Animes>)ViewData["Animes"])
+                            {
+                                <option value="@anime.Key">@anime.Title</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <a href="#" class="btn btn-secondary" name="exit" data-dismiss="modal">
+                        <i class="fa fa-fw fa-lg fa-times-circle"></i>Thoát
+                    </a>
+                    &nbsp;&nbsp;
+                    <button type="submit" class="btn btn-primary" id="btn-add"><i class="fa fa-plus"></i>&nbsp;Thêm anime</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

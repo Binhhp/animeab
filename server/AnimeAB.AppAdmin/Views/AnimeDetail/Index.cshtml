@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "AnimeAB - Danh sách tập phim - " + ViewData["animeKey"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var animeKey = ViewData["animeKey"].ToString();
+}
+
+<div class="app-title">
+    <div>
+        <h1><i class="fa fa-th-list"></i> Danh sách tập phim @animeKey</h1>
+        <p>Quản lý tập phim anime</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item"> Danh sách tập phim</li>
+    </ul>
+</div>
+<div class="">
+    <div class="card">
+        <div class="card-header text-right">
+            <a href="@Url.Action("Index", "Anime", Context.Request.Scheme)" class="btn btn-info btn-sm"><i class="fa fa-arrow-circle-left"></i></a>
+            <a href="#" id="btn-toggle-add" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-add"><i class="fa fa-plus"></i>Thêm mới</a>
+        </div>
+        <div class="card-body">
+            <table id="myTable" class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th width="10%">Key</th>
+                        <th width="15%">Ảnh</th>
+                        <th width="15%">Tiêu đề</th>
+                        <th width="10%">Lượt xem</th>
+                        <th width="20%">Link</th>
+                        <th width="10%">Định dạng</th>
+                        <th width="20%">Xử lý</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@{await Html.RenderPartialAsync("Add.cshtml");}
+@{await Html.RenderPartialAsync("Edit.cshtml");}
+@section scripts{
+    <script type="text/javascript" defer>
+        var animeKey = "@animeKey";
+    </script>
+    <script src="~/controllers/animeDetail.js" defer></script>
+}

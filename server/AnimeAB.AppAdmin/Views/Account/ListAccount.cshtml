@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "AnimeAB - Tài khoản";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="app-title">
+    <div>
+        <h1><i class="fa fa-th-list"></i> Quản lý tài khoản</h1>
+        <p>Danh sách tài khoản</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item">Quản lý tài khoản</li>
+    </ul>
+</div>
+<!-- Danh sách tài khoản -->
+<div class="container">
+    <div class="card">
+        <div class="card-header text-right">
+            <a data-toggle="modal" data-target="#modal-add" class="btn btn-info btn-sm" style="color: #fff"><i class="fa fa-plus"></i>Tạo tài khoản</a>
+        </div>
+        <div class="card-body">
+            <table id="myTable" class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th width="25%">Email</th>
+                        <th width="25%">Tên</th>
+                        <th width="25%">Xác nhận email</th>
+                        <th width="25%">Vai trò</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@{ await Html.RenderPartialAsync("SignUp.cshtml"); }
+@section scripts{
+    <script src="~/controllers/account.js"></script>
+}
