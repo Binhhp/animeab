@@ -8,6 +8,6 @@ namespace AnimeAB.Domain.DTOs
 {
     public class ChangePasswordClient
     {
-        public string? password_new { get; set; }
+        public string password_new { get; set; }
     }
 }

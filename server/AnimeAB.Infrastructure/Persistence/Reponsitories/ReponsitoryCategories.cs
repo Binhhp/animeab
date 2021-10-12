@@ -1,31 +1,26 @@
-﻿using AnimeAB.Application.Common.Behaviour;
-using AnimeAB.Application.Common.Interface.Reponsitories;
+﻿using AnimeAB.Application.Behavious;
+using AnimeAB.Application.Reponsitories;
 using AnimeAB.Domain.Entities;
+using AnimeAB.Domain.Services;
 using AnimeAB.Domain.Settings;
-using AnimeAB.Domain.ValueObject;
-using AnimeAB.Infrastructure.Services;
-using Firebase.Storage;
+using AnimeAB.Domain.ValueObjects;
 using FireSharp.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace AnimeAB.Infrastructure.Persistence.Reponsitories
 {
     public class ReponsitoryCategories : Request, IReponsitoryCategories
     {
-        private readonly AppSettingFirebase _appSetting;
         private readonly IFirebaseClient database;
 
         public ReponsitoryCategories(AppSettingFirebase appSetting)
         {
             //Database
-            _appSetting = appSetting;
-            database = FirebaseManager.Database(_appSetting.AuthSecret, _appSetting.DatabaseURL);
+            database = FirebaseManager.Database(appSetting.AuthSecret, appSetting.DatabaseURL);
         }
         /// <summary>
         /// List categories

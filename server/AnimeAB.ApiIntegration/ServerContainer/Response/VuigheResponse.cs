@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AnimeAB.ApiIntegration.ServerContainer.Response
+namespace AnimeAB.ApiIntegration.ServerContainer
 {
     public class VuigheResponse
     {

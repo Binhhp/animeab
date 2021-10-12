@@ -8,8 +8,8 @@ namespace AnimeAB.Domain
 {
     public class ClientToken
     {
-        public string? localId { get; set; }
-        public string? token { get; set; }
-        public string? refresh_token { get; set; }
+        public string localId { get; set; }
+        public string token { get; set; }
+        public string refresh_token { get; set; }
     }
 }

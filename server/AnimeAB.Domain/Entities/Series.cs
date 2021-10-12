@@ -8,7 +8,7 @@ namespace AnimeAB.Domain.Entities
 {
     public class Series
     {
-        public string? Key { get; set; }
+        public string Key { get; set; }
         public DateTime DateCreated { get; set; }
     }
 }

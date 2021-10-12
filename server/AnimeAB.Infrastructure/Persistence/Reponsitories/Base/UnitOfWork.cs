@@ -1,8 +1,8 @@
 ﻿
-using AnimeAB.Application.Common.Interface.Reponsitories;
-using AnimeAB.Application.Common.Interface.Reponsitories.Base;
+using AnimeAB.Application.Reponsitories;
+using AnimeAB.Application.Reponsitories.Base;
 using AnimeAB.Domain.Settings;
-using AnimeAB.Infrastructure.Identity;
+using AnimeAB.Infrastructure.Identities;
 
 namespace AnimeAB.Infrastructure.Persistence.Reponsitories.Base
 {

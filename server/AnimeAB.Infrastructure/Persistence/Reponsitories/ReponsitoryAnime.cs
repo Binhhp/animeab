@@ -1,12 +1,11 @@
-﻿
-using AnimeAB.Application.Common.Behaviour;
-using AnimeAB.Application.Common.Interface.Reponsitories;
+﻿using AnimeAB.Application.Behavious;
+using AnimeAB.Application.Reponsitories;
 using AnimeAB.Domain;
 using AnimeAB.Domain.DTOs;
 using AnimeAB.Domain.Entities;
+using AnimeAB.Domain.Services;
 using AnimeAB.Domain.Settings;
-using AnimeAB.Domain.ValueObject;
-using AnimeAB.Infrastructure.Services;
+using AnimeAB.Domain.ValueObjects;
 using Firebase.Storage;
 using FireSharp.Interfaces;
 using System;

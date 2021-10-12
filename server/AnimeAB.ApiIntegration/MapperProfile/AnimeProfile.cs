@@ -1,8 +1,11 @@
-﻿
-using AnimeAB.Domain.DTOs;
+﻿using AnimeAB.ApiIntegration.AnimeEndpoints;
+using AnimeAB.Core.ApiResponse;
 using AnimeAB.Domain.Entities;
-using AnimeAB.Infrastructure.ApiResponse;
 using AutoMapper;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace AnimeAB.ApiIntegration.MapperProfile
 {
@@ -20,13 +23,6 @@ namespace AnimeAB.ApiIntegration.MapperProfile
             CreateMap<Animes, FavoriteResponse>()
                .ForMember(dto => dto.Link,
                conf => conf.MapFrom(opt => opt.IsStatus < 3 ? opt.LinkEnd : opt.LinkStart));
-            //Upgrade anime detail
-            CreateMap<AnimeDetailDto, AnimeDetailed>();
-
-            CreateMap<CollectionDto, Collections>()
-               .ForMember(dto => dto.FileName,
-                       conf => conf.MapFrom(opt => opt.FileUpload.FileName))
-               .ReverseMap();
         }
     }
 }

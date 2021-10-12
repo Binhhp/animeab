@@ -2,13 +2,8 @@
 using Firebase.Storage;
 using FireSharp;
 using FireSharp.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace AnimeAB.Infrastructure.Services
+namespace AnimeAB.Domain.Services
 {
     public static class FirebaseManager
     {

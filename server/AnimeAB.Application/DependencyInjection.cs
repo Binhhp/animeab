@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AnimeAB.Application
 {
-    public class DependencyInjection
+    internal class DependencyInjection
     {
     }
 }

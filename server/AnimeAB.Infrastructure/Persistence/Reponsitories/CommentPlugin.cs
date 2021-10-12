@@ -1,9 +1,8 @@
-﻿using AnimeAB.Application.Common.Interface.Reponsitories;
-using AnimeAB.Domain.DTOs;
+﻿using AnimeAB.Application.Reponsitories;
 using AnimeAB.Domain.Entities;
+using AnimeAB.Domain.Services;
 using AnimeAB.Domain.Settings;
-using AnimeAB.Domain.ValueObject;
-using AnimeAB.Infrastructure.Services;
+using AnimeAB.Domain.ValueObjects;
 using FireSharp.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -130,17 +129,33 @@ namespace AnimeAB.Infrastructure.Persistence.Reponsitories
         /// </summary>
         /// <param name="animeKey"></param>
         /// <param name="commentKey"></param>
-        public Comment LikeComment(string animeKey, string commentKey)
+        public Dictionary<string, string> LikeComment(string animeKey, string commentKey, string uid, bool quitLike = false)
         {
             try
             {
                 var data = Task.Run(() => database.GetAsync(Table.COMMENT + "/" + animeKey + "/" + commentKey));
-
+                if(data.Result.Body == "null") return null;
                 Comment comment = data.Result.ResultAs<Comment>();
-                comment.Likes += 1;
-
-                database.SetAsync(Table.COMMENT + "/" + animeKey + "/" + commentKey + "/Likes", comment.Likes);
-                return comment;
+                //quit liked of comment
+                if(quitLike && comment.UserLiked.Contains(uid))
+                {
+                    comment.UserLiked = comment.UserLiked.Replace($"+{uid}", "");
+                    comment.Likes -= comment.Likes;
+                    database.UpdateAsync(Table.COMMENT + "/" + animeKey + "/" + commentKey, comment);
+                }
+                //like comment
+                if(!comment.UserLiked.Contains(uid))
+                {
+                    comment.UserLiked += $"+{uid}";
+                    comment.Likes += 1;
+                    database.UpdateAsync(Table.COMMENT + "/" + animeKey + "/" + commentKey, comment);
+                }
+                //return response
+                var response = new Dictionary<string, string>();
+                response.Add("likes", comment.Likes.ToString());
+                response.Add("userLiked", comment.UserLiked.ToString());
+                response.Add("idComment", comment.Key);
+                return response;
             }
             catch(Exception ex)
             {

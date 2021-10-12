@@ -6,13 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AnimeAB.Core.MapperProfile
+namespace AnimeAB.ApiIntegration.MapperProfile
 {
     public class CommentProfile : Profile
     {
         public CommentProfile()
         {
-            CreateMap<CommentDto, Comment>()
+            CreateMap<CommentRequest, Comment>()
                .ForMember(dto => dto.Key,
                        conf => conf.MapFrom(opt => opt.key))
                .ForMember(dto => dto.UserLocal,

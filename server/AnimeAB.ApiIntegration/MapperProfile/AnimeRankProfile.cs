@@ -1,9 +1,9 @@
-﻿
+﻿using AnimeAB.ApiIntegration.AnimeEndpoints;
+using AnimeAB.Core.ApiResponse;
 using AnimeAB.Domain.Entities;
-using AnimeAB.Infrastructure.ApiResponse;
 using AutoMapper;
 
-namespace AnimeAB.Core.MapperProfile
+namespace AnimeAB.ApiIntegration.MapperProfile
 {
     public class AnimeRankProfile : Profile
     {

@@ -1,17 +1,14 @@
-﻿using AnimeAB.Domain.DTOs;
+﻿using AnimeAB.ApiIntegration.AccountEndpoints;
+using AnimeAB.Domain.DTOs;
 using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace AnimeAB.Core.MapperProfile
+namespace AnimeAB.ApiIntegration.MapperProfile
 {
     public class ClientProfile : Profile
     {
         public ClientProfile()
         {
-            CreateMap<ClientDto, AccountSignUpDto>()
+            CreateMap<AccountRequest, AccountSignUpDto>()
                .ForMember(dto => dto.Email,
                        conf => conf.MapFrom(opt => opt.email))
                .ForMember(dto => dto.FullName,

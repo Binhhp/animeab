@@ -1,6 +1,4 @@
-﻿
-using AnimeAB.ApiIntegration.ServerContainer.Response;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,7 +65,7 @@ namespace AnimeAB.ApiIntegration.ServerContainer
 
                 if (response.sources.embed != "null" && !string.IsNullOrWhiteSpace(response.sources.embed))
                 {
-                    type = "hls";
+                    type = "fembed";
                     string link = response.sources.embed;
                     if(link.Contains("mephimanh.com"))
                     {

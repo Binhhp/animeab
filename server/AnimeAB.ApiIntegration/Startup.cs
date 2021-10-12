@@ -1,4 +1,4 @@
-using AnimeAB.ApiIntegration.ChatHubs;
+using AnimeAB.ApiIntegration.HubContainer;
 using AnimeAB.Application.Common.ExceptionsHanlder.Middleware;
 using AnimeAB.Domain.Settings;
 using FluentValidation.AspNetCore;

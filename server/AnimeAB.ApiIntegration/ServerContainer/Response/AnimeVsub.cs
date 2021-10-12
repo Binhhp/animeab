@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AnimeAB.ApiIntegration.ServerContainer.Response
+namespace AnimeAB.ApiIntegration.ServerContainer
 {
     public class AnimeVsub
     {
@@ -10,6 +10,12 @@ namespace AnimeAB.ApiIntegration.ServerContainer.Response
 
     }
 
+    public class AnimeVsubEmbed
+    {
+        public string link { get; set; }
+        public string playTech { get; set; }
+        public string success { get; set; }
+    }
     public class link
     {
         public string file { get; set; }

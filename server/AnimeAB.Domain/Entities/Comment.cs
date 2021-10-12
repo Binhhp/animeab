@@ -13,6 +13,7 @@ namespace AnimeAB.Domain.Entities
         public string Message { get; set; }
         public DateTime When { get; set; } = DateTime.Now;
         public string ReplyComment { get; set; } = "";
+        public string UserLiked { get; set; } = "";
         public int Likes { get; set; } = 0;
     }
 }

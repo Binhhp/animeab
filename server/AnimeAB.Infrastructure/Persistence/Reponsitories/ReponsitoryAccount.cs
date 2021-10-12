@@ -1,4 +1,4 @@
-﻿using AnimeAB.Domain.DTOs;
+﻿
 using Firebase.Auth;
 using System;
 using System.Collections.Generic;
@@ -7,18 +7,17 @@ using System.Text;
 using System.Threading.Tasks;
 using AnimeAB.Domain.Entities;
 using FireSharp.Interfaces;
-using FireSharp;
-using Newtonsoft.Json;
 using Firebase.Storage;
 using System.IO;
 using System.Threading;
-using AnimeAB.Domain;
 using System.Net.Http;
-using AnimeAB.Application.Common.Behaviour;
-using AnimeAB.Application.Common.Interface.Reponsitories;
+using AnimeAB.Application.Behavious;
+using AnimeAB.Application.Reponsitories;
 using AnimeAB.Domain.Settings;
-using AnimeAB.Domain.ValueObject;
-using AnimeAB.Infrastructure.Services;
+using AnimeAB.Domain.DTOs;
+using AnimeAB.Domain.ValueObjects;
+using AnimeAB.Domain;
+using AnimeAB.Domain.Services;
 
 namespace AnimeAB.Infrastructure.Persistence.Reponsitories
 {
@@ -221,6 +220,22 @@ namespace AnimeAB.Infrastructure.Persistence.Reponsitories
                 return null;
             }
         }
+
+        public async Task<AnimeUser> GetUserContextAsync(string uid)
+        {
+            try
+            {
+                var userCurrent = await database.GetAsync(Table.USERS + "/" + uid);
+                if (userCurrent.Body == "null") return null;
+
+                AnimeUser user = userCurrent.ResultAs<AnimeUser>();
+                return user;
+            }
+            catch
+            {
+                return null;
+            }
+        }
         /// <summary>
         /// Delete user
         /// </summary>
@@ -250,7 +265,7 @@ namespace AnimeAB.Infrastructure.Persistence.Reponsitories
         /// // <param name="fileName"></param>
         /// <returns></returns>
         public async Task<Response> UpdateProfileAsync
-            (ProfileDomain profile)
+            (ProfileRequest profile)
         {
             try
             {
@@ -361,7 +376,7 @@ namespace AnimeAB.Infrastructure.Persistence.Reponsitories
 
     public class UpdateProfile
     {
-        public string? DisplayName { get; set; }
-        public string? PhotoUrl { get; set; }
+        public string DisplayName { get; set; }
+        public string PhotoUrl { get; set; }
     }
 }

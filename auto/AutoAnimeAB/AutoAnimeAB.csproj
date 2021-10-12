@@ -85,7 +85,9 @@
     <Reference Include="SeleniumExtras.WaitHelpers, Version=3.11.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetSeleniumExtras.WaitHelpers.3.11.0\lib\net45\SeleniumExtras.WaitHelpers.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.AppContext, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.AppContext.4.3.0\lib\net463\System.AppContext.dll</HintPath>
       <Private>True</Private>
@@ -238,13 +240,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoAnime\AutoMappingHoathinh247.cs" />
-    <Compile Include="Hoathinh247.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Hoathinh247.Designer.cs">
-      <DependentUpon>Hoathinh247.cs</DependentUpon>
-    </Compile>
     <Compile Include="AnimeVsub.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -281,9 +276,6 @@
     <Compile Include="Reponsitory\ReponsitoryAnime.cs" />
     <Compile Include="Reponsitory\FirebaseManager.cs" />
     <Compile Include="Reponsitory\Response.cs" />
-    <EmbeddedResource Include="Hoathinh247.resx">
-      <DependentUpon>Hoathinh247.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="AnimeVsub.resx">
       <DependentUpon>AnimeVsub.cs</DependentUpon>
     </EmbeddedResource>

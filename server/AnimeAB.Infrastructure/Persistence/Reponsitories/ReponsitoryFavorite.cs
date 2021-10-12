@@ -1,9 +1,9 @@
-﻿using AnimeAB.Application.Common.Interface.Reponsitories;
-using AnimeAB.Domain;
+﻿
+using AnimeAB.Application.Reponsitories;
 using AnimeAB.Domain.Entities;
+using AnimeAB.Domain.Services;
 using AnimeAB.Domain.Settings;
-using AnimeAB.Domain.ValueObject;
-using AnimeAB.Infrastructure.Services;
+using AnimeAB.Domain.ValueObjects;
 using FireSharp.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -16,7 +16,6 @@ namespace AnimeAB.Infrastructure.Persistence.Reponsitories
     public class ReponsitoryFavorite : IReponsitoryFavorite
     {
         private readonly IFirebaseClient database;
-
 
         public ReponsitoryFavorite(AppSettingFirebase _appSetting)
         {

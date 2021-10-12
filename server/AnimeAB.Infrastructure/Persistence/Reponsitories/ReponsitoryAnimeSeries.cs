@@ -1,8 +1,6 @@
-﻿using AnimeAB.Application.Common.Interface.Reponsitories;
-using AnimeAB.Domain.Entities;
+﻿using AnimeAB.Application.Reponsitories;
 using AnimeAB.Domain.Settings;
-using AnimeAB.Domain.ValueObject;
-using AnimeAB.Infrastructure.Services;
+using AnimeAB.Domain.Entities;
 using Firebase.Storage;
 using FireSharp.Interfaces;
 using System;
@@ -10,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AnimeAB.Domain.ValueObjects;
+using AnimeAB.Domain.Services;
 
 namespace AnimeAB.Infrastructure.Persistence.Reponsitories
 {

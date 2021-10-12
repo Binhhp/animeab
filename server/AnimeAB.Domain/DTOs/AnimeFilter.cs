@@ -8,8 +8,8 @@ namespace AnimeAB.Domain.DTOs
 {
     public class AnimeFilter
     {
-        public string? q { get; set; }
-        public string? cate { get; set; }
-        public string? collect { get; set; }
+        public string q { get; set; }
+        public string cate { get; set; }
+        public string collect { get; set; }
     }
 }

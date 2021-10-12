@@ -1,6 +1,5 @@
-﻿
+﻿using AnimeAB.ApiIntegration.AnimeEndpoints;
 using AnimeAB.Domain.Entities;
-using AnimeAB.Infrastructure.ApiResponse;
 using AutoMapper;
 
 namespace AnimeAB.Core.MapperProfile

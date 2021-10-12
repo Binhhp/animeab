@@ -8,6 +8,6 @@ namespace AnimeAB.Domain.DTOs
 {
     public class RefreshTokenDto
     {
-        public string? refresh_token { get; set; }
+        public string refresh_token { get; set; }
     }
 }

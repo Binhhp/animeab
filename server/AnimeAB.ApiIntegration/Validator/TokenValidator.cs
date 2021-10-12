@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AnimeAB.Core.Validator
+namespace AnimeAB.ApiIntegration.Validator
 {
     public class TokenValidator : AbstractValidator<RefreshTokenDto>
     {

@@ -52,7 +52,6 @@ namespace AutoAnimeAB
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtEnd = new System.Windows.Forms.TextBox();
-            this.serverHoathinh247ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip2.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
@@ -156,8 +155,7 @@ namespace AutoAnimeAB
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.homeToolStripMenuItem2,
             this.getLinkToolStripMenuItem2,
-            this.thêmURLAnimeServerAnimeVsubToolStripMenuItem,
-            this.serverHoathinh247ToolStripMenuItem});
+            this.thêmURLAnimeServerAnimeVsubToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(775, 28);
@@ -234,13 +232,6 @@ namespace AutoAnimeAB
             this.txtEnd.Size = new System.Drawing.Size(101, 22);
             this.txtEnd.TabIndex = 11;
             // 
-            // serverHoathinh247ToolStripMenuItem
-            // 
-            this.serverHoathinh247ToolStripMenuItem.Name = "serverHoathinh247ToolStripMenuItem";
-            this.serverHoathinh247ToolStripMenuItem.Size = new System.Drawing.Size(153, 24);
-            this.serverHoathinh247ToolStripMenuItem.Text = "Server Hoathinh247";
-            this.serverHoathinh247ToolStripMenuItem.Click += new System.EventHandler(this.serverHoathinh247ToolStripMenuItem_Click);
-            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -294,7 +285,6 @@ namespace AutoAnimeAB
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtEnd;
         private System.Windows.Forms.ToolStripMenuItem thêmURLAnimeServerAnimeVsubToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem serverHoathinh247ToolStripMenuItem;
     }
 }
 
